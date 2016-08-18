@@ -56,5 +56,8 @@ angular.module('starter.services', [])
      factory.events = function (model) {
          return $http.get(url + 'get_events.php');
      };
+     factory.offers = function (model) {
+         return $http.get(url + 'get_offers.php');
+     };
     return factory;
 });

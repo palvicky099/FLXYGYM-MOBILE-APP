@@ -1,5 +1,6 @@
 app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $rootScope, $cordovaSQLite, $ionicPopup, dataService, $cordovaDialogs) {
     //------------- One week data -----------
+  
     var DataArray = [];
     var myDate = new Date();
     for (var i = 0; i <= 6; i++) {
@@ -365,35 +366,11 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
   $scope.rating.rate = 3.5;
   $scope.rating.max = 5;
   $scope.goDetail = function (l) {
-      dataService.getCenterDetails(l.center_id).then(function (result) {
-          $ionicLoading.show({
-              noBackdrop: false,
-              template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: true,
-              duration: 3000,
-              maxWidth: 200,
-              showDelay: 0
-          });
-          window.localStorage.setItem("GYMDetails", JSON.stringify(result.data.response));
-          window.localStorage.setItem("goDetailsFrom", "list");
-          $state.go('detail');
-         }, function (err) {
-             $ionicLoading.show({
-                 noBackdrop: false,
-                 template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">No Details Available</p>',
-                 content: 'Loading',
-                 animation: 'fade-in',
-                 showBackdrop: true,
-                 duration: 3000,
-                 maxWidth: 200,
-                 showDelay: 0
-             });
-    });
+      loadymDetails(l.center_id);
            window.localStorage.setItem("itemDetails", JSON.stringify(l));
-          
+           $state.go('detail')
   }
+
      $ionicModal.fromTemplateUrl('templates/filterModel.html', {
         scope: $scope,
         backdropClickToClose: true,
@@ -447,6 +424,69 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
         
     }, function (err) {
     });
+    $scope.visible = {};
+    $scope.reserve = function (l) {
+        var popup = $ionicPopup.show({
+            'templateUrl': 'selectBookingType.html',
+            'title': 'Select Plan',
+            'scope': $scope,
+            'buttons': [
+                        {
+                            'text': 'Cancel'
+                        },
+                        {
+                            'text': 'Save',
+                            'onTap': function (event) {
+                                return $scope.visible.status;
+                            }
+                        }
+            ]
+        });
+        popup.then(function (result) {
+            loadymDetails(l.center_id)
+            if (result == "0") {
+                $rootScope.plan = result;
+                $state.go('bookDate');
+            }
+            if (result == "1") {
+                $rootScope.plan = result;
+                $state.go('bookDate');
+            }
+            if (result == "2") {
+                $rootScope.plan = result;
+                $state.go('bookDate');
+            }
+        });
+    }
+
+
+    function loadymDetails(centerId) {
+        dataService.getCenterDetails(centerId).then(function (result) {
+            $ionicLoading.show({
+                noBackdrop: false,
+                template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                duration: 3000,
+                maxWidth: 200,
+                showDelay: 0
+            });
+            window.localStorage.setItem("GYMDetails", JSON.stringify(result.data.response));
+            window.localStorage.setItem("goDetailsFrom", "list");
+        }, function (err) {
+            $ionicLoading.show({
+                noBackdrop: false,
+                template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">No Details Available</p>',
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                duration: 3000,
+                maxWidth: 200,
+                showDelay: 0
+            });
+        });
+    }
 
 
 

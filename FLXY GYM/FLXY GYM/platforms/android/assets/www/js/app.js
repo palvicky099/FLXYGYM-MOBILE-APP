@@ -72,10 +72,10 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            templateUrl: "templates/otp.html",
            controller: 'registerCtrl'
      })
-      .state('feeds', {
-           url: "/feeds",
-           templateUrl: "templates/feeds.html",
-           controller: 'feedsCtrl'
+      .state('offers', {
+          url: "/offers",
+          templateUrl: "templates/offers.html",
+          controller: 'offersCtrl'
 
       })
        .state('feedback', {

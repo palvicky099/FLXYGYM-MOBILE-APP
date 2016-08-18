@@ -8,18 +8,9 @@
      <div class="row animated bounceInDown" style="position:fixed; top:39px; z-index:1000;">
           <div class="col abc" ng-repeat="d in dateScope" ng-click="dateClick(d)"><h4 class="week">{{d | date:'dd' }}</h4><h5 class="week">{{d | date:'EEE' }}</h5></div>
       </div>
-    <!--<div class="list card list-inset Paddingtop animated zoomIn" style="position:fixed;bottom:-10px; z-index:1000; width:104%;left:-10px">
-        <label class="item item-input item-select flxy-tabs">
-            <div class="input-label flxy-tabs">
-                Select Location
-            </div>
-            <select class="item-text-wrap flxy-button" name="mySelect" id="mySelect" ng-change="dropDownClick(locationDetails.SelectedLocation)"
-                    ng-options="option.location for option in locationDetails.location track by option.loc_id"
-                    ng-model="locationDetails.SelectedLocation"></select>
-        </label>
-    </div>-->
-    <ion-content class="" style="margin-top:75px">
-    <div class="list">
+
+    <ion-content class="" style="margin-top:70px">
+    <!--<div class="list">
     <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in listArray" ng-click="goDetail(l)">
       <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200"  id="listImg">
       <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
@@ -27,12 +18,37 @@
        <p>{{l.location}}</p>
 <p style="color:green">{{l.price}} Rs</p>
     <span class="item-note">
-  
   {{l.distance}} KMs
     </span>
-     <rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>
+        <span class="reserveBtn" ng-click="reserveClick()">Reserve</span>
     </a>
-</div>
+</div>-->
+        <div class="card"  ng-repeat="l in listArray">
+            <div class="item item-divider" style="background-color: white !important;">
+                <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
+             </div>
+            <a style="border:none" class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-click="goDetail(l)">
+                <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">
+               
+                <p>10am to 12pm</p>
+                <p>{{l.location}}</p>
+                <p style="color:green">{{l.price}} Rs</p>
+                <!--<rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>-->
+                <span class="item-note">
+                    {{l.distance}} KMs
+                </span>
+            </a>
+            <div class="tabs item">
+                <a class="tab-item" ng-click="reserve(l)">
+                    RESERVE
+                </a>
+                <a class="tab-item" ng-click="goDetail(l)">
+                    DETAILS
+                </a>
+            </div>
+        </div>
+
+
     </ion-content>
 </ion-view>
 <style>
@@ -44,4 +60,21 @@
   .abc:hover{
 background-color:#ccc;
   }
-</style>
+  .reserveBtn{
+          background-color: red;
+    color: white;
+    position: fixed;
+    left: 10px;
+    padding-left: 19px;
+    padding-right: 19px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+</style>     
+<script id="selectBookingType.html" type="text/ng-template">
+    <ion-list>
+        <ion-radio ng-model="visible.status" ng-value="'0'" style="font-size: 13px;">DAILY MEMBERSHIP </ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'1'" style="font-size: 13px;">GYM MEMBERSHIP</ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'2'" style="font-size: 13px;">FLXY GYM MEMBERSHIP</ion-radio>
+    </ion-list>
+</script>

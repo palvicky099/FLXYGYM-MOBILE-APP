@@ -7,11 +7,11 @@
     <ion-content>
     <div class="list">
   <div class="item item-image animated zoomIn">
-    <img  src="{{detailItem.center_imgpath}}" >
+    <img  src="{{gymDetails[0].center_imgpath[0]}}" >
   </div>
   <a class="item item-icon-right Paddingtop animated zoomIn item-text-wrap">
-    <h2 style="color:red;">{{detailItem.center_name}}</h2>
-    <p>{{detailItem.address}}
+    <h2 style="color:red;">{{gymDetails[0].center_name}}</h2>
+    <p>{{gymDetails[0].address}}
      </p>
   </a>
    <div class="card Paddingtop animated zoomIn">
@@ -69,8 +69,8 @@
 
 <script id="selectBookingType.html" type="text/ng-template">
     <ion-list>
-        <ion-radio ng-model="visible.status" ng-value="'0'">DAILY MEMBERSHIP </ion-radio>
-        <ion-radio ng-model="visible.status" ng-value="'1'">GYM MEMBERSHIP</ion-radio>
-        <ion-radio ng-model="visible.status" ng-value="'2'">FLXY GYM MEMBERSHIP</ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'0'" style="font-size: 13px;">DAILY MEMBERSHIP </ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'1'" style="font-size: 13px;">GYM MEMBERSHIP</ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'2'" style="font-size: 13px;">FLXY GYM MEMBERSHIP</ion-radio>
     </ion-list>
 </script>

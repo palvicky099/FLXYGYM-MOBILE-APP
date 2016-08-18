@@ -5,15 +5,9 @@
         </button>
     </ion-header-bar>
     <ion-content class="">
-<div class="card animated zoomIn" ng-repeat="l in listArray" ng-click="goDetail(l)"> 
-  <div class="item item-divider" style="color:red">
-   {{l.gymName}}
-  </div>
+<div class="card animated zoomIn" ng-repeat="l in offers" ng-click="goDetail(l)"> 
   <div class="item item-text-wrap item-image animated zoomIn">
-      <img src="{{l.gymImg}}">
-  </div>
-  <div class="item item-text-wrap">
-           <p>{{l.gymAddress}}</p>
+      <img src="{{img}}">
   </div>
 </div>
 

@@ -1,0 +1,62 @@
+<ion-view hide-nav-bar="true" title="Free Books" cache-view="false">
+    <ion-header-bar class="flxy-button">
+        <button class="button  button-clear icon ion-ios-arrow-left" style="color:white;" ui-sref="bookDate">
+            <span class="headerStyle">Order Details</span>
+        </button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <table id="t01">
+            <tr>
+                <th>Date</th>
+                <th>Shift</th>
+                <th>Price</th>
+            </tr>
+            <tr ng-repeat="d in dateDetails">
+                <td>{{d.date  | date:'dd MMM yyyy'}}</td>
+                <td>{{d.Time}}</td>
+                <td>{{d.price}} Rs</td>
+            </tr>
+            <tr>
+                <td><b>Total</b></td>
+                <td></td>
+                <td><b>250 Rs</b></td>
+            </tr>
+        </table>
+       
+    </ion-content>
+    <div class="tabs flxy-tabs" style="font-weight: 900;">
+        <a class="tab-item" style="font-weight: 900;width:100%;overflow:visible !important" ng-click="testmethod()">
+            PROCEED TO PAYMENT
+        </a>
+    </div>
+</ion-view>
+
+<style>
+    table {
+        width: 100%;
+    }
+
+    table, th, td {
+        border: 1px solid #eeeeee;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 5px;
+        text-align: center;
+    }
+
+    table#t01 tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    table#t01 tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    table#t01 th {
+        background-color: white;
+        color: #d41b0d;
+        text-align:center;
+    }
+</style>

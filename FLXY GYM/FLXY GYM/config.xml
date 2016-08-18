@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.ionicframework.ionicsidemenu" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>FLXY GYM</name>
+  <description>
+        An Ionic Framework and Cordova project.
+    </description>
+  <author email="you@example.com" href="http://example.com.com/">
+      Your Name Here
+    </author>
+  <content src="index.html" />
+  <access origin="*" />
+<allow-navigation href="https://test.payu.in/*" />
+  <access origin="tel:*" launch-external="yes"/>
+  <preference name="webviewbounce" value="false" />
+  <preference name="UIWebViewBounce" value="false" />
+  <preference name="DisallowOverscroll" value="true" />
+  <preference name="android-minSdkVersion" value="16" />
+  <preference name="BackupWebStorage" value="none" />
+  <feature name="StatusBar">
+    <param name="ios-package" onload="true" value="CDVStatusBar" />
+  </feature>
+  <preference name="KeepRunning" value="True" />
+  <preference name="ShowTitle" value="True" />
+  <preference name="InAppBrowserStorageEnabled" value="True" />
+  <preference name="SuppressesIncrementalRendering" value="True" />
+  <preference name="windows-target-version" value="10.0" />
+   <platform name="android">
+     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
+    <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
+    <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi"/>
+    <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi"/>
+    <icon src="resources/android/icon/drawable-xxhdpi-icon.png" density="xxhdpi"/>
+    <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
+    <splash src="resources/screens/android/screen-hdpi-landscape.png" density="land-hdpi" />
+    <splash src="resources/screens/android/screen-ldpi-landscape.png" density="land-ldpi" />
+    <splash src="resources/screens/android/screen-mdpi-landscape.png" density="land-mdpi" />
+    <splash src="resources/screens/android/screen-xhdpi-landscape.png" density="land-xhdpi" />
+  </platform>
+  
+  <plugin name="cordova-plugin-device" spec="~1.1.1" />
+  <plugin name="cordova-plugin-console" spec="~1.0.2" />
+  <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
+  <plugin name="cordova-plugin-statusbar" spec="~2.1.0" />
+  <plugin name="ionic-plugin-keyboard" spec="~1.0.8" />
+  <plugin name="cordova-plugin-geolocation" version="2.2.1-dev" src="https://github.com/apache/cordova-plugin-geolocation.git" />
+  <plugin name="cordova-plugin-compat" version="1.0.0" />
+  <plugin name="cordova-sqlite-storage" version="1.4.6-pre6a" src="https://github.com/litehelpers/Cordova-sqlite-storage.git" />
+  <plugin name="cordova-plugin-network-information" version="1.2.2-dev" src="https://github.com/apache/cordova-plugin-network-information.git" />
+  <plugin name="mx.ferreyra.callnumber" version="0.0.2" src="https://github.com/Rohfosho/CordovaCallNumberPlugin.git" />
+</widget>

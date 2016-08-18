@@ -1,0 +1,16 @@
+<ion-view cache-view="false" hide-nav-bar="true" class="greyBackgorund">
+     <ion-header-bar class="flxy-button">
+        <button ui-sref="dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">MEMBERSHIP</span>
+        </button>
+    </ion-header-bar>
+    <ion-content >
+     <ion-list class="">
+        <ion-item style="background-color: {{l.bgColor}}" class="animated zoomIn card"  ng-repeat="l in dashList" ng-style="{'height': '125px'}" ui-sref="placenearby" ng-click="goList(l)">
+           <h2 class="textOnList" style="color:black;margin-left: 15px !important; text-align: center;margin-top:38px; font-size:20px !important">{{l.categoryName}}</h2> 
+         <!--   <p  style="color:#ddd; text-align: center;margin-left: 15px !important;margin-top:-5px !important;">23 Activitys Available</p> -->
+        </ion-item>
+    </ion-list>
+<div style="height: 100px"></div>
+    </ion-content>
+</ion-view>

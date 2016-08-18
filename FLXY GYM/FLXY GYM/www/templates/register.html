@@ -1,0 +1,48 @@
+<ion-view hide-nav-bar="true" title="Free Books">
+    <ion-header-bar class="flxy-button">
+        <button class="button  button-clear icon ion-ios-arrow-left" style="color:white;" ui-sref="login">
+            <span class="headerStyle">CREATE AN ACCOUNT</span>
+        </button>
+    </ion-header-bar>
+    <ion-content >
+        <div class="list animated zoomIn">
+		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		      <span class="input-label " >Name</span>
+		     <input type="text"  placeholder="Name" class="registerField" ng-model="user.name">
+		  </label>
+		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		    <span class="input-label " >Email address</span>
+		     <input type="text"  placeholder="Email address" class="registerField" ng-model="user.email">
+		  </label> 
+		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		      <span class="input-label " >Mobile number </span>
+		     <input type="text"  placeholder="Mobile number" class="registerField" ng-model="user.mobile">
+		  </label>
+		 <!--  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		    <span class="input-label " >Referral code (optional)</span>
+		     <input type="text"  placeholder="Referral code (optional)" class="registerField" ng-model="user.code">
+		  </label> -->
+		  <label class="item item-input item-floating-label" style="border: none; width: 95%">
+		    <span class="input-label" >Password</span>
+		    <input type="password"  placeholder="Password" class="registerField" ng-model="user.password">
+		  </label>
+           <label class="item item-input item-floating-label" style="border: none; width: 95%">
+		    <span class="input-label" >Confirm password</span>
+		    <input type="password"  placeholder="Confirm password" class="registerField" ng-model="user.confirm">
+		  </label>
+
+
+  </div>
+  <!-- <div align="center" style="margin-top: 30px">  
+ <button class="button button-block redButton animated zoomIn" style="width:95%;">
+  Register
+</button>
+</div> -->
+<div style="height:100px"></div>
+    </ion-content>
+    <div class="tabs redButton animated zoomIn">
+  <a class="tab-item" style="font-weight: 900;" ng-click="register(user)">
+    Register
+  </a>
+</div>
+</ion-view>

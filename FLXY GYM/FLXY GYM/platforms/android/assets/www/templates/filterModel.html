@@ -1,0 +1,97 @@
+<ion-modal-view cache-view="false" class="greyBackgorund">
+    <ion-header-bar class="flxy-button">
+        <h1 class="title white-font" style="color:white;">FILTER</h1>
+        <div class="buttons ">
+            <button class="button button-clear flxy-button" ng-click="closeMember()">
+                <i class="ion-close-circled" style="font-size:30px;"></i>
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+    <div class="list card list-inset Paddingtop animated zoomIn">
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                 Select Location               
+                    </div>
+                  <select class="item-text-wrap" name="mySelect" id="mySelect" ng-change="dropDownClick(locationDetails.SelectedLocation)"
+                          ng-options="option.location for option in locationDetails.location track by option.loc_id"
+                          ng-model="locationDetails.SelectedLocation"></select>
+              </label>
+          </div>
+<!--<div class="card animated zoomIn">
+  <div class="item item-divider">
+   Select 
+  </div>
+  <ion-radio  class="" ng-model="choice" ng-value="'A'">Distance</ion-radio>
+  <ion-radio class="" ng-model="choice" ng-value="'B'">Time</ion-radio>
+</div>-->
+        <div class="card  animated zoomIn">
+            <div class="item item-divider">
+              Time ({{timeSelection}}) AM
+            </div>
+            <div class="range range-positive">
+                5 AM
+                <input type="range" name="volume" min="1" max="12" value="{{timeSelection}}" ng-model="timeSelection">
+                12 AM
+            </div>
+        </div>
+
+<div class="card  animated zoomIn">
+  <div class="item item-divider">
+    Price ({{priceSelection}})
+  </div>
+    <div class="range range-positive">
+        20
+        <input type="range" name="volume" min="20" max="2000" value="{{priceSelection}}" ng-model="priceSelection">
+        2000
+    </div>
+</div>
+  <div style="height:100px"></div>
+    </ion-content>
+    <div class="tabs flxy-tabs animated zoomIn">
+  <a class="tab-item" style="font-weight: 900;" ng-click="closeMember()">
+    FILTER
+  </a>
+</div>
+</ion-modal-view>
+<style>
+  .share_helper:before {
+    content:url('images/30.png');
+    position: absolute;
+}
+ 
+.share_helper {
+     position: relative;
+     float: right;
+     right:-38px;
+     -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+}
+ 
+.share_helper ul {
+    background: #e5e5e5;
+    border-bottom-left-radius: 5px;
+    position: relative;
+    left: 25px;
+}
+ 
+.share_helper ul li {
+    font-size: 25px;
+    list-style: none;
+    padding: 8px;
+}
+ 
+.share_helper ul li a {
+    color: #000;
+}
+ 
+.share_helper ul li a:hover {
+    text-decoration: none;
+    color: #8e8e8e;
+}
+ 
+.share_helper:hover {
+     right:25px;
+}
+</style>

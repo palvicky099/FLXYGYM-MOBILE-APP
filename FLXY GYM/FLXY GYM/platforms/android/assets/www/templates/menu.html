@@ -1,0 +1,76 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <a menu-close class="item item-thumbnail-left border-none menuProfileImage itemHoverMenu" ui-sref="profile">
+      <img src="img/logo.png" style="border-radius: 16px;margin-top: 10px">
+      <h2 style="color: white;margin-top: 25px">Welcome<br />{{dashList[0].name}}</h2>
+    </a>
+    <ion-content style="background-color: #f7f4f4 !important;">
+    <div class="list border-none animated bounceInDown">
+  <a menu-close class="item item-icon-left sidemenuItem  border-none" ui-sref="app.dashboard" style="margin-top:120px">
+    <i class="icon ion-ios-home-outline"></i>
+   Home
+  </a>
+  <a menu-close class="item item-icon-left sidemenuItem border-none" ui-sref="flxyMemberShip">
+    <i class="icon ion-ios-people-outline"></i>
+   Membership
+  </a>
+  <a  menu-close class="item item-icon-left sidemenuItem border-none">
+    <i class="icon ion-ios-bookmarks-outline"></i>
+  My Booking
+  </a>
+  <!--<a menu-close class="item item-icon-left sidemenuItem border-none">
+    <i class="icon ion-ios-eye-outline"></i>
+  Fiction
+  </a>-->
+   <!--<a class="item item-icon-left sidemenuItem border-none">
+    <i class="icon ion-ios-cart-outline"></i>
+   Cart
+  </a>--> 
+  <!-- <a class="item item-icon-left sidemenuItem border-none">
+    <i class="icon ion-android-walk"></i>
+  GYM Finder
+  </a> -->
+  <!--<a class="item item-icon-left sidemenuItem border-none">
+    <i class="icon ion-ios-briefcase-outline"></i>
+  Wallet
+  </a-->
+  <!-- <a class="item item-icon-left sidemenuItem border-none">
+    <i class="icon ion-ios-gear"></i>
+  Setting
+  </a> -->
+  <a  menu-close class="item item-text-wrap item-icon-left sidemenuItem border-none" ui-sref="feedback">
+    <i class="icon ion-share"></i>
+  Feedback/Feature Request
+  </a>
+  <a menu-close class="item item-icon-left sidemenuItem border-none" ng-click="logOut()">
+    <i class="icon ion-log-out"></i>
+  Logout
+  </a>
+   </div>
+<div style="height: 30px"></div>
+    </ion-content>
+  </ion-side-menu>
+<ion-header-bar class="flxy-button" style="height: 50px; position: fixed;top:0px">
+              <div class="logoHeaderImg"></div>
+  <button ui-sref="app.dashboard" class="button  button-clear" style="color:white;">
+            <span class="headerStyle">FLXY GYM</span>
+        </button>
+         <button class="button button-clear button-positive icon ion-navicon flxy-button" ng-click="toggleLeftSideMenu()"></button>
+    </ion-header-bar>
+</ion-side-menus>
+<style>
+  .itemHoverMenu:hover{
+      background-color:#444;
+  }
+</style>

@@ -1,0 +1,33 @@
+<ion-view hide-nav-bar="true"  class="greyBackgorund">
+    <ion-header-bar class="flxy-button">
+        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">FEEDS</span>
+        </button>
+    </ion-header-bar>
+    <ion-content class="">
+<div class="card animated zoomIn" ng-repeat="l in listArray" ng-click="goDetail(l)"> 
+  <div class="item item-divider" style="color:red">
+   {{l.gymName}}
+  </div>
+  <div class="item item-text-wrap item-image animated zoomIn">
+      <img src="{{l.gymImg}}">
+  </div>
+  <div class="item item-text-wrap">
+           <p>{{l.gymAddress}}</p>
+  </div>
+</div>
+
+
+<!--     <div class="list">
+    <a class="item item-thumbnail-left item-text-wrap Paddingtop" ng-repeat="l in listArray" ng-click="goDetail(l)">
+      <img src="{{l.gymImg}}">
+      <h2 style="color: red">{{l.gymName}}</h2>
+      <p>{{l.gymTime}}</p>
+       <p>{{l.gymAddress}}</p>
+    <span class="item-note">
+      {{l.gymDistance}}
+    </span>
+    </a>
+</div> -->
+    </ion-content>
+</ion-view>

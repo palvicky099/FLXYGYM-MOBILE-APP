@@ -1,0 +1,79 @@
+<ion-view cache-view="false" hide-nav-bar="true" >
+     <ion-header-bar class="flxy-button">
+        <button ui-sref="detail" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">Select Date</span>
+        </button>
+       <!--<button class="button button-clear button-positive icon ion-ios-cart-outline flxy-button" ui-sref="cart"></button>-->
+    </ion-header-bar>
+    <ion-content>
+    <ion-list>
+  <ion-checkbox ng-if="showMemberShip == '0'" class="checkbox-royal" ng-repeat="d in dateScope | orderBy : 'date'" ng-disabled="d.remaining_seat <= 0" ng-model="itemChecked" ng-click="callMe(d, itemChecked )">{{d.date | date:'dd MMM yyyy'}}
+     <br /> {{d.Time}}
+        <br /><p style="text-align:right; color:green">{{d.price}} Rs</p>
+        </ion-checkbox>
+</ion-list>
+        <div ng-if="showMemberShip == '1'">
+            <ion-item    class="animated zoomIn  item-icon-left"  ng-if="flxyGymData.monthly_price" ng-click="gymMemberShipClick(flxyGymData.monthly_price)">
+                <i class="icon ion-star"></i>
+                <h2>Monthly</h2>
+                <h2>{{flxyGymData.monthly_price}}</h2>
+            </ion-item>
+            <ion-item   class="animated zoomIn   item-icon-left"  ng-if="flxyGymData.quaterly_price" ng-click="gymMemberShipClick(flxyGymData.quaterly_price)">
+                <i class="icon ion-star"></i>
+                <h2>Quaterly</h2>
+                <h2>{{flxyGymData.quaterly_price}}</h2>
+
+             </ion-item>
+            <ion-item  class="animated zoomIn   item-icon-left"  ng-if="flxyGymData.halfyearly_price" ng-click="gymMemberShipClick(flxyGymData.halfyearly_price)">
+                <i class="icon ion-star"></i>
+                <h2 >Halfyearly</h2>
+                <h2>{{flxyGymData.halfyearly_price}}</h2>
+                </ion-item>
+
+            <ion-item  class="animated zoomIn   item-icon-left"  ng-if="flxyGymData.yearly_price" ng-click="gymMemberShipClick(flxyGymData.yearly_price)">
+                <i class="icon ion-star"></i>
+                <h2 >Yearly</h2>
+                <h2>{{flxyGymData.yearly_price}}</h2>
+            </ion-item>
+        </div>
+        <div ng-if="showMemberShip == '2'">
+            <ion-item  class="animated zoomIn item-icon-left"  ng-if="flxyGymData.platinum" ng-click="gymMemberShipClick(flxyGymData.platinum)">
+                <i class="icon ion-star" style="color:#E5E4E2"></i>
+                <h2>Platinium</h2>
+                 <h2>{{flxyGymData.platinum}}</h2>
+            </ion-item>
+            <ion-item  class="animated zoomIn item-icon-left"  ng-if="flxyGymData.gold" ng-click="gymMemberShipClick(flxyGymData.gold)">
+                <i class="icon ion-star"  style="color:gold;"></i>
+                <h2>Gold</h2>
+                   <h2 >{{flxyGymData.gold}}</h2>
+            </ion-item>
+            <ion-item  class="animated zoomIn item-icon-left" ng-if="flxyGymData.silver" ng-click="gymMemberShipClick(flxyGymData.silver)">
+                <i class="icon ion-star"  style="color:silver"></i>
+                <h2>Silver</h2>
+                   <h2 >{{flxyGymData.silver}}</h2>
+            </ion-item>
+        </div>
+        <div style="height:100px"></div>
+    </ion-content>
+  <div class="tabs tabs-icon-top flxy-tabs" style="font-weight: 900;height: 60px" ng-if="showMemberShip == '0'">
+  <!--<a class="tab-item" style="font-weight: 900;" ng-click="addToCart()">
+    <i class="icon ion-ios-cart"></i>
+     Add to cart 
+   </a-->
+  <a class="tab-item" style="font-weight: 900;" ng-click="goOrderDetails()" >
+    <i class="icon ion-arrow-right-b"></i>
+   Book 
+   </a>
+</div>
+</ion-view>
+<style>
+.checkbox-royal input:before,
+.checkbox-royal .checkbox-icon:before {
+border-color: red;
+}
+.checkbox-royal input:checked:before,
+.checkbox-royal input:checked + .checkbox-icon:before {
+background: red;
+border-color: red;
+}
+</style>

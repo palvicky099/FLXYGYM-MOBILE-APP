@@ -1,0 +1,22 @@
+﻿<ion-view hide-nav-bar="true">
+    <ion-header-bar class="flxy-button">
+        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle"> Feedback/Feature Request</span>
+        </button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="card">
+            <div class="item item-divider">
+                Feedback/Feature Request
+            </div>
+            <label class="item item-input">
+                <textarea placeholder="Feedback/Feature Request" rows="10" ng-model="f.feed"></textarea>
+            </label>
+        </div>
+    </ion-content>
+    <div class="tabs flxy-tabs animated zoomIn">
+        <a class="tab-item" style="font-weight: 900;" ng-click="feedback(f)">
+            SUBMIT
+        </a>
+    </div>
+</ion-view>

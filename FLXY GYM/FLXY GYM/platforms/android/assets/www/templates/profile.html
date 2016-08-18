@@ -1,0 +1,64 @@
+<ion-view hide-nav-bar="true" title="Free Books">
+    <ion-header-bar class="flxy-button">
+        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">PROFILE</span>
+        </button>
+    </ion-header-bar>
+    <ion-content >
+        <div class="list animated zoomIn">
+		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		      <span class="input-label " >Name</span>
+		     <input type="text"  placeholder="Name" class="registerField" ng-model="dashList[0].name">
+		  </label>
+		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		    <span class="input-label " >Email address</span>
+		     <input type="text"  placeholder="Email address" class="registerField" ng-model="dashList[0].email">
+		  </label> 
+		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		      <span class="input-label " >Mobile number </span>
+		     <input type="text"  placeholder="Mobile number" class="registerField" ng-model="dashList[0].mobile">
+		  </label>
+		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+		    <span class="input-label " >Address</span>
+		     <input type="text"  placeholder="Address" class="registerField" ng-model="dashList[0].address">
+		  </label>
+		  <label class="item item-input item-floating-label" style="border: none; width: 95%">
+		    <span class="input-label" >Date of birth</span>
+		    <input type="date"  placeholder="Date of birth" class="registerField"  ng-model="dates">
+		  </label>
+           <label class="item item-input item-floating-label" style="border: none; width: 95%">
+		    <span class="input-label" >Blood group</span>
+		    <input type="text"  placeholder="Blood group" class="registerField" ng-model="dashList[0].blood_group">
+		  </label>
+            <label class="item item-input item-floating-label" style="border: none; width: 95%">
+                <span class="input-label">Height</span>
+                <input type="text" placeholder="height" class="registerField" ng-model="dashList[0].height">
+            </label>
+            <label class="item item-input item-floating-label" style="border: none; width: 95%">
+                <span class="input-label">Weight</span>
+                <input type="text" placeholder="weight" class="registerField" ng-model="dashList[0].weight">
+            </label>
+            <label class="item item-input item-floating-label" style="border: none; width: 95%">
+                <span class="input-label">Gender</span>
+                <input type="text" placeholder="Gender" class="registerField" ng-model="dashList[0].gender">
+            </label>
+          <!--<div align="center" style="margin-top: 10px"> 
+		  <div class="button-bar button-outline" style="width:80%">
+             <a class="button icon icon-left ion-man gender">Male</a>
+             <a class="button icon icon-left ion-woman gender">Female</a>
+		  </div>
+         </div>-->
+  </div>
+<div style="height:100px"></div>
+    </ion-content>
+    <div class="tabs flxy-tabs animated zoomIn">
+  <a class="tab-item" style="font-weight: 900;" ng-click="updateProfile(dashList)">
+    UPDATE
+  </a>
+</div>
+</ion-view>
+<style>
+	.gender:hover{
+		background-color: #ccc;
+	}
+</style>

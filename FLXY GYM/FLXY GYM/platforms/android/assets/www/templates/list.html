@@ -1,0 +1,47 @@
+<ion-view hide-nav-bar="true" class="greyBackgorund" cache-view="false">
+    <ion-header-bar class="flxy-button">
+        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">{{categoryName}}</span>
+        </button>
+          <button class="button button-clear button-positive icon ion-ios-settings flxy-button" ng-click="showFilter()"></button>
+    </ion-header-bar>
+     <div class="row animated bounceInDown" style="position:fixed; top:39px; z-index:1000;">
+          <div class="col abc" ng-repeat="d in dateScope" ng-click="dateClick(d)"><h4 class="week">{{d | date:'dd' }}</h4><h5 class="week">{{d | date:'EEE' }}</h5></div>
+      </div>
+    <!--<div class="list card list-inset Paddingtop animated zoomIn" style="position:fixed;bottom:-10px; z-index:1000; width:104%;left:-10px">
+        <label class="item item-input item-select flxy-tabs">
+            <div class="input-label flxy-tabs">
+                Select Location
+            </div>
+            <select class="item-text-wrap flxy-button" name="mySelect" id="mySelect" ng-change="dropDownClick(locationDetails.SelectedLocation)"
+                    ng-options="option.location for option in locationDetails.location track by option.loc_id"
+                    ng-model="locationDetails.SelectedLocation"></select>
+        </label>
+    </div>-->
+    <ion-content class="" style="margin-top:75px">
+    <div class="list">
+    <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in listArray" ng-click="goDetail(l)">
+      <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200"  id="listImg">
+      <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
+      <p>10am to 12pm</p>
+       <p>{{l.location}}</p>
+<p style="color:green">{{l.price}} Rs</p>
+    <span class="item-note">
+  
+  {{l.distance}} KMs
+    </span>
+     <rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>
+    </a>
+</div>
+    </ion-content>
+</ion-view>
+<style>
+  .week{
+    text-align: center;
+    color: red;
+    font-weight: 600;
+  }
+  .abc:hover{
+background-color:#ccc;
+  }
+</style>

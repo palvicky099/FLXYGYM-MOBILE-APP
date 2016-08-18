@@ -1,0 +1,55 @@
+<ion-view class="" cache-view="false">
+   <ion-content>
+       <div style="height:30px"></div>
+       <div align="center">
+       <div class="logoImg animated zoomIn"></div>
+       </div>
+<div class="list animated zoomIn">
+  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
+    <span class="input-label span_text" >Email ID / Mobile No</span>
+     <input type="text" style=" padding-left: 10px !important"   placeholder="Email ID / Mobile No" class="loginField" ng-model="model.Mobile">
+  </label>
+  <label class="item item-input item-floating-label" style="border: none; width: 95%">
+    <span class="input-label span_text" >Password</span>
+    <input type="password" style=" padding-left: 10px !important"  placeholder="Password" class="loginField" ng-model="model.Password">
+  </label>
+  </div>
+       <div align="center">
+           <button class="button button-block redButton animated zoomIn" ng-click="btnLogin(model)" style="width:95%;min-height:35px !important">
+               Login
+           </button>
+       </div>
+       <h5 style="text-align:center">OR</h5>
+       <div align="center">
+           <button class="button button-block animated zoomIn ion-social-facebook"  ng-click="fbLogin(model)" style="width:95%;min-height:35px !important; background-color:#3b5998; color:white">
+               <!--<div class="button ion-social-facebook" style="background-color:white;color:#3b5998"></div>-->
+             &nbsp;&nbsp;  Login with Facebook
+           </button>
+       </div>
+      <div class="row  animated zoomIn">
+          <div class="col" style="font-size:14px; color:#9E9E9E; text-align:center" ng-click="register()">Not a member? <b>Sing up now</b></div>
+          <!--<div class="col" style="font-size:10px; color:#9E9E9E; text-align:center" ng-click="forgotPassword()"> Forgot password?</div>-->
+      </div>
+       <div class="row  animated zoomIn">
+           <div class="col" style="font-size:14px; color:#9E9E9E; text-align:center" ng-click="forgotPassword()"> Forgot password?</div>
+       </div>
+
+<!--<button class="button button-block redButton animated zoomIn"  ng-click="register()" style="width:95%;">
+SIGNUP</button> - 
+<div class="row" style="margin-top: -10px">
+  <div class="col"></div>
+  <div class="col"><button class="button button-block redButton animated zoomIn" ng-click="forgotPassword()" style="width:95%;">
+  FORGOT PASSWORD
+</button></div> 
+</div>
+  </div>-->
+  </ion-content>
+   <!--<!--<div class="tabs redButton animated zoomIn">
+  <a class="tab-item" style="font-weight: 900;" ng-click="register()">
+    SIGNUP
+  </a>
+  <a class="tab-item" style="font-weight: 900;" ng-click="forgotPassword()">
+     FORGOT
+  </a>
+</div>-->
+</ion-view>

@@ -16,9 +16,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
-        },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
@@ -35,6 +32,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
         "mx.ferreyra.callnumber": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         }
     },

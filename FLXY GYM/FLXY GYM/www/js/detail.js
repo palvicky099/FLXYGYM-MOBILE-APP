@@ -6,6 +6,10 @@ app.controller('detailCtrl', function ($scope, $cordovaDialogs, $state, $ionicLo
     $scope.detailItem = JSON.parse(window.localStorage.getItem("itemDetails"));
     $scope.gymDetails = JSON.parse(window.localStorage.getItem("GYMDetails"));
     $scope.visible = {};
+    dataService.gym_membership($scope.detailItem.center_id).then(function (result) {
+        console.log(result.data)
+        $scope.flxyGymData = result.data;
+    })
 	var msg ="This will do a booking for" + " "+$scope.detailItem.center_name + " " + "and center will contact you soon. Please go to My Booking to track the status";
 	$scope.reserve = function () {
 	    var popup = $ionicPopup.show({

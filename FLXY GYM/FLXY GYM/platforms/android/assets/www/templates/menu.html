@@ -11,9 +11,9 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
   <ion-side-menu side="left">
-    <a menu-close class="item item-thumbnail-left border-none menuProfileImage itemHoverMenu" ui-sref="profile">
-      <img src="img/logo.png" style="border-radius: 16px;margin-top: 10px">
-      <h2 style="color: white;margin-top: 25px">Welcome<br />{{dashList[0].name}}</h2>
+    <a menu-close class="item item-thumbnail-left border-none menuProfileImage itemHoverMenu" ui-sref="displayProfile">
+      <img ng-src="{{dashList.image}}" style="border-radius: 16px;margin-top: 10px">
+      <h2 style="color: white;margin-top: 25px">Welcome<br />{{dashList.name}}</h2>
     </a>
     <ion-content style="background-color: #f7f4f4 !important;">
     <div class="list border-none animated bounceInDown">

@@ -123,14 +123,14 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
 
     //load start event
     function iabLoadStart(event) {
-        /*  if (event.url.match("https://payu.herokuapp.com/success")) {
+        /*  if (event.url.match(""http://flxygym.com/response.php")) {
             // iabRef.close();
          } */
     }
 
 
     function iabLoadStop(event) {
-        if (event.url.match("https://payu.herokuapp.com/success")) {
+        if (event.url.match("http://flxygym.com/response.php")) {
             console.log(iabRef);
             iabRef.executeScript({
                 code: "document.body.innerHTML"
@@ -172,11 +172,14 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
     // device APIs are available
     //
     function onDeviceReadyTest() {
-        iabRef = window.open('payuBiz.html', '_blank', 'location=no');
-        iabRef.addEventListener('loadstart', iabLoadStart);
-        iabRef.addEventListener('loadstop', iabLoadStop);
-        iabRef.addEventListener('loaderror', iabLoadError);
-        iabRef.addEventListener('exit', iabClose);
+        setTimeout(function () {
+            iabRef = window.open('payuBiz.html', '_blank', 'location=yes');
+            //iabRef.addEventListener('loadstart', iabLoadStart);
+            //iabRef.addEventListener('loadstop', iabLoadStop);
+            //iabRef.addEventListener('loaderror', iabLoadError);
+            iabRef.addEventListener('exit', iabClose);
+        },3000)
+        
     }
 
 })

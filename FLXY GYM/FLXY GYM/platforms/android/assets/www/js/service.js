@@ -33,7 +33,8 @@ angular.module('starter.services', [])
          return $http.get(url + 'user_profile.php?data=' + JSON.stringify(model));
      };
      factory.updateProfile = function (model) {
-         return $http.post(url + 'update_user_profile.php?data=' + JSON.stringify(model));
+         
+         return $http.post(url + 'update_user_profile.php' , 'data=' + JSON.stringify(model));
      };
      factory.register = function (data) {
          return $http.post('http://www.flxygym.com/home/api/register.php?data=' + JSON.stringify(data));
@@ -58,6 +59,9 @@ angular.module('starter.services', [])
      };
      factory.offers = function (model) {
          return $http.get(url + 'get_offers.php');
+     };
+     factory.membership = function (model) {
+         return $http.get(url + 'membership_image.php');
      };
     return factory;
 });

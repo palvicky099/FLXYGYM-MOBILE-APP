@@ -98,6 +98,11 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            url: "/profile",
            templateUrl: "templates/profile.html",
            controller: 'profileCtrl'
+          })
+       .state('displayProfile', {
+           url: "/displayProfile",
+           templateUrl: "templates/displayProfile.html",
+           controller: 'profileCtrl'
        })
           .state('list', {
            url: "/list",
@@ -159,4 +164,21 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
   else {
       $urlRouterProvider.otherwise('/login');
   }
+})
+app.factory('Camera', function ($q) {
+
+    return {
+        getPicture: function (options) {
+            var q = $q.defer();
+
+            navigator.camera.getPicture(function (result) {
+                q.resolve(result);
+            }, function (err) {
+                q.reject(err);
+            }, options);
+
+            return q.promise;
+        }
+    }
+
 });

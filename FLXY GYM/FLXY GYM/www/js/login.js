@@ -72,6 +72,7 @@ app.controller('loginCtrl', function ($scope, $ionicHistory, dataService, $ionic
                     //$ionicLoading.hide();
                     if (data.data.message == "Success") {
                         window.localStorage.setItem("UserProfile", JSON.stringify(data.data));
+                        window.localStorage.setItem("LoginData", JSON.stringify(data.data));
                         LoadData();
                     }
                     else {
@@ -131,7 +132,7 @@ app.controller('loginCtrl', function ($scope, $ionicHistory, dataService, $ionic
             "mobile": $scope.LoginData.mobile
         }
         dataService.getProfile(getProfileModel).then(function (result) {
-            window.localStorage.setItem("UserProfile", JSON.stringify(result.data.response));
+            window.localStorage.setItem("UserProfile", JSON.stringify(result.data.response[0]));
         }, function (err) {
             $scope.dashList = JSON.parse(window.localStorage.getItem("Category"));
         });

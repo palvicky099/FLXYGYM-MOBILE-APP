@@ -150,3 +150,20 @@ ul.rating li i {
 .tab-item{
     opacity:10;
 }
+.profile-bg {
+   background-image: url('../img/nature.jpg');
+   /*margin-bottom: -10px;*/
+     padding: 45px;
+    background-repeat: no-repeat;
+    width:100% !important;
+}
+.tech-img{
+   background-color: #bbb;
+  height: 100px;
+      border: 2px solid #2C3E50;
+   margin: auto;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  width: 100px;
+  border-radius: 300px;
+}

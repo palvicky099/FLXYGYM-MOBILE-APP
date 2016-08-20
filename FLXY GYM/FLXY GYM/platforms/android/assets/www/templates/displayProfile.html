@@ -1,0 +1,69 @@
+﻿<ion-view hide-nav-bar="true" title="Free Books">
+    <!--<ion-header-bar class="flxy-button">
+        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">PROFILE</span>
+        </button>
+        <button class="button button-clear button-positive icon ion-edit flxy-button" ui-sref="profile"></button>
+    </ion-header-bar>-->
+    <ion-content>
+        <div class="slide-up">
+            <div class="profile-bg">
+                <h2 align="center">  <img class="tech-img" ng-src="{{dashList.image}}" /></h2>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item" style="margin-top:-77px;border: none; background-color: transparent;">
+                <h2 style="text-align:center;font-size: 20px;color: white;">{{dashList.name}}</h2>
+                <p style="text-align:center;color:white">{{dashList.email}}</p>
+            </div>
+        </div>
+        <div class="list card">
+            <a  class="item flxy-tabs item-icon-left item-text-wrap">
+                <i class="icon ion-home"></i>
+                {{dashList.address}}
+            </a>
+            <a  class="item item-icon-left">
+                <i class="icon ion-ios-telephone"></i>
+               {{dashList.mobile}}
+            </a>
+            <a  class="item item-icon-left">
+                <i class="icon ion-calendar"></i>
+               {{dates | date:'dd MMM yyyy'}}
+            </a>
+            <a class="item item-icon-left">
+                <i class="icon ion-man"></i>
+               {{dashList.height}}
+            </a>
+            <a class="item item-icon-left">
+                <i class="icon ion-gear-a"></i>
+                {{dashList.weight}}
+            </a>
+            <a class="item item-icon-left">
+                <i class="icon ion-transgender"></i>
+                {{dashList.gender}}
+            </a>
+            <a class="item item-icon-left">
+                <i class="icon ion-waterdrop"></i>
+                {{dashList.blood_group}}
+            </a>
+        </div>
+
+        <div style="height:100px"></div>
+    </ion-content>
+    <div class="tabs tabs-icon-top  flxy-tabs">
+        <a class="tab-item" ui-sref="app.dashboard">
+            <i class="icon ion-arrow-left-b"></i>
+            Back
+        </a>
+         <a class="tab-item" ui-sref="profile">
+              <i class="icon ion-edit" ></i>
+            Edit Profile
+        </a>
+    </div>
+</ion-view>
+<style>
+    .gender:hover {
+        background-color: #ccc;
+    }
+   
+</style>

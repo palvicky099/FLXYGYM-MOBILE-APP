@@ -29,7 +29,7 @@ app.controller('dashboardCtrl', function($cordovaGeolocation, $scope, $q, $state
      }
 
      dataService.getProfile(getProfileModel).then(function (result) {
-         window.localStorage.setItem("UserProfile", JSON.stringify(result.data.response));
+         window.localStorage.setItem("UserProfile", JSON.stringify(result.data.response[0]));
         
          //  $scope.dashList = result.data.response;
      }, function (err) {

@@ -69,9 +69,32 @@ app.controller('registerCtrl', function ($scope, dataService, $ionicHistory, $st
             var modelOTP = JSON.parse(window.localStorage.getItem("registerSuccess"));
             if (modelOTP[0].otp == otp)
             {
-                dataService.registerSuccess(modelOTP).then(function (result) {
-                    window.localStorage.setItem("LoginData", JSON.stringify(result.data));
-                    LoadData();
+                var model = {
+                    "name": modelOTP[0].name,
+                    "email": modelOTP[0].email,
+                    "mobile": modelOTP[0].mobile,
+                    "password": modelOTP[0].password,
+
+                }
+                dataService.registerSuccess(model).then(function (result) {
+                    
+                    if (result.data.message == "Success")
+                    {
+                        window.localStorage.setItem("LoginData", JSON.stringify(result.data));
+                        LoadData();
+                    }
+                    else {
+                        $ionicLoading.hide();
+                        $ionicLoading.show({
+                                    template: 'PLease try again lator there is some problem to authenticate OTP',
+                                    animation: 'fade-in',
+                                    showBackdrop: true,
+                                    noBackdrop: true,
+                                    duration: 2000,
+                                    maxWidth: 200,
+                                    showDelay: 0
+                                });
+                    }
                 })
             }
             //else {
@@ -115,7 +138,7 @@ app.controller('registerCtrl', function ($scope, dataService, $ionicHistory, $st
             "mobile": $scope.LoginData.mobile
         }
         dataService.getProfile(getProfileModel).then(function (result) {
-            window.localStorage.setItem("UserProfile", JSON.stringify(result.data.response));
+            window.localStorage.setItem("UserProfile", JSON.stringify(result.data.response[0]));
         }, function (err) {
             $scope.dashList = JSON.parse(window.localStorage.getItem("Category"));
         });

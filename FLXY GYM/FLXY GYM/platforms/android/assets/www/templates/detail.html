@@ -14,6 +14,33 @@
     <p>{{gymDetails[0].address}}
      </p>
   </a>
+
+        <div class="card Paddingtop animated zoomIn padding">
+            <div class="item" style="color:red">
+                Gym Membership
+            </div>
+            <ion-item class="animated zoomIn" ng-if="flxyGymData.monthly_price" ng-click="gymMemberShipClick(flxyGymData.monthly_price)">
+                Monthly
+                <span class="item-note">
+                    {{flxyGymData.monthly_price}}Rs
+                </span>
+            </ion-item>
+            <ion-item class="animated zoomIn" ng-if="flxyGymData.quaterly_price" ng-click="gymMemberShipClick(flxyGymData.quaterly_price)">
+                quaterly
+                <span class="item-note">{{flxyGymData.quaterly_price}}Rs</span>
+            </ion-item>
+            <ion-item class="animated zoomIn" ng-if="flxyGymData.halfyearly_price" ng-click="gymMemberShipClick(flxyGymData.halfyearly_price)">
+                Halfyearly
+                <span class="item-note">{{flxyGymData.halfyearly_price}}Rs</span>
+            </ion-item>
+
+            <ion-item class="animated zoomIn" ng-if="flxyGymData.yearly_price" ng-click="gymMemberShipClick(flxyGymData.yearly_price)">
+                Yearly
+                <span class="item-note"> {{flxyGymData.yearly_price}}Rs</span>
+            </ion-item>
+        </div>
+
+
    <div class="card Paddingtop animated zoomIn">
    <div class="item" style="color:red">
     Time slot

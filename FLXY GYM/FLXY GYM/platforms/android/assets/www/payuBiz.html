@@ -1,25 +1,25 @@
-<ion-view>
+<ion-view style="background-color:red">
     <ion-header-bar class="flxy-button">
         <button ui-sref="details" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
             <span class="headerStyle">Complete payment</span>
         </button>
     </ion-header-bar>
-    <ion-content >
-        <form  name="sendParam" method="post" action="https://secure.payu.in/_payment">
+    <ion-content>
+        <form  name="sendParam" method="post" action="http://www.flxygym.com/payu.php">
             <input type="hidden" name="key" value="i6mTzrDF" />
             <input type="hidden" name="hash" value="" />
-            <input type="hidden" name="txnid" value="transaction id" />
-            <input type="hidden" name="amount" value="total amount" />
-            <input type="hidden" name="firstname" id="firstname" value="user name" />
-            <input type="hidden" name="email" id="email" value="email id" />
+            <input type="hidden" name="txnid" value="12345sssssssssssssjklqw" />
+            <input type="hidden" name="amount" value="20" />
+            <input type="hidden" name="firstname" id="firstname" value="Vicky" />
+            <input type="hidden" name="email" id="email" value="palvicky099@gmail.com" />
             <input type="hidden" name="phone" value="mobile no" />
             <input type="hidden" name="productinfo" value="book type">
             <input type="hidden" name="surl" value="http://flxygym.com/response.php" size="64" />
             <input type="hidden" name="furl" value="http://flxygym.com/response.php" size="64" />
             <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
-            <input type="hidden" name="udf1" value="<?php echo $book_type; ?>" />
-            <input type="hidden" name="udf2" value="booking id" />
-            <input type="hidden" name="udf3" value="type" />
+            <input type="hidden" name="udf1" value="GYM MemberShip" />
+            <input type="hidden" name="udf2" value="klansdk11111111111" />
+            <input type="hidden" name="udf3" value="Yearly" />
             <input type="submit" value="enter" style="position: absolute; left: -9999px" /> 
         </form>
 

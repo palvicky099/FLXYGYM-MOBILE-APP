@@ -1,26 +1,41 @@
 <ion-view hide-nav-bar="true" title="Free Books">
     <ion-header-bar class="flxy-button">
         <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
-            <span class="headerStyle">PROFILE</span>
+            <span class="headerStyle">EDIT PROFILE</span>
         </button>
     </ion-header-bar>
     <ion-content >
+        <div class="slide-up">
+            <div class="profile-bg">
+                <h2 align="center">  <img class="tech-img" ng-src="{{dashList.image}}" ng-click="takePicture()" /></h2>
+            </div>
+        </div>
+        <!--<div class="list">
+            <div class="item" style="margin-top:-77px;border: none; background-color: transparent;">
+                <h2 style="text-align:center;font-size: 20px;color: white;">{{dashList.name}}</h2>
+                <p style="text-align:center;color:white">{{dashList.email}}</p>
+            </div>
+        </div>-->
+        <!--<button class="button" ng-click="takePicture()">Take Picture</button>
+        <button class="button" ng-click="fromGallery()">Open Gallery</button>
+        <img ng-src="{{dashList.image}}">-->
+
         <div class="list animated zoomIn">
 		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
 		      <span class="input-label " >Name</span>
-		     <input type="text"  placeholder="Name" class="registerField" ng-model="dashList[0].name">
+		     <input type="text"  placeholder="Name" class="registerField" ng-model="dashList.name">
 		  </label>
 		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
 		    <span class="input-label " >Email address</span>
-		     <input type="text"  placeholder="Email address" class="registerField" ng-model="dashList[0].email">
+		     <input type="text"  placeholder="Email address" class="registerField" ng-model="dashList.email">
 		  </label> 
 		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
 		      <span class="input-label " >Mobile number </span>
-		     <input type="text"  placeholder="Mobile number" class="registerField" ng-model="dashList[0].mobile">
+		     <input type="text"  placeholder="Mobile number" class="registerField" ng-model="dashList.mobile">
 		  </label>
 		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
 		    <span class="input-label " >Address</span>
-		     <input type="text"  placeholder="Address" class="registerField" ng-model="dashList[0].address">
+		     <input type="text"  placeholder="Address" class="registerField" ng-model="dashList.address">
 		  </label>
 		  <label class="item item-input item-floating-label" style="border: none; width: 95%">
 		    <span class="input-label" >Date of birth</span>
@@ -28,19 +43,19 @@
 		  </label>
            <label class="item item-input item-floating-label" style="border: none; width: 95%">
 		    <span class="input-label" >Blood group</span>
-		    <input type="text"  placeholder="Blood group" class="registerField" ng-model="dashList[0].blood_group">
+		    <input type="text"  placeholder="Blood group" class="registerField" ng-model="dashList.blood_group">
 		  </label>
             <label class="item item-input item-floating-label" style="border: none; width: 95%">
                 <span class="input-label">Height</span>
-                <input type="text" placeholder="height" class="registerField" ng-model="dashList[0].height">
+                <input type="text" placeholder="height" class="registerField" ng-model="dashList.height">
             </label>
             <label class="item item-input item-floating-label" style="border: none; width: 95%">
                 <span class="input-label">Weight</span>
-                <input type="text" placeholder="weight" class="registerField" ng-model="dashList[0].weight">
+                <input type="text" placeholder="weight" class="registerField" ng-model="dashList.weight">
             </label>
             <label class="item item-input item-floating-label" style="border: none; width: 95%">
                 <span class="input-label">Gender</span>
-                <input type="text" placeholder="Gender" class="registerField" ng-model="dashList[0].gender">
+                <input type="text" placeholder="Gender" class="registerField" ng-model="dashList.gender">
             </label>
           <!--<div align="center" style="margin-top: 10px"> 
 		  <div class="button-bar button-outline" style="width:80%">

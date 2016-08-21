@@ -1,6 +1,11 @@
 app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $rootScope, $cordovaSQLite, $ionicPopup, dataService, $cordovaDialogs) {
     //------------- One week data -----------
-  
+
+
+
+
+
+    $scope.locatiosArray = [];
     var DataArray = [];
     var myDate = new Date();
     for (var i = 0; i <= 6; i++) {
@@ -488,7 +493,167 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
         });
     }
 
+    //**************Location Filter Popup*****************
+    $scope.locationData = [
+    {
+        "id": "1",
+        "name": "Kandivali"
+    }
+    ,
+    {
+        "id": "2",
+        "name": "Malad"
+    }
+    , {
+        "id": "3",
+        "name": "Jogeshwari"
+    },
+     {
+         "id": "4",
+         "name": "Andheri"
+     },
+     {
+         "id": "5",
+         "name": "Goregon"
+     },
+     {
+         "id": "6",
+         "name": "Dahisar"
+     },
+     {
+         "id": "7",
+         "name": "Kurla"
+     }
+    ]
+    $scope.locationArray = [];
+    $scope.callme = function (item, a) {
+        var listToDelete = [item.id];
+        if (a == true) {
+            items = {
+                "id": item.id,
+                "name": item.name,
+                "itemChecked": a
+            }
+            $scope.locationArray.push(items)
+        }
+        else {
+            if (a == undefined) {
+                a = false;
+            }
+            for (var i = 0; i < $scope.locationArray.length; i++) {
+                var obj = $scope.locationArray[i];
 
+                if (listToDelete.indexOf(obj.id) !== -1) {
+                    $scope.locationArray.splice(i, 1);
+                }
+            }
+        }
+        console.log($scope.locationArray);
+    }
+
+    function checkSpecific() {
+        $scope.selectionLocation = window.localStorage.getItem("selectedLocation");
+        $scope.selectionCategory = window.localStorage.getItem("selectedCategory");
+
+    }
+    $scope.locationPopup = function () {
+        checkSpecific();
+        var popup = $ionicPopup.show({
+            'templateUrl': 'locationPopup.html',
+            'title': 'Select Location',
+            'scope': $scope,
+            'buttons': [
+                        {
+                            'text': 'Cancel'
+                        },
+                        {
+                            'text': 'Save',
+                            'onTap': function (event) {
+                                return $scope.locationArray;
+                            }
+                        }
+            ]
+        });
+        popup.then(function (result) {
+            if (result) {
+                $scope.locatiosArray = result;
+                // console.log(result) var meetingDatas = [];
+                var meetingDatas = [];
+                for (var i = 0; i < $scope.locationArray.length; i++) {
+                    if (i == 0) {
+                        meetingDatas = "'" + $scope.locationArray[i].name + "'";
+                    }
+                    else {
+                        meetingDatas += "," + "'" + $scope.locationArray[i].name + "'"
+                    }
+                }
+                window.localStorage.setItem("selectedLocation", "[" + meetingDatas + "]")
+            }
+        });
+    }
+    //**************Location Filter Popup*****************
+
+    //*************Category Popup**********************
+    $scope.categoryData = JSON.parse(window.localStorage.getItem("Category"));
+    $scope.categoryArray = [];
+    $scope.categoryPopup = function () {
+        checkSpecific();
+        var popup = $ionicPopup.show({
+            'templateUrl': 'categoryPopup.html',
+            'title': 'Select Category',
+            'scope': $scope,
+            'buttons': [
+                        {
+                            'text': 'Cancel'
+                        },
+                        {
+                            'text': 'Save',
+                            'onTap': function (event) {
+                                return $scope.categoryArray;
+                            }
+                        }
+            ]
+        });
+        popup.then(function (result) {
+            $scope.categoryArray = result;
+            if (result) {
+                var categoryDatas = [];
+                for (var i = 0; i < $scope.categoryArray.length; i++) {
+                    if (i == 0) {
+                        categoryDatas = "'" + $scope.categoryArray[i].cat_name + "'";
+                    }
+                    else {
+                        categoryDatas += "," + "'" + $scope.categoryArray[i].cat_name + "'"
+                    }
+                }
+                window.localStorage.setItem("selectedCategory", "[" + categoryDatas + "]")
+            }
+        });
+    }
+    $scope.categoyCall = function (item, a) {
+        var listToDelete = [item.cat_id];
+        if (a == true) {
+            items = {
+                "cat_id": item.cat_id,
+                "cat_name": item.cat_name,
+                "categoryItemChecked": a
+            }
+            $scope.categoryArray.push(items)
+        }
+        else {
+            if (a == undefined) {
+                a = false;
+            }
+            for (var i = 0; i < $scope.categoryArray.length; i++) {
+                var obj = $scope.categoryArray[i];
+
+                if (listToDelete.indexOf(obj.cat_id) !== -1) {
+                    $scope.categoryArray.splice(i, 1);
+                }
+            }
+        }
+        console.log($scope.categoryArray);
+    }
 
  })
 

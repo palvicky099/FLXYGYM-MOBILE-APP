@@ -63,4 +63,13 @@ function onDeviceReadyTest() {
     iabRef.addEventListener('loaderror', iabLoadError);
     iabRef.addEventListener('exit', iabClose);
 }
+
+$scope.getTotal = function () {
+    var total = 0;
+    for (var i = 0; i < $scope.dateDetails.length; i++) {
+        var productPrice = $scope.dateDetails.price[i];
+        total += productPrice;
+    }
+    return total;
+}
 })

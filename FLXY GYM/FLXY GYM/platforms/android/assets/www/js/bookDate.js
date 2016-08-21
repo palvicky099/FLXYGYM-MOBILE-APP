@@ -91,8 +91,24 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
         console.log($scope.tagsarray);
     }
     $scope.goOrderDetails = function () {
-        window.localStorage.setItem("selectedDate", JSON.stringify($scope.tagsarray));
-        $state.go('orderDetail');
+        if ($scope.tagsarray.length > 0)
+        {
+            window.localStorage.setItem("selectedDate", JSON.stringify($scope.tagsarray));
+            $state.go('orderDetail');
+        }
+        else{
+            $ionicLoading.show({
+                template: 'Select at least one date',
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                noBackdrop: false,
+                duration: 3000,
+                maxWidth: 200,
+                showDelay: 0
+            });
+        }
+        
     }
     dataService.gym_membership($scope.detailItem.center_id).then(function (result)
     {

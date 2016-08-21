@@ -11,23 +11,44 @@
     </div>
     <div class="list card list-inset Paddingtop animated zoomIn" style="position:fixed;bottom:-10px; z-index:1000; width:104%;left:-10px">
               <label class="item item-input item-select flxy-tabs">
-                  <div class="input-label flxy-tabs">
+                  <span class="input-label flxy-tabs">
                  Select Location               
-                    </div>
-                  <!--<!--<select class="flxy-tabs" ng-model="c" ng-click="dropDownClick(c)">
-                      <option selected>Andheri</option>
-                      <option >Kandivali</option>
-                      <option>Borivali</option>
-                      <option>Dawrka</option>                      
-                  </select>-->
+                    </span>
+                 
                   <select class="item-text-wrap flxy-button" name="mySelect" id="mySelect" ng-change="dropDownClick(locationDetails.SelectedLocation)"
                           ng-options="option.location for option in locationDetails.location track by option.loc_id"
                           ng-model="locationDetails.SelectedLocation"></select>
               </label>
           </div>
     <ion-content style="margin-top:50px">
-        <div class="list">
-            <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in listArray | filter: search" ng-click="goDetail(l)">
+        <div class="card" ng-repeat="l in listArray">
+            <div class="item item-divider" style="background-color: white !important;">
+                <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
+            </div>
+            <a style="border:none" class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-click="goDetail(l)">
+                <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">
+
+                <p>10am to 12pm</p>
+                <p>{{l.location}}</p>
+                <p style="color:green">{{l.price}} Rs</p>
+                <!--<rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>-->
+                <span class="item-note">
+                    {{l.distance}} KMs
+                </span>
+            </a>
+            <div class="tabs item">
+                <a class="tab-item" ng-click="reserve(l)">
+                    RESERVE
+                </a>
+                <a class="tab-item" ng-click="goDetail(l)">
+                    DETAILS
+                </a>
+            </div>
+        </div>
+
+
+        <!--<div class="list">
+            <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in listArray | filter: search">
                 <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">
                 <h2 style="color: red; white-space: nowrap;">{{l.center_name}}</h2>
                 <p>10am to 12pm</p>
@@ -37,9 +58,19 @@
 
                     {{l.distance}} KMs
                 </span>
-                <rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>
+               
             </a>
-        </div>
+        </div>-->
 <div style="height:100px"></div>
     </ion-content>
 </ion-view>
+<!--<script id="selectBookingTypes.html" type="text/ng-template">
+    <ion-list>
+        <ion-radio ng-model="visible.status" ng-value="'0'" style="font-size: 13px;">DAILY MEMBERSHIP </ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'1'" style="font-size: 13px;">GYM MEMBERSHIP</ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'2'" style="font-size: 13px;">FLXY GYM MEMBERSHIP</ion-radio>
+    </ion-list>
+</script>-->
+
+
+<!--<rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>-->

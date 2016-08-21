@@ -5,17 +5,19 @@
         </button>
     </ion-header-bar>
     <ion-content >
-        <div class="slide-up">
+        <!--<div class="slide-up">
             <div class="profile-bg">
                 <h2 align="center">  <img class="tech-img" ng-src="{{dashList.image}}" ng-click="takePicture()" /></h2>
             </div>
-        </div>
-        <!--<div class="list">
-            <div class="item" style="margin-top:-77px;border: none; background-color: transparent;">
-                <h2 style="text-align:center;font-size: 20px;color: white;">{{dashList.name}}</h2>
-                <p style="text-align:center;color:white">{{dashList.email}}</p>
-            </div>
         </div>-->
+        <div class="item item-image">
+            <img  ng-src="{{dashList.image}}" >
+        </div>
+        <div class="list">
+            <div class="item item-icon-right" ng-click="takePicture()" style="margin-top:-50px;border: none; background-color: transparent;">
+               <i class="icon ion-ios-camera-outline" style="font-size:40px; color:white; padding:10px"></i>
+            </div>
+        </div>
         <!--<button class="button" ng-click="takePicture()">Take Picture</button>
         <button class="button" ng-click="fromGallery()">Open Gallery</button>
         <img ng-src="{{dashList.image}}">-->

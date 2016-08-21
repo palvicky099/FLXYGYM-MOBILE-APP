@@ -1,5 +1,7 @@
 app.controller('dashboardCtrl', function($cordovaGeolocation, $scope, $q, $state,$ionicPopup, $ionicSideMenuDelegate, $ionicLoading,$cordovaSQLite, dataService, $rootScope) {
     //$scope.$on('$ionicView.enter', function () {
+    window.localStorage.removeItem("selectedCategory");
+    window.localStorage.removeItem("selectedLocation");
     setTimeout(function () {
             if (navigator.connection.type == Connection.NONE) {
                 var alertPopup = $ionicPopup.alert({

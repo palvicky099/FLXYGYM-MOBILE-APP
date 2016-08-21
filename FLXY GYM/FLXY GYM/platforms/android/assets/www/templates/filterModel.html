@@ -1,4 +1,4 @@
-<ion-modal-view cache-view="false" class="greyBackgorund">
+<ion-modal-view  class="greyBackgorund">
     <ion-header-bar class="flxy-button">
         <h1 class="title white-font" style="color:white;">FILTER</h1>
         <div class="buttons ">
@@ -7,25 +7,59 @@
             </button>
         </div>
     </ion-header-bar>
-    <ion-content>
-    <div class="list card list-inset Paddingtop animated zoomIn">
-              <label class="item item-input item-select">
-                  <div class="input-label">
-                 Select Location               
-                    </div>
-                  <select class="item-text-wrap" name="mySelect" id="mySelect" ng-change="dropDownClick(locationDetails.SelectedLocation)"
-                          ng-options="option.location for option in locationDetails.location track by option.loc_id"
-                          ng-model="locationDetails.SelectedLocation"></select>
-              </label>
-          </div>
-<!--<div class="card animated zoomIn">
-  <div class="item item-divider">
-   Select 
-  </div>
-  <ion-radio  class="" ng-model="choice" ng-value="'A'">Distance</ion-radio>
-  <ion-radio class="" ng-model="choice" ng-value="'B'">Time</ion-radio>
-</div>-->
-        <div class="card  animated zoomIn">
+    <ion-content class="padding">
+        <div class="button button-block  button-outline" style="color:red; border:1px solid red" ng-click="locationPopup()">
+            Select Location
+        </div>
+        <div class="button button-block  button-outline" style="color:red; border:1px solid red" ng-click="categoryPopup()">
+            Select Category
+        </div>
+
+        <!--<span ng-repeat="loc in locatiosArray track by $index">
+        <i class="icon ion-forward"></i>
+        {{loc.name}} &nbsp;&nbsp;</span>-->
+       
+        <!--<span ng-repeat="cat in categoryArray track by $index ">
+            <i class="icon ion-forward"></i>
+            {{cat.cat_name}} &nbsp;&nbsp;
+        </span>-->
+        <div class="list">
+            <label class="item item-input item-select"  style="color:red; border:1px solid red; background-color:transparent">
+                <div class="input-label" style="color:red;">
+                    Select Slot
+                </div>
+                <select style="color:red; background-color:transparent">
+                    <option selected>All</option>
+                    <option>Morning</option>
+                    <option >Afternoon</option>
+                    <option>Evening</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="list">
+            <label class="item item-input item-select" style="color:red; border:1px solid red; background-color:transparent">
+                <div class="input-label" style="color:red;">
+                    Price Type
+                </div>
+                <select style="color:red; background-color:transparent">
+                    <option selected>Low to high</option>
+                    <option>High to low</option>
+                </select>
+            </label>
+        </div>
+
+        <!--<div class="card  animated zoomIn">
+            <div class="item item-divider">
+                Price ({{priceSelection}})
+            </div>
+            <div class="range range-positive">
+                20
+                <input type="range" name="volume" min="20" max="2000" value="{{priceSelection}}" ng-model="priceSelection">
+                2000
+            </div>
+        </div>-->
+        <!--<div class="card  animated zoomIn">
             <div class="item item-divider">
               Time ({{timeSelection}}) AM
             </div>
@@ -34,21 +68,11 @@
                 <input type="range" name="volume" min="1" max="12" value="{{timeSelection}}" ng-model="timeSelection">
                 12 AM
             </div>
-        </div>
+        </div>-->
 
-<div class="card  animated zoomIn">
-  <div class="item item-divider">
-    Price ({{priceSelection}})
-  </div>
-    <div class="range range-positive">
-        20
-        <input type="range" name="volume" min="20" max="2000" value="{{priceSelection}}" ng-model="priceSelection">
-        2000
-    </div>
-</div>
   <div style="height:100px"></div>
     </ion-content>
-    <div class="tabs flxy-tabs animated zoomIn">
+ <div class="tabs flxy-tabs animated zoomIn">
   <a class="tab-item" style="font-weight: 900;" ng-click="closeMember()">
     FILTER
   </a>
@@ -95,3 +119,13 @@
      right:25px;
 }
 </style>
+<script id="locationPopup.html" type="text/ng-template">
+      <ion-checkbox ng-checked="(selectionLocation.indexOf(d.name) > -1) ? true : false" class="checkbox-royal" ng-repeat="d in locationData"  ng-model="itemChecked" ng-click="callme(d, itemChecked)">
+        {{d.name}}
+        </ion-checkbox>
+</script>
+<script id="categoryPopup.html" type="text/ng-template">
+    <ion-checkbox class="checkbox-royal" ng-checked="(selectionCategory.indexOf(c.cat_name) > -1) ? true : false" ng-repeat="c in categoryData" ng-model="categoryItemChecked" ng-click="categoyCall(c, categoryItemChecked)">
+        {{c.cat_name}}
+    </ion-checkbox>
+</script>

@@ -1,5 +1,6 @@
-app.controller('dashboardCtrl', function($cordovaGeolocation, $scope, $q, $state,$ionicPopup, $ionicSideMenuDelegate, $ionicLoading,$cordovaSQLite, dataService, $rootScope) {
+app.controller('dashboardCtrl', function($cordovaGeolocation, backcallFactory, $scope, $q, $state,$ionicPopup, $ionicSideMenuDelegate, $ionicLoading,$cordovaSQLite, dataService, $rootScope) {
     //$scope.$on('$ionicView.enter', function () {
+    backcallFactory.backcallfun();
     window.localStorage.removeItem("selectedCategory");
     window.localStorage.removeItem("selectedLocation");
     setTimeout(function () {

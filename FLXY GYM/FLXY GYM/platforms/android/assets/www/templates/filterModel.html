@@ -24,16 +24,13 @@
             {{cat.cat_name}} &nbsp;&nbsp;
         </span>-->
         <div class="list">
-            <label class="item item-input item-select"  style="color:red; border:1px solid red; background-color:transparent">
+            <label class="item item-input item-select" style="color:red; border:1px solid red; background-color:transparent">
                 <div class="input-label" style="color:red;">
-                    Select Slot
+                    Price Type
                 </div>
-                <select style="color:red; background-color:transparent">
-                    <option selected>All</option>
-                    <option>Morning</option>
-                    <option >Afternoon</option>
-                    <option>Evening</option>
-                </select>
+                <select style="color:red; background-color:transparent" name="mySelect" id="mySelect"
+                        ng-options="slot.text for slot in statusDataSlot"
+                        ng-model="selectedSlot" ng-change="slotType(selectedSlot)"></select>
             </label>
         </div>
 
@@ -42,10 +39,9 @@
                 <div class="input-label" style="color:red;">
                     Price Type
                 </div>
-                <select style="color:red; background-color:transparent">
-                    <option selected>Low to high</option>
-                    <option>High to low</option>
-                </select>
+                <select style="color:red; background-color:transparent" name="mySelect" id="mySelect"
+                        ng-options="status.text for status in statusData"
+                        ng-model="selected"  ng-change="sortPrice(selected)"></select>
             </label>
         </div>
 
@@ -73,7 +69,7 @@
   <div style="height:100px"></div>
     </ion-content>
  <div class="tabs flxy-tabs animated zoomIn">
-  <a class="tab-item" style="font-weight: 900;" ng-click="closeMember()">
+  <a class="tab-item" style="font-weight: 900;" ng-click="filterAdvanced()">
     FILTER
   </a>
 </div>
@@ -118,6 +114,17 @@
 .share_helper:hover {
      right:25px;
 }
+
+    .checkbox-royal input:before,
+    .checkbox-royal .checkbox-icon:before {
+        border-color: #d41b0d;
+    }
+
+    .checkbox-royal input:checked:before,
+    .checkbox-royal input:checked + .checkbox-icon:before {
+        background: #d41b0d;
+        border-color: #d41b0d;
+    }
 </style>
 <script id="locationPopup.html" type="text/ng-template">
       <ion-checkbox ng-checked="(selectionLocation.indexOf(d.name) > -1) ? true : false" class="checkbox-royal" ng-repeat="d in locationData"  ng-model="itemChecked" ng-click="callme(d, itemChecked)">

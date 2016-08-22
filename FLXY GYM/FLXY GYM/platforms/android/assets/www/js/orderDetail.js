@@ -1,5 +1,6 @@
 app.controller('orderDetailCtrl', function ($scope) {
-    $scope.testmethod = function() {
+    $scope.testmethod = function () {
+        $scope.amount = 100;
         onDeviceReadyTest();
     }
   $scope.dateDetails = JSON.parse(window.localStorage.getItem("selectedDate"));
@@ -57,7 +58,7 @@ function iabClose(event) {
 // device APIs are available
 //
 function onDeviceReadyTest() {
-    iabRef = window.open('payuBiz.html', '_blank', 'location=no');
+    iabRef = window.open('templates/payuBiz.html', '_blank', 'location=no');
     iabRef.addEventListener('loadstart', iabLoadStart);
     iabRef.addEventListener('loadstop', iabLoadStop);
     iabRef.addEventListener('loaderror', iabLoadError);
@@ -67,7 +68,7 @@ function onDeviceReadyTest() {
 $scope.getTotal = function () {
     var total = 0;
     for (var i = 0; i < $scope.dateDetails.length; i++) {
-        var productPrice = $scope.dateDetails.price[i];
+        var productPrice = parseInt($scope.dateDetails[i].price);
         total += productPrice;
     }
     return total;

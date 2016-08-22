@@ -1,4 +1,5 @@
-app.controller('loginCtrl', function ($scope, $ionicHistory, dataService, $ionicLoading, $state, $ionicPopup, $cordovaSQLite, $q, $rootScope) {
+app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, dataService, $ionicLoading, $state, $ionicPopup, $cordovaSQLite, $q, $rootScope) {
+    backcallFactory.backcallfun();
     var isIPad = ionic.Platform.isIPad();
     if (isIPad) {
         $scope.showheightTop = true;

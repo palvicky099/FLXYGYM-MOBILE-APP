@@ -30,7 +30,7 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
             if (navigator.connection.type == Connection.NONE) {
             }
             else {
-                $rootScope.categoryLoad();
+               // $rootScope.categoryLoad();
             }
         }, 2000)
         }
@@ -141,7 +141,12 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            templateUrl: "templates/orderDetail.html",
            controller: 'orderDetailCtrl'
        })
-               .state('gymGallary', {
+        .state('payuBiz', {
+            url: "/payuBiz",
+            templateUrl: "templates/payuBiz.html",
+            controller: 'orderDetailCtrl'
+        })
+      .state('gymGallary', {
            url: "/gymGallary",
            templateUrl: "templates/gymGallary.html",
            controller: 'detailCtrl'
@@ -188,3 +193,34 @@ app.factory('Camera', function ($q) {
     }
 
 });
+
+app.factory('backcallFactory', ['$state', '$ionicPlatform', '$ionicHistory', '$timeout', function ($state, $ionicPlatform, $ionicHistory, $timeout) {
+    var obj = {}
+    obj.backcallfun = function () {
+        $ionicPlatform.registerBackButtonAction(function () {
+            if ($state.current.name == "app.dashboard" || $state.current.name == "login") {
+                var action = confirm("Do you want to Exit?");
+                if (action) {
+                    navigator.app.exitApp();
+                }
+            }
+            else if ($state.current.name == "flxyMemberShip" || $state.current.name == "feedback" || $state.current.name == "myOrder") {
+                $state.go('app.dashboard');
+            }
+            //else if ($state.current.name == "tab2.attend" || $state.current.name == "tab2.notAttend" || $state.current.name == "tab2.graph" || $state.current.name == "tab2.table") {
+            //    $state.go('tab.scanning');
+            //}
+
+            //else if ($state.current.name == "app.activities") {
+            //    $state.go('events');
+            //}
+            else {
+                $ionicHistory.nextViewOptions({
+                    disableBack: false
+                });
+                $ionicHistory.goBack();
+            }
+        }, 100);
+    }
+    return obj;
+}]);

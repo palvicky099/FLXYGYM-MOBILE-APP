@@ -1,12 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget id="com.ionicframework.ionicsidemenu" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>FLXY GYM</name>
-  <description>
-        An Ionic Framework and Cordova project.
-    </description>
-  <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
-    </author>
+  <description>FLXY GYM</description>
+  <author email="you@example.com" href="http://example.com.com/">Vicky Pal</author>
   <content src="index.html" />
   <access origin="*" />
   <allow-navigation href="https://test.payu.in/*" />
@@ -48,4 +44,5 @@
   <plugin name="cordova-plugin-geolocation" version="2.1.0" />
   <plugin name="cordova-plugin-camera" version="2.1.1" />
   <plugin name="cordova-plugin-image-picker" version="1.1.1" src="https://github.com/wymsee/cordova-imagePicker.git" />
+  <preference name="Fullscreen" value="True" />
 </widget>

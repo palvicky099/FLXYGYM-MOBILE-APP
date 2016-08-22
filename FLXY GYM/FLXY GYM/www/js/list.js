@@ -1,10 +1,5 @@
 app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $rootScope, $cordovaSQLite, $ionicPopup, dataService, $cordovaDialogs) {
     //------------- One week data -----------
-
-
-
-
-
     $scope.locatiosArray = [];
     var DataArray = [];
     var myDate = new Date();
@@ -47,8 +42,14 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
                     $scope.listArray = [];
                     $cordovaDialogs.confirm('No gym center available', 'Alert', ['OK'])
                 }
+                var query = "select * from gymCenter where cat_id like '%" + $scope.item.cat_name + "%' and  center_id in (" + datearrayColls + ")"
+                loadGymCenter(query);
             }
-            loadGymCenter(datearrayColls);
+            else {
+                var abc = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29,30'
+                var query = "select * from gymCenter where cat_id like '%" + $scope.item.cat_name + "%' and  center_id in (" + abc + ")"
+                loadGymCenter(query)
+            }
         }, function (err) {
         });
     }
@@ -60,7 +61,8 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
             noBackdrop: false,
             template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
         });
-        var listViewQuery = "select * from gymCenter where cat_id like '%" + $scope.item.cat_name + "%' and  center_id in (" + d + ")";
+        // var listViewQuery = "select * from gymCenter where cat_id like '%" + $scope.item.cat_name + "%' and  center_id in (" + d + ")";
+      var   listViewQuery = d;
         $cordovaSQLite.execute(db, listViewQuery, []).then(function (result) {
             if (result.rows.length > 0) {
                 var itemsColl = [];
@@ -510,11 +512,11 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     },
      {
          "id": "4",
-         "name": "Andheri"
+         "name": "Andheri West"
      },
      {
          "id": "5",
-         "name": "Goregon"
+         "name": "Andheri East"
      },
      {
          "id": "6",
@@ -588,6 +590,18 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
                     }
                 }
                 window.localStorage.setItem("selectedLocation", "[" + meetingDatas + "]")
+
+                //Local storage array for advanced search by Location
+                var advancedSearchLocation = [];
+                for (var i = 0; i < $scope.locatiosArray.length; i++) {
+                    if (i == 0) {
+                        advancedSearchLocation = "'" + $scope.locatiosArray[i].name + "'";
+                    }
+                    else {
+                        advancedSearchLocation += "," + "'" + $scope.locatiosArray[i].name  + "'"  + " ";
+                    }
+                }
+                window.localStorage.setItem("LocationSearch", advancedSearchLocation);
             }
         });
     }
@@ -617,6 +631,7 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
         popup.then(function (result) {
             $scope.categoryArray = result;
             if (result) {
+                //Loca; Storage array to selected Popop checkbox
                 var categoryDatas = [];
                 for (var i = 0; i < $scope.categoryArray.length; i++) {
                     if (i == 0) {
@@ -627,6 +642,18 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
                     }
                 }
                 window.localStorage.setItem("selectedCategory", "[" + categoryDatas + "]")
+
+                //Local storage array for advanced search by Category
+                var advancedSearchCategory = [];
+                for (var i = 0; i < $scope.categoryArray.length; i++) {
+                    if (i == 0) {
+                        advancedSearchCategory = "cat_id like" + " " + "'%" + $scope.categoryArray[i].cat_name + "%'" + " ";
+                    }
+                    else {
+                        advancedSearchCategory += "or" + " " + "cat_id like" + " " + "'%" + $scope.categoryArray[i].cat_name + "%'" + " ";
+                    }
+                }
+                window.localStorage.setItem("categotySearch", advancedSearchCategory)
             }
         });
     }
@@ -655,6 +682,86 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
         console.log($scope.categoryArray);
     }
 
+    //Sort Order function 
+    $scope.statusData = [
+               {
+                   id: '1',
+                   text: "Low to high"
+               },
+               {
+                   id: '2',
+                   text: "High to low"
+               }
+    ];
+    $scope.selected = $scope.statusData[1];
+    $scope.sortPrice = function (a) {
+        if(a.id == '1')
+        {
+            window.localStorage.setItem("sortOrder", "ASC");
+        }
+        else {
+            window.localStorage.setItem("sortOrder", "DESC");
+        }
+    }
+
+
+
+    
+    // slot type filter dropdown
+    $scope.statusDataSlot = [
+                {
+                    id : '0',
+                    text : 'All'
+                },
+                {
+                   id: '1',
+                   text: "Morning"
+               },
+               {
+                   id: '2',
+                   text: "Afternoon"
+               }
+               ,
+               {
+                   id: '3',
+                   text: "Evening"
+               }
+    ];
+    $scope.selectedSlot = $scope.statusDataSlot[0];
+    $scope.slotType = function (a) {
+            window.localStorage.setItem("slotType", a.text);
+          }
+
+
+    //******************Advanced Search Bar*************************
+    $scope.filterAdvanced = function () {
+        var category = window.localStorage.getItem("categotySearch");
+        var location = window.localStorage.getItem("LocationSearch");
+        
+        if (window.localStorage.getItem("sortOrder"))
+        {
+            var sortOrder = window.localStorage.getItem("sortOrder");
+        }
+        else {
+            var sortOrder = 'ASC'
+        }
+        if (window.localStorage.getItem("slotType")) {
+            var slotType = window.localStorage.getItem("slotType");
+        }
+        else {
+            var slotType = 'Morning'
+        }
+
+        if (slotType == 'All')
+        {
+            var query = "select * from gymCenter where  (" + category + ")  or " + " (location in (" + location + ")) order by price " + sortOrder + " "
+        }
+        else {
+            var query = "select * from gymCenter where  s_name like '%" + slotType + " %'" + " or   " + " (" + category + ")  or " + " (location in (" + location + ")) order by price " + sortOrder + " "
+        }
+   loadGymCenter(query);
+   $scope.selectMember.hide();
+    }
  })
 
 

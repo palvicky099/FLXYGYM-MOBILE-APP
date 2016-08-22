@@ -45,12 +45,8 @@
     <splash density="land-mdpi" src="resources/screens/android/screen-mdpi-landscape.png" />
     <splash density="land-xhdpi" src="resources/screens/android/screen-xhdpi-landscape.png" />
     <name>FLXY GYM</name>
-    <description>
-        An Ionic Framework and Cordova project.
-    </description>
-    <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
-    </author>
+    <description>FLXY GYM</description>
+    <author email="you@example.com" href="http://example.com.com/">Vicky Pal</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="https://test.payu.in/*" />
@@ -65,4 +61,5 @@
     <preference name="InAppBrowserStorageEnabled" value="True" />
     <preference name="SuppressesIncrementalRendering" value="True" />
     <preference name="windows-target-version" value="10.0" />
+    <preference name="Fullscreen" value="True" />
 </widget>

@@ -1,5 +1,8 @@
-app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $rootScope, $cordovaSQLite, $ionicPopup, dataService, $cordovaDialogs) {
+app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal, $ionicLoading, $rootScope, $cordovaSQLite, $ionicPopup, dataService, $cordovaDialogs) {
     //------------- One week data -----------
+    $ionicPlatform.onHardwareBackButton(function () {
+        $state.go('app.dashboard');
+    });
     $scope.locatiosArray = [];
     var DataArray = [];
     var myDate = new Date();
@@ -7,7 +10,7 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
         var nextDay = new Date();
         nextDay.setDate(myDate.getDate() + i);
         DataArray.push(nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 1)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2));
-          }
+    }
     $scope.priceSelection = 100;
     $scope.timeSelection = 6;
     $scope.dateScope = DataArray;
@@ -53,28 +56,28 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
         }, function (err) {
         });
     }
-   
-   
-   
+
+
+
     function loadGymCenter(d) {
         $ionicLoading.show({
             noBackdrop: false,
             template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
         });
         // var listViewQuery = "select * from gymCenter where cat_id like '%" + $scope.item.cat_name + "%' and  center_id in (" + d + ")";
-      var   listViewQuery = d;
+        var listViewQuery = d;
         $cordovaSQLite.execute(db, listViewQuery, []).then(function (result) {
             if (result.rows.length > 0) {
                 var itemsColl = [];
                 for (var i = 0; i < result.rows.length; i++) {
-                    itemsColl[i] = result.rows.item(i); 
+                    itemsColl[i] = result.rows.item(i);
                 };
                 $scope.items = JSON.stringify(itemsColl);
                 var jsonData = JSON.parse($scope.items);
                 $scope.listArray = jsonData;
                 setTimeout(function () {
                     $ionicLoading.hide();
-                },2000)
+                }, 2000)
             } else {
                 $ionicLoading.hide();
                 var alertPopup = $ionicPopup.alert({
@@ -82,7 +85,6 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
                     template: '<div style="text-align:center; font-size:22px">No gym center available.</div>'
                 });
                 alertPopup.then(function (res) {
-                    $state.go('app.dashboard')
                 });
             }
         }, function (err) {
@@ -90,9 +92,9 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
         });
     }
 
-	////$scope.listArray = 
-	////[
-	////{
+    ////$scope.listArray = 
+    ////[
+    ////{
     ////"gymId":"1",
     ////"gymName":"Shiva Gym",
     ////"gymCategory":"YOGA",
@@ -102,8 +104,8 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ////"gymDistance":"82828.92 kms",
     //// "gymAddress":"Dahisar West",
     ////"gymRating":3.5
-	////},
-	////{
+    ////},
+    ////{
     ////"gymId":"2",
     ////"gymName":"Power Gym Borivali",
     ////"gymCategory":"YOGA",
@@ -114,8 +116,8 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     //// "gymAddress":"Goregon West",
     ////"gymRating":4.5
 
-	////},
-	////{
+    ////},
+    ////{
     ////"gymId":"3",
     ////"gymName":"ITC Gym Goregon",
     ////"gymCategory":"YOGA",
@@ -125,8 +127,8 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ////"gymDistance":"72373.0909 kms",
     ////"gymAddress":"Malad West",
     ////"gymRating":3.5
-	////},
-	////{
+    ////},
+    ////{
     ////"gymId":"4",
     ////"gymName":"Royal GYM PVT LTD",
     ////"gymCategory":"YOGA",
@@ -136,9 +138,9 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ////"gymDistance":"10000.00 kms",
     ////"gymAddress":"Borivali West",
     ////"gymRating":2.5
-	////}
-	////,
-	////{
+    ////}
+    ////,
+    ////{
     ////"gymId":"5",
     ////"gymName":"5Star GYM PVT LTD",
     ////"gymCategory":"YOGA",
@@ -148,9 +150,9 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ////"gymDistance":"12323.323 kms",
     ////"gymAddress":"Kandivali West",
     ////"gymRating":3.5
-	////}
-	////,
-	////{
+    ////}
+    ////,
+    ////{
     ////"gymId":"6",
     ////"gymName":"Golden GYM PVT LTD",
     ////"gymCategory":"YOGA",
@@ -160,7 +162,7 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ////"gymDistance":"22213.23 kms",
     ////"gymAddress":"Thane West",
     ////"gymRating":3
-	////},
+    ////},
     ////{
     ////"gymId":"1",
     ////"gymName":"Shiva Gym",
@@ -368,17 +370,17 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ////"gymAddress":"Thane West",
     ////"gymRating":3
     ////}
-	////]
- $scope.rating = {};
-  $scope.rating.rate = 3.5;
-  $scope.rating.max = 5;
-  $scope.goDetail = function (l) {
-      loadymDetails(l.center_id);
-           window.localStorage.setItem("itemDetails", JSON.stringify(l));
-           $state.go('detail')
-  }
+    ////]
+    $scope.rating = {};
+    $scope.rating.rate = 3.5;
+    $scope.rating.max = 5;
+    $scope.goDetail = function (l) {
+        loadymDetails(l.center_id);
+        window.localStorage.setItem("itemDetails", JSON.stringify(l));
+        $state.go('detail')
+    }
 
-     $ionicModal.fromTemplateUrl('templates/filterModel.html', {
+    $ionicModal.fromTemplateUrl('templates/filterModel.html', {
         scope: $scope,
         backdropClickToClose: true,
         hardwareBackButtonClose: true
@@ -387,48 +389,48 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     });
     $scope.closeMember = function () {
         $scope.selectMember.hide();
-         $ionicLoading.show({
-                 noBackdrop: false,
-                template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
-                 content: 'Loading',
-                animation: 'fade-in',
-                showBackdrop: true,
-                duration: 3000,
-                maxWidth: 200,
-                showDelay: 0
+        $ionicLoading.show({
+            noBackdrop: false,
+            template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            duration: 3000,
+            maxWidth: 200,
+            showDelay: 0
         });
     };
 
-    $scope.showFilter=function(){
-          $scope.selectMember.show();
+    $scope.showFilter = function () {
+        $scope.selectMember.show();
     }
-   
+
     //Place drop down 
 
     var placeDropDownQuery = "select distinct loc_id, location from gymCenter";
     $cordovaSQLite.execute(db, placeDropDownQuery, []).then(function (result) {
-            if (result.rows.length > 0) {
-                var itemsColl = [];
-                itemsColl[0] = { loc_id: "0", location: "All" };
-                for (var i = 0; i < result.rows.length; i++) {
-                    itemsColl[i + 1] = result.rows.item(i);
-                };
-                $scope.items = JSON.stringify(itemsColl);
-                var jsonData = JSON.parse($scope.items);
-                $scope.Locations = jsonData;
-                $scope.locationDetails = {
-                    location: $scope.Locations,
-                    SelectedLocation: { loc_id: "0", location: "All" }
-                };
-            }
-            else {
-                $scope.Locations = [{ loc_id: "0", location: "All" }];
-                $scope.locationDetails = {
-                    location: $scope.Locations,
-                    SelectedLocation: { loc_id: "0", location: "All" }
-                };
-            }
-        
+        if (result.rows.length > 0) {
+            var itemsColl = [];
+            itemsColl[0] = { loc_id: "0", location: "All" };
+            for (var i = 0; i < result.rows.length; i++) {
+                itemsColl[i + 1] = result.rows.item(i);
+            };
+            $scope.items = JSON.stringify(itemsColl);
+            var jsonData = JSON.parse($scope.items);
+            $scope.Locations = jsonData;
+            $scope.locationDetails = {
+                location: $scope.Locations,
+                SelectedLocation: { loc_id: "0", location: "All" }
+            };
+        }
+        else {
+            $scope.Locations = [{ loc_id: "0", location: "All" }];
+            $scope.locationDetails = {
+                location: $scope.Locations,
+                SelectedLocation: { loc_id: "0", location: "All" }
+            };
+        }
+
     }, function (err) {
     });
     $scope.visible = {};
@@ -453,14 +455,17 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
             loadymDetails(l.center_id)
             if (result == "0") {
                 $rootScope.plan = result;
+                window.localStorage.setItem("backFromBookDate", "list");
                 $state.go('bookDate');
             }
             if (result == "1") {
                 $rootScope.plan = result;
+                window.localStorage.setItem("backFromBookDate", "list");
                 $state.go('bookDate');
             }
             if (result == "2") {
                 $rootScope.plan = result;
+                window.localStorage.setItem("backFromBookDate", "list");
                 $state.go('bookDate');
             }
         });
@@ -496,37 +501,53 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     }
 
     //**************Location Filter Popup*****************
-    $scope.locationData = [
-    {
-        "id": "1",
-        "name": "Kandivali"
-    }
-    ,
-    {
-        "id": "2",
-        "name": "Malad"
-    }
-    , {
-        "id": "3",
-        "name": "Jogeshwari"
-    },
-     {
-         "id": "4",
-         "name": "Andheri West"
-     },
-     {
-         "id": "5",
-         "name": "Andheri East"
-     },
-     {
-         "id": "6",
-         "name": "Dahisar"
-     },
-     {
-         "id": "7",
-         "name": "Kurla"
-     }
-    ]
+    dataService.get_location().then(function (result) {
+        if (result.data.message == "details found!") {
+            $scope.locationData = [];
+            for (var i = 0; i < result.data.response.length; i++) {
+                var db = {
+                    "id": result.data.response[i].location_id,
+                    "name": result.data.response[i].location_name
+                }
+                $scope.locationData.push(db);
+            }
+        }
+        else {
+            $scope.locationData = [];
+        }
+    })
+
+    //$scope.locationData = [
+    //{
+    //    "id": "1",
+    //    "name": "Kandivali"
+    //}
+    //,
+    //{
+    //    "id": "2",
+    //    "name": "Malad"
+    //}
+    //, {
+    //    "id": "3",
+    //    "name": "Jogeshwari"
+    //},
+    // {
+    //     "id": "4",
+    //     "name": "Andheri West"
+    // },
+    // {
+    //     "id": "5",
+    //     "name": "Andheri East"
+    // },
+    // {
+    //     "id": "6",
+    //     "name": "Dahisar"
+    // },
+    // {
+    //     "id": "7",
+    //     "name": "Kurla"
+    // }
+    //]
     $scope.locationArray = [];
     $scope.callme = function (item, a) {
         var listToDelete = [item.id];
@@ -598,7 +619,7 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
                         advancedSearchLocation = "'" + $scope.locatiosArray[i].name + "'";
                     }
                     else {
-                        advancedSearchLocation += "," + "'" + $scope.locatiosArray[i].name  + "'"  + " ";
+                        advancedSearchLocation += "," + "'" + $scope.locatiosArray[i].name + "'" + " ";
                     }
                 }
                 window.localStorage.setItem("LocationSearch", advancedSearchLocation);
@@ -695,8 +716,7 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ];
     $scope.selected = $scope.statusData[1];
     $scope.sortPrice = function (a) {
-        if(a.id == '1')
-        {
+        if (a.id == '1') {
             window.localStorage.setItem("sortOrder", "ASC");
         }
         else {
@@ -706,17 +726,17 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
 
 
 
-    
+
     // slot type filter dropdown
     $scope.statusDataSlot = [
                 {
-                    id : '0',
-                    text : 'All'
+                    id: '0',
+                    text: 'All'
                 },
                 {
-                   id: '1',
-                   text: "Morning"
-               },
+                    id: '1',
+                    text: "Morning"
+                },
                {
                    id: '2',
                    text: "Afternoon"
@@ -729,17 +749,16 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
     ];
     $scope.selectedSlot = $scope.statusDataSlot[0];
     $scope.slotType = function (a) {
-            window.localStorage.setItem("slotType", a.text);
-          }
+        window.localStorage.setItem("slotType", a.text);
+    }
 
 
     //******************Advanced Search Bar*************************
     $scope.filterAdvanced = function () {
         var category = window.localStorage.getItem("categotySearch");
         var location = window.localStorage.getItem("LocationSearch");
-        
-        if (window.localStorage.getItem("sortOrder"))
-        {
+
+        if (window.localStorage.getItem("sortOrder")) {
             var sortOrder = window.localStorage.getItem("sortOrder");
         }
         else {
@@ -752,16 +771,15 @@ app.controller('listCtrl', function ($scope, $state, $ionicModal, $ionicLoading,
             var slotType = 'Morning'
         }
 
-        if (slotType == 'All')
-        {
-            var query = "select * from gymCenter where  (" + category + ")  or " + " (location in (" + location + ")) order by price " + sortOrder + " "
+        if (slotType == 'All') {
+            var query = "select * from gymCenter where  (" + category + ")  and " + " (location in (" + location + ")) order by price " + sortOrder + " "
         }
         else {
-            var query = "select * from gymCenter where  s_name like '%" + slotType + " %'" + " or   " + " (" + category + ")  or " + " (location in (" + location + ")) order by price " + sortOrder + " "
+            var query = "select * from gymCenter where" + " (" + category + ")  and " + " (location in (" + location + ")) and s_name = '" + slotType + "' order by price " + sortOrder + " "
         }
-   loadGymCenter(query);
-   $scope.selectMember.hide();
+        loadGymCenter(query);
+        $scope.selectMember.hide();
     }
- })
+})
 
 

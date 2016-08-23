@@ -129,14 +129,17 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
             if (result == "0") {
                 $rootScope.plan = result;
                 $state.go('bookDate');
+                window.localStorage.setItem("backFromBookDate", "placenearby");
             }
             if (result == "1") {
                 $rootScope.plan = result;
                 $state.go('bookDate');
+                window.localStorage.setItem("backFromBookDate", "placenearby");
             }
             if (result == "2") {
                 $rootScope.plan = result;
                 $state.go('bookDate');
+                window.localStorage.setItem("backFromBookDate", "placenearby");
             }
         });
     }

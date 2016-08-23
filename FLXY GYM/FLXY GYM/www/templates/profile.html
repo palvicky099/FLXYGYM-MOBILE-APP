@@ -4,18 +4,18 @@
             <span class="headerStyle">EDIT PROFILE</span>
         </button>
     </ion-header-bar>
-    <ion-content >
+    <ion-content style="margin-top:15px">
         <!--<div class="slide-up">
             <div class="profile-bg">
                 <h2 align="center">  <img class="tech-img" ng-src="{{dashList.image}}" ng-click="takePicture()" /></h2>
             </div>
         </div>-->
-        <div class="item item-image">
-            <img  ng-src="{{dashList.image}}" >
+        <div class="item item-image" style="background-color:#010001;">
+            <img class="bgProfile  card"  ng-src="{{dashList.image}}">
         </div>
         <div class="list">
-            <div class="item item-icon-right" ng-click="takePicture()" style="margin-top:-50px;border: none; background-color: transparent;">
-               <i class="icon ion-ios-camera-outline" style="font-size:40px; color:white; padding:10px"></i>
+            <div class="item item-icon-right" ng-click="choose()" style="margin-top:-50px;border: none; background-color: transparent;">
+               <i class="icon ion-ios-camera-outline" style="font-size:40px; color:white; padding:2px"></i>
             </div>
         </div>
         <!--<button class="button" ng-click="takePicture()">Take Picture</button>
@@ -78,4 +78,16 @@
 	.gender:hover{
 		background-color: #ccc;
 	}
+    .bgProfile{
+        background-size: cover;
+    width: auto !important;
+    height: 246px !important;
+    background-size:cover;
+    }
 </style>
+<script id="chooseProfilePhoto.html" type="text/ng-template">
+    <ion-list>
+        <ion-radio ng-model="visible.status" ng-value="'0'" style="font-size: 20px;">Gallery</ion-radio>
+        <ion-radio ng-model="visible.status" ng-value="'1'" style="font-size: 20px;">Camera</ion-radio>
+    </ion-list>
+</script>

@@ -1,5 +1,11 @@
-app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs, $state, dataService, $rootScope, $ionicPopup) {
+app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs, $state, dataService, $rootScope, $ionicPopup, $ionicPlatform) {
     //$scope.$on('$ionicView.enter', function () {
+    $ionicPlatform.onHardwareBackButton(function () {
+        $state.go(window.localStorage.getItem("backFromBookDate"));
+    });
+    $scope.goBack = function () {
+        $state.go(window.localStorage.getItem("backFromBookDate"));
+    }
     $scope.showMemberShip = $rootScope.plan;
     var DataArray = [];
     var myDate = new Date();
@@ -20,20 +26,23 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
     var model = 5;
     $scope.dateScope = [];
     dataService.getAvailableGymCenter(model).then(function (result) {
-        console.log(result.data.response)
-        for(var i =0; i<result.data.response.length; i++)
-        {
-            var dateD = {
-                "dateId": i,
-                "Time": result.data.response[i].Time,
-                "center_id": result.data.response[i].center_id,
-                "center_name": result.data.response[i].center_name,
-                "date":result.data.response[i].date,
-                "remaining_seat": result.data.response[i].remaining_seat,
-                "seat_per_day": result.data.response[i].seat_per_day,
-                "price": result.data.response[i].price
+        if (result.data.message == "details found!") {
+            for (var i = 0; i < result.data.response.length; i++) {
+                var dateD = {
+                    "dateId": i,
+                    "Time": result.data.response[i].Time,
+                    "center_id": result.data.response[i].center_id,
+                    "center_name": result.data.response[i].center_name,
+                    "date": result.data.response[i].date,
+                    "remaining_seat": result.data.response[i].remaining_seat,
+                    "seat_per_day": result.data.response[i].seat_per_day,
+                    "price": result.data.response[i].price
+                }
+                $scope.dateScope.push(dateD);
             }
-            $scope.dateScope.push(dateD);
+        }
+        else {
+            $cordovaDialogs.confirm('No daily slot available', 'Alert', ['OK'])
         }
     })
     $scope.book=function(){

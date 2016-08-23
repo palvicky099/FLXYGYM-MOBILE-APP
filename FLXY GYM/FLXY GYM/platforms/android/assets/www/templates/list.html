@@ -3,13 +3,13 @@
         <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
             <span class="headerStyle">{{categoryName}}</span>
         </button>
-          <button class="button button-clear button-positive icon ion-ios-settings flxy-button" ng-click="showFilter()"></button>
+          <button class="button button-clear button-positive icon ion-funnel flxy-button" ng-click="showFilter()"></button>
     </ion-header-bar>
-     <div class="row animated bounceInDown" style="position:fixed; top:39px; z-index:1000;">
+     <div class="row animated bounceInDown" style="position:fixed; top:52px; z-index:1000;">
           <div class="col abc" ng-repeat="d in dateScope" ng-click="dateClick(d)"><h4 class="week">{{d | date:'dd' }}</h4><h5 class="week">{{d | date:'EEE' }}</h5></div>
       </div>
 
-    <ion-content class="" style="margin-top:70px">
+    <ion-content class="" style="margin-top:80px">
     <!--<div class="list">
     <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in listArray" ng-click="goDetail(l)">
       <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200"  id="listImg">
@@ -54,14 +54,14 @@
 <style>
   .week{
     text-align: center;
-    color: red;
+    color: #d41b0d  !important;
     font-weight: 600;
   }
   .abc:hover{
 background-color:#ccc;
   }
   .reserveBtn{
-          background-color: red;
+          background-color: #d41b0d  !important;
     color: white;
     position: fixed;
     left: 10px;

@@ -4,7 +4,7 @@
             <span class="headerStyle">Detail</span>
         </button>
     </ion-header-bar>
-    <ion-content>
+    <ion-content style="margin-top:21px">
     <div class="list">
   <div class="item item-image animated zoomIn">
     <img  src="{{gymDetails[0].center_imgpath[0]}}" >
@@ -14,7 +14,6 @@
     <p>{{gymDetails[0].address}}
      </p>
   </a>
-
         <div class="card Paddingtop animated zoomIn padding">
             <div class="item" style="color:red">
                 Gym Membership
@@ -39,8 +38,6 @@
                 <span class="item-note"> {{flxyGymData.yearly_price}}Rs</span>
             </ion-item>
         </div>
-
-
    <div class="card Paddingtop animated zoomIn">
    <div class="item" style="color:red">
     Time slot
@@ -48,20 +45,16 @@
      <a class="item item-icon-left" ng-repeat="t in gymDetails[0].time">
         {{t}}
     </a>
-    <!--<a class="item item-icon-left">
-        <i class="icon ion-ios-time-outline"></i>
-        16:00 - 17:00 (60 mints)
-    </a>
-    <a class="item item-icon-left">
-        <i class="icon ion-qr-scanner"></i>
-        Medium
-    </a>
-    <a class="item item-icon-left">
-        <i class="icon ion-transgender"></i>
-       Unisex
-    </a>-->
-</div>
-  
+    </div>
+        <div class="card Paddingtop animated zoomIn">
+            <div class="item" style="color:red">
+                Facilities
+            </div>
+            <a class="item item-avatar" ng-repeat="f in gymFacilites">
+                <img src="http://www.zonefitnessmoreton.co.uk/wp-content/uploads/2015/01/gym_1.png">
+                <h2 style="margin-top: 10px;">{{f.facilities_name}}</h2>
+            </a>
+        </div>
   <a class="item item-icon-right item-text-wrap Paddingtop animated zoomIn">
     <h2 style="color:red">About</h2>
     <p>{{gymDetails[0].about}}
@@ -70,9 +63,6 @@
 </div>
 <div style="height: 150px"></div>
     </ion-content>
-    <!--<div class="tabs flxy-tabs" style="position:fixed;bottom:47px; border:none;border-color:#444444 !important">
-    
-    </div>-->
     <div class="tabs flxy-tabs" style="border-color:#444444 !important">
         <a class="tab-item" ng-click="call()">
             <i class="icon ion-ios-telephone"></i>
@@ -88,7 +78,6 @@
         </a>
     </div>
 </ion-view>
-
 <script id="selectBookingType.html" type="text/ng-template">
     <ion-list>
         <ion-radio ng-model="visible.status" ng-value="'0'" style="font-size: 13px;">DAILY MEMBERSHIP </ion-radio>

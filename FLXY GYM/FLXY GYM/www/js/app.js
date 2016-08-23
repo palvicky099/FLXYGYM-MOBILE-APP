@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 var db = null;
-var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'ionic.rating', 'starter.services', 'ionicLazyLoad'])
+var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'ionic.rating', 'starter.services', 'ionicLazyLoad', 'jrCrop'])
 .run(function ($ionicPlatform, $cordovaSQLite, $rootScope) {
     $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -30,7 +30,7 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
             if (navigator.connection.type == Connection.NONE) {
             }
             else {
-               // $rootScope.categoryLoad();
+             $rootScope.categoryLoad();
             }
         }, 2000)
         }
@@ -42,18 +42,21 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
     $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
     .state('app', {
-    url: '/app',
+        url: '/app',
+        cache: false,
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
   .state('login', {
       url: '/login',
+      cache: false,
           templateUrl: 'templates/login.html',
           controller: 'loginCtrl'
            })
     .state('app.dashboard', {
-      url: '/dashboard',
+        url: '/dashboard',
+        cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/dashboard.html',
@@ -62,51 +65,60 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
       }
     })
     .state('register', {
-           url: "/register",
+        url: "/register",
+        cache: false,
            templateUrl: "templates/register.html",
            controller: 'registerCtrl'
 
     })
        .state('myOrder', {
            url: "/myOrder",
+           cache: false,
            templateUrl: "templates/myOrder.html",
            controller: 'myOrderCtrl'
 
        })
     .state('otp', {
-           url: "/otp",
+        url: "/otp",
+        cache: false,
            templateUrl: "templates/otp.html",
            controller: 'registerCtrl'
      })
       .state('offers', {
           url: "/offers",
+          cache: false,
           templateUrl: "templates/offers.html",
           controller: 'offersCtrl'
 
       })
        .state('feedback', {
            url: "/feedback",
+           cache: false,
            templateUrl: "templates/feedback.html",
            controller: 'feedbackCtrl'
 
        })
        .state('events', {
            url: "/events",
+           cache: false,
            templateUrl: "templates/events.html",
            controller: 'eventsCtrl'
        })
         .state('placenearby', {
-           url: "/placenearby",
+            url: "/placenearby",
+            cache: false,
            templateUrl: "templates/placenearby.html",
            controller: 'placenearbyCtrl'
        })
           .state('profile', {
-           url: "/profile",
+              url: "/profile",
+              cache: false,
            templateUrl: "templates/profile.html",
            controller: 'profileCtrl'
           })
        .state('displayProfile', {
            url: "/displayProfile",
+           cache: false,
            templateUrl: "templates/displayProfile.html",
            controller: 'profileCtrl'
        })
@@ -117,52 +129,62 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            controller: 'listCtrl'
        })
           .state('detail', {
-           url: "/detail",
+              url: "/detail",
+              cache: false,
            templateUrl: "templates/detail.html",
            controller: 'detailCtrl'
        })
            .state('distanceMap', {
-           url: "/distanceMap",
+               url: "/distanceMap",
+               cache: false,
            templateUrl: "templates/distanceMap.html",
            controller: 'distanceMapCtrl'
        })
            .state('bookDate', {
-           url: "/bookDate",
+               url: "/bookDate",
+               cache: false,
            templateUrl: "templates/bookDate.html",
            controller: 'bookDateCtrl'
        })
              .state('cart', {
-           url: "/cart",
+                 url: "/cart",
+                 cache: false,
            templateUrl: "templates/cart.html",
            controller: 'cartCtrl'
        })
              .state('orderDetail', {
-           url: "/orderDetail",
+                 url: "/orderDetail",
+                 cache: false,
            templateUrl: "templates/orderDetail.html",
            controller: 'orderDetailCtrl'
        })
         .state('payuBiz', {
             url: "/payuBiz",
+            cache: false,
             templateUrl: "templates/payuBiz.html",
             controller: 'orderDetailCtrl'
         })
       .state('gymGallary', {
-           url: "/gymGallary",
+          url: "/gymGallary",
+          cache: false,
            templateUrl: "templates/gymGallary.html",
            controller: 'detailCtrl'
        })
                    .state('flxyMemberShip', {
-           url: "/flxyMemberShip",
+                       url: "/flxyMemberShip",
+                       cache: false,
            templateUrl: "templates/flxyMemberShip.html",
            controller: 'flxyMemberShipCtrl'
        })
            .state('forgotPassword', {
-           url: "/forgotPassword",
+               url: "/forgotPassword",
+               cache: false,
            templateUrl: "templates/forgotPassword.html",
            controller: 'forgotPasswordCtrl'
            })
        .state('newPassword', {
            url: "/newPassword",
+           cache: false,
            templateUrl: "templates/newPassword.html",
            controller: 'forgotPasswordCtrl'
        })

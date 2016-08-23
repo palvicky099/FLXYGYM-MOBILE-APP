@@ -37,19 +37,19 @@ angular.module('starter.services', [])
          return $http.post(url + 'update_user_profile.php' , 'data=' + JSON.stringify(model));
      };
      factory.register = function (data) {
-         return $http.post('http://www.flxygym.com/home/api/register.php?data=' + JSON.stringify(data));
+         return $http.post(url + 'register.php?data=' + JSON.stringify(data));
      };
      factory.registerSuccess = function (OTPData) {
-         return $http.post('http://www.flxygym.com/home/api/registration_success.php?data=' + JSON.stringify(OTPData));
+         return $http.post(url + 'registration_success.php?data=' + JSON.stringify(OTPData));
      };
      factory.forgotPassword = function (modelMobile) {
-         return $http.post(' http://www.flxygym.com/home/api/forgot_password.php?mobile=' + modelMobile);
+         return $http.post(url + 'forgot_password.php?mobile=' + modelMobile);
      };
      factory.forgot_Success = function (data) {
-         return $http.post(' http://www.flxygym.com/home/api/forgot_success.php?data=' + JSON.stringify(data));
+         return $http.post(url + 'forgot_success.php?data=' + JSON.stringify(data));
      };
      factory.gym_membership = function (model) {
-         return $http.post(' http://www.flxygym.com/home/api/gym_membership.php?c_id=' + model);
+         return $http.post(url + 'gym_membership.php?c_id=' + model);
      };
      factory.Feedback = function (model) {
          return $http.post(url + 'feedback.php?data=' + JSON.stringify(model));
@@ -62,6 +62,12 @@ angular.module('starter.services', [])
      };
      factory.membership = function (model) {
          return $http.get(url + 'membership_image.php');
+     };
+     factory.gym_facilities = function (model) {
+         return $http.post(url + 'get_facilities.php?c_id=' + model);
+     };
+     factory.get_location = function (model) {
+         return $http.get(url + 'get_location.php');
      };
     return factory;
 });

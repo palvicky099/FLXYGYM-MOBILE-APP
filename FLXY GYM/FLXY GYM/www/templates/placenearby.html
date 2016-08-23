@@ -4,7 +4,7 @@
             <span class="headerStyle">PLACE NEARBY</span>
         </button>
     </ion-header-bar>
-    <div class="bar bar-subheader item-input-inset" style="background-color: #d41b0d; border:none">
+    <div class="bar bar-subheader item-input-inset" style="background-color: #d41b0d; border:none; margin-top: 9px;">
         <div class="item-input-wrapper">
             <input type="text" placeholder="Search Gym" ng-model="search">
         </div>
@@ -21,7 +21,7 @@
               </label>
           </div>
     <ion-content style="margin-top:50px">
-        <div class="card" ng-repeat="l in listArray">
+        <div class="card" ng-repeat="l in listArray | filter :search">
             <div class="item item-divider" style="background-color: white !important;">
                 <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
             </div>

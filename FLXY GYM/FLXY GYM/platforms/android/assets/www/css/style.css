@@ -87,7 +87,7 @@
          height: 114px;
     background-color: #444;
     position: fixed;
-    top: 39px;
+    top: 62px;
     z-index: 1000;
     width: 100%;
 }
@@ -166,4 +166,9 @@ ul.rating li i {
   margin-bottom: 20px;
   width: 100px;
   border-radius: 300px;
+}
+.bar-header{
+    border-top: 18px solid #a51b10 !important;
+    border-top: 10px solid #7a5553b0 !important;
+    height: 68px !important;
 }

@@ -15,6 +15,8 @@ app.controller('profileCtrl', function ($scope, $ionicLoading, dataService,$ioni
                 });
             }
             else {
+              //  alert(dashList.image);
+                var abc = dashList.image;
                 $ionicLoading.show({
                     noBackdrop: false,
                     template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Plase wait...</p>'
@@ -79,30 +81,32 @@ app.controller('profileCtrl', function ($scope, $ionicLoading, dataService,$ioni
 
         $scope.visible = {};
         $scope.choose = function () {
-            var popup = $ionicPopup.show({
-                'templateUrl': 'chooseProfilePhoto.html',
-                'title': 'Choose to upload profile',
-                'scope': $scope,
-                'buttons': [
-                            {
-                                'text': 'Cancel'
-                            },
-                            {
-                                'text': 'OK',
-                                'onTap': function (event) {
-                                    return $scope.visible.status;
-                                }
-                            }
-                ]
-            });
-            popup.then(function (result) {
-                if (result == "1") {
-                    fromCamera();
-                }
-                if (result == "0") {
-                    fromGallery();
-                }
-            });
+            fromGallery();
+        //    var popup = $ionicPopup.show({
+        //        'templateUrl': 'chooseProfilePhoto.html',
+        //        'title': 'Choose to upload profile',
+        //        'scope': $scope,
+        //        'buttons': [
+        //                    {
+        //                        'text': 'Cancel'
+        //                    },
+        //                    {
+        //                        'text': 'OK',
+        //                        'onTap': function (event) {
+        //                            return $scope.visible.status;
+        //                        }
+        //                    }
+        //        ]
+        //    });
+        //    popup.then(function (result) {
+        //        fromGallery();
+        //        //if (result == "1") {
+        //        //    fromCamera();
+        //        //}
+        //        //if (result == "0") {
+        //        //    fromGallery();
+        //        //}
+        //    });
         }
 
         function fromCamera(){
@@ -119,11 +123,8 @@ app.controller('profileCtrl', function ($scope, $ionicLoading, dataService,$ioni
                 correctOrientation: true
             };
 
-            $cordovaCamera.getPicture(options).then(function (imageData) {
-                var image = document.getElementById('myImage');
-                $scope.dashList.image = "data:image/jpeg;base64," + imageData;
-            }, function (err) {
-                // error
+            $cordovaCamera.getPicture(options).then(function (imageURI) {
+                $scope.dashList.image = "data:image/jpeg;base64," + imageURI;
             });
         };
         function fromGallery() {

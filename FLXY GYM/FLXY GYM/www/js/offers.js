@@ -10,8 +10,9 @@ app.controller('offersCtrl', function ($scope, $state, dataService, $ionicPlatfo
 	    }
 	})
     $scope.goDetail=function(l){
-window.localStorage.setItem("itemDetails", JSON.stringify(l));
-$state.go('detail');
+        window.localStorage.setItem("itemDetails", JSON.stringify(l));
+        window.localStorage.setItem("backFromBookDate", "offers");
+        $state.go('detail');
     }
 })
 })

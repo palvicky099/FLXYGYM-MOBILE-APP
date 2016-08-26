@@ -1,15 +1,33 @@
-<ion-view style="background-color:red">
+<ion-view>
     <ion-header-bar class="flxy-button">
-        <button ui-sref="details" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+        <button ui-sref="detail" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
             <span class="headerStyle">Complete payment</span>
         </button>
     </ion-header-bar>
     <ion-content>
-        <form  name="sendParam" method="post" action="http://www.flxygym.com/payu.php">
+        <!--<form action="http://www.flxygym.com/payu.php" name="sendParam" method="post">-->
+        <!--<form action="http://www.flxygym.com/payu.php" name="sendParam" method="post">
+            <input type="text" ng-model="checkout.txnid" name="txnid">
+            <input type="text" ng-model="checkout.key" name="key">
+            <input type="text" ng-model="checkout.amount" name="amount">
+            <input type="text" ng-model="checkout.productinfo" name="productinfo">
+            <input type="text" ng-model="checkout.firstname" name="firstname">
+            <input type="text" ng-model="checkout.email" name="email">
+            <input type="text" ng-model="checkout.phone" name="phone">
+            <input type="text" ng-model="checkout.hash" name="hash">
+            <input type="text" ng-model="checkout.surl" name="surl">
+            <input type="text" ng-model="checkout.furl" name="furl">
+            <input type="text" ng-model="checkout.service_provider" name="service_provider">
+            <input type="text" name="udf1" ng-model="checkout.udf1" />
+            <input type="text" name="udf2" ng-model="checkout.udf2" />
+            <input type="text" name="udf3" ng-model="checkout.udf3" />
+            <button class="button style-10" href="" ng-click="ProceedToCheckout(checkout)" type="submit" value="enter">Checkout</button>
+        </form>-->
+           <form  name="sendParam" method="post" action="http://www.flxygym.com/payu.php">
             <input type="hidden" name="key" value="i6mTzrDF" />
-            <input type="hidden" name="hash" value="" />
+            <input type="hidden" name="Hash" value="" />
             <input type="hidden" name="txnid" value="jsdjfgsdfhjsdfjhsjdhfshdfj" />
-            <input type="hidden" name="amount" value="20" />
+            <input type="text" name="amount" value="100" />
             <input type="hidden" name="firstname" id="firstname" value="Vicky" />
             <input type="hidden" name="email" id="email" value="palvicky099@gmail.com" />
             <input type="hidden" name="phone" value="mobile no" />
@@ -20,26 +38,25 @@
             <input type="hidden" name="udf1" value="GYM MemberShip" />
             <input type="hidden" name="udf2" value="dkfgkhkhfkh" />
             <input type="hidden" name="udf3" value="Yearly" />
-            <input type="submit" value="enter" style="position: absolute; left: -9999px" /> 
+            <input type="submit" value="enter" style="position: absolute; left: -9999px" />
         </form>
-
-	<!--<form name="sendParam" method="post" action="http://www.flxygym.com/payu.php">
-				<input type="hidden" name="key" value="gtKFFx" />
-				<input type="hidden" name="txnid" value="mdt24opk" />
-				<input type="hidden" name="amount" value="100" />
-				<input type="hidden" name="productinfo" value="oxygenconcentrator" />
-				<input type="hidden" name="firstname" value="test" />
-				<input type="hidden" name="email" value="test@gmail.com" />
-				<input type="hidden" name="phone" value="8152709721" />
-				<input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />
-				<input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />
-				<input type="hidden" name="Hash" value="819af9cc2783018edf68e594e1794cfa8bbf6b381f807051840024ef29c021d3962dd88f4dd77d268d1d9199ac6a2e5c4ea6e67514c8c6a1eb56c597165c8958"/>
-         <input type="submit" value="enter" style="position: absolute; left: -9999px"/> 
-   </form >--> 
-<script>
-document.sendParam.submit();
-</script>
- </ion-content>
+            <!--<form name="sendParam" method="post" action="http://www.flxygym.com/payu.php">
+                     <input type="hidden" name="key" value="gtKFFx" />
+                     <input type="hidden" name="txnid" value="mdt24opk" />
+                     <input type="hidden" name="amount" value="100" />
+                     <input type="hidden" name="productinfo" value="oxygenconcentrator" />
+                     <input type="hidden" name="firstname" value="test" />
+                     <input type="hidden" name="email" value="test@gmail.com" />
+                     <input type="hidden" name="phone" value="8152709721" />
+                     <input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />
+                     <input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />
+                     <input type="hidden" name="Hash" value="819af9cc2783018edf68e594e1794cfa8bbf6b381f807051840024ef29c021d3962dd88f4dd77d268d1d9199ac6a2e5c4ea6e67514c8c6a1eb56c597165c8958"/>
+              <input type="submit" value="enter" style="position: absolute; left: -9999px"/>
+        </form >-->
+            <script>
+                document.sendParam.submit();
+            </script>
+</ion-content>
 </ion-view>
 
  

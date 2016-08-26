@@ -5,7 +5,7 @@
         </button>
     </ion-header-bar>
     <ion-content class="padding" style="margin-top:21px">
-        <table id="t01">
+        <table id="t01" ng-if="showDateTable">
             <tr>
                 <th>Date</th>
                 <th>Shift</th>
@@ -22,38 +22,42 @@
                 <td><b>{{ getTotal() }} Rs</b></td>
             </tr>
         </table>
-       
+        <ion-list ng-if="showMemberShip">
+            <ion-item class="animated zoomIn  item-icon-left">
+                <i class="icon ion-star"></i>
+                <h2>{{type}}</h2>
+                <h2>{{period}}</h2>
+                <h2>{{totalMembershipPrice}}</h2>
+            </ion-item>
+        </ion-list>
+
+
+
     </ion-content>
     <div class="tabs flxy-tabs" style="font-weight: 900;">
-        <a class="tab-item" style="font-weight: 900;width:100%;overflow:visible !important" ng-click="testmethod()">
+        <a class="tab-item" style="font-weight: 900;width:100%;overflow:visible !important" ng-click="openBrowser()">
             PROCEED TO PAYMENT
         </a>
     </div>
 </ion-view>
-
 <style>
     table {
         width: 100%;
     }
-
     table, th, td {
         border: 1px solid #eeeeee;
         border-collapse: collapse;
     }
-
     th, td {
         padding: 5px;
         text-align: center;
     }
-
     table#t01 tr:nth-child(even) {
         background-color: #eee;
     }
-
     table#t01 tr:nth-child(odd) {
         background-color: #fff;
     }
-
     table#t01 th {
         background-color: white;
         color: #d41b0d;

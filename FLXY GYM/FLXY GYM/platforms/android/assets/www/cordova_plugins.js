@@ -97,6 +97,14 @@ module.exports = [
         "clobbers": [
             "plugins.imagePicker"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -113,7 +121,8 @@ module.exports.metadata =
     "mx.ferreyra.callnumber": "0.0.2",
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-camera": "2.1.1",
-    "cordova-plugin-image-picker": "1.1.1"
+    "cordova-plugin-image-picker": "1.1.1",
+    "cordova-plugin-inappbrowser": "1.2.1"
 };
 // BOTTOM OF METADATA
 });

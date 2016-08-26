@@ -6,23 +6,23 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
     $scope.goBack = function () {
         $state.go(window.localStorage.getItem("backFromBookDate"));
     }
+    $rootScope.plan = window.localStorage.getItem("plan");
     $scope.showMemberShip = $rootScope.plan;
     var DataArray = [];
     var myDate = new Date();
-    for (var i = 0; i <= 6; i++)
-    {
+    for (var i = 0; i <= 6; i++) {
         var nextDay = new Date();
         nextDay.setDate(myDate.getDate() + i);
         var ds = nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 1)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2);
         var DataArrays = {
-            "id":i,
-            "dateName":ds
+            "id": i,
+            "dateName": ds
         }
         DataArray.push(DataArrays);
     }
     //   $scope.dateScope = DataArray;
     $scope.detailItem = JSON.parse(window.localStorage.getItem("itemDetails"));
-    var msg ="This will do a booking for" + " "+$scope.detailItem.gymName + " " + "and center will contact you soon. Please go to My Booking to track the status";
+    var msg = "This will do a booking for" + " " + $scope.detailItem.gymName + " " + "and center will contact you soon. Please go to My Booking to track the status";
     var model = 5;
     $scope.dateScope = [];
     dataService.getAvailableGymCenter(model).then(function (result) {
@@ -45,28 +45,25 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
             $cordovaDialogs.confirm('No daily slot available', 'Alert', ['OK'])
         }
     })
-    $scope.book=function(){
+    $scope.book = function () {
         $cordovaDialogs.confirm(msg, 'Information', ['Cancel', 'Book'])
                     .then(function (buttonIndex) {
                         var btnIndex = buttonIndex;
-                        if(btnIndex == 1)
-                        {
+                        if (btnIndex == 1) {
                         }
-                        if(btnIndex==2)
-                        {
+                        if (btnIndex == 2) {
                             $cordovaDialogs.confirm('Booking Confirmed is 343 entry to seats table is 445', 'Information', ['OK'])
                            .then(function (buttonIndex) {
                                var btnIndex = buttonIndex;
-                               if(btnIndex == 1)
-                               {
+                               if (btnIndex == 1) {
                                    $state.go('app.dashboard');
                                }
                            });
                         }
                     });
-            
+
     }
-    $scope.addToCart=function(){
+    $scope.addToCart = function () {
         $ionicLoading.show({
             noBackdrop: false,
             template: '<p class="item flxy-button">Item added to cart</p>',
@@ -78,7 +75,7 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
             showDelay: 0
         });
     }
-   
+
     $scope.tagsarray = [];
     $scope.callMe = function (item, a) {
         var listToDelete = [item.dateId];
@@ -100,12 +97,12 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
         console.log($scope.tagsarray);
     }
     $scope.goOrderDetails = function () {
-        if ($scope.tagsarray.length > 0)
-        {
+        if ($scope.tagsarray.length > 0) {
             window.localStorage.setItem("selectedDate", JSON.stringify($scope.tagsarray));
+            window.localStorage.setItem("type", "Daily");
             $state.go('orderDetail');
         }
-        else{
+        else {
             $ionicLoading.show({
                 template: 'Select at least one date',
                 content: 'Loading',
@@ -117,40 +114,37 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
                 showDelay: 0
             });
         }
-        
+
     }
-    dataService.gym_membership($scope.detailItem.center_id).then(function (result)
-    {
+    dataService.gym_membership($scope.detailItem.center_id).then(function (result) {
         console.log(result.data)
         $scope.flxyGymData = result.data;
     })
-
-    $scope.gymMemberShipClick=function(g)
-    {
+    $scope.gymMemberShipClick = function (g, gymMemberShipType) {
         var confirmPopup = $ionicPopup.confirm({
             title: 'Confirm',
-            template: 'Your total amount to pay is' +' '+ g + ' '+ 'Rs',
+            template: 'Your total amount to pay is' + ' ' + g + ' ' + 'Rs',
             celText: 'Cancel',
             okText: 'Payment'
         });
-
         confirmPopup.then(function (res) {
             if (res) {
-                onDeviceReadyTest();
-            } else {
+                if (g) {
+                    window.localStorage.setItem("amount", g);
+                    window.localStorage.setItem("MemberShipType", gymMemberShipType);
+                    window.localStorage.setItem("type", gymMemberShipType);
+                    $state.go('orderDetail');
+                  //  onDeviceReadyTest();
+                }
             }
         });
     }
-
-//Proceed to payment
-    // Global InAppBrowser reference
     var iabRef = null;
-
     //load start event
     function iabLoadStart(event) {
-        /*  if (event.url.match(""http://flxygym.com/response.php")) {
-            // iabRef.close();
-         } */
+        if (event.url.match("http://flxygym.com/response.php")) {
+            iabRef.close();
+        }
     }
 
 
@@ -170,7 +164,7 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
                 // console.log(getValue(values, 'mihpayid'))
             });
 
-            // iabRef.close();
+            iabRef.close();
         }
     }
 
@@ -198,13 +192,14 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
     //
     function onDeviceReadyTest() {
         setTimeout(function () {
-            iabRef = window.open('payuBiz.html', '_blank', 'location=yes');
-            //iabRef.addEventListener('loadstart', iabLoadStart);
-            //iabRef.addEventListener('loadstop', iabLoadStop);
-            //iabRef.addEventListener('loaderror', iabLoadError);
+            iabRef = window.open('templates/payuBiz.html', 'location=yes');
+            iabRef.addEventListener('loadstart', iabLoadStart);
+            iabRef.addEventListener('loadstop', iabLoadStop);
+            iabRef.addEventListener('loaderror', iabLoadError);
             iabRef.addEventListener('exit', iabClose);
-        },3000)
-        
+        }, 3000)
+
     }
+
 
 })

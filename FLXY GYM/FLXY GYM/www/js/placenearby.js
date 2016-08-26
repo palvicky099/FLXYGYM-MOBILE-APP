@@ -1,5 +1,8 @@
-app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordovaSQLite,$rootScope, dataService, $ionicLoading) {
+app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordovaSQLite, $rootScope, dataService, $ionicLoading, $ionicPlatform) {
     $scope.$on('$ionicView.enter', function () {
+        $ionicPlatform.onHardwareBackButton(function () {
+            $state.go('app.dashboard');
+        });
         $scope.dropDownClick = function (c) {
             $ionicLoading.show({
                 noBackdrop: false,
@@ -127,17 +130,23 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
         popup.then(function (result) {
             loadymDetails(l.center_id)
             if (result == "0") {
-                $rootScope.plan = result;
+               // $rootScope.plan = result;
+                window.localStorage.setItem("plan", result);
+                window.localStorage.setItem("bookType", "Daily Booking");
                 $state.go('bookDate');
                 window.localStorage.setItem("backFromBookDate", "placenearby");
             }
             if (result == "1") {
-                $rootScope.plan = result;
+              //  $rootScope.plan = result;
+                window.localStorage.setItem("plan", result);
+                window.localStorage.setItem("bookType", "Gym Booking");
                 $state.go('bookDate');
                 window.localStorage.setItem("backFromBookDate", "placenearby");
             }
             if (result == "2") {
-                $rootScope.plan = result;
+               // $rootScope.plan = result;
+                window.localStorage.setItem("plan", result);
+                window.localStorage.setItem("bookType", "Flxy Booking");
                 $state.go('bookDate');
                 window.localStorage.setItem("backFromBookDate", "placenearby");
             }

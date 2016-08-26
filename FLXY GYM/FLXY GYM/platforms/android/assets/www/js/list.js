@@ -454,17 +454,20 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
         popup.then(function (result) {
             loadymDetails(l.center_id)
             if (result == "0") {
-                $rootScope.plan = result;
+                window.localStorage.setItem("plan", result);
+                window.localStorage.setItem("bookType", "Daily Booking");
                 window.localStorage.setItem("backFromBookDate", "list");
                 $state.go('bookDate');
             }
             if (result == "1") {
-                $rootScope.plan = result;
+                window.localStorage.setItem("plan", result);
+                window.localStorage.setItem("bookType", "Gym Booking");
                 window.localStorage.setItem("backFromBookDate", "list");
                 $state.go('bookDate');
             }
             if (result == "2") {
-                $rootScope.plan = result;
+                window.localStorage.setItem("plan", result);
+                window.localStorage.setItem("bookType", "Flxy Booking");
                 window.localStorage.setItem("backFromBookDate", "list");
                 $state.go('bookDate');
             }

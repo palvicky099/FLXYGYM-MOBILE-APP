@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="list card list-inset Paddingtop animated zoomIn" style="position:fixed;bottom:-10px; z-index:1000; width:104%;left:-10px">
-              <label class="item item-input item-select flxy-tabs">
-                  <span class="input-label flxy-tabs">
+              <label class="item item-input item-select flxy-tabs" style="background-color:#ddd !important; border-top:1px solid #a51b10">
+                  <span class="input-label flxy-tabs" style="background-color:#ddd !important">
                  Select Location               
                     </span>
                  
@@ -26,11 +26,12 @@
                 <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
             </div>
             <a style="border:none" class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-click="goDetail(l)">
-                <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">
+                <!--<img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">-->
+                <img src="{{ l.center_imgpath }}">
 
-                <p>10am to 12pm</p>
-                <p>{{l.location}}</p>
-                <p style="color:green">{{l.price}} Rs</p>
+                <h2 style="font-weight: 600;">10am to 12pm</h2>
+                <h2>{{l.location}}</h2>
+                <p style="color:green; font-weight:600">{{l.price}} Rs</p>
                 <!--<rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>-->
                 <span class="item-note">
                     {{l.distance}} KMs

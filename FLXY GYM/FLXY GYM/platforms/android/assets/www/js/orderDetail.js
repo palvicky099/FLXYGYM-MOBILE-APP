@@ -36,7 +36,7 @@ app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootS
            })
            .catch(function (event) {
            });
-        }, 5000)
+        }, 1000)
     }
     $rootScope.$on('$cordovaInAppBrowser:loadstart', function (e, event) {
         if(event.url =="http://flxygym.com/response.php")

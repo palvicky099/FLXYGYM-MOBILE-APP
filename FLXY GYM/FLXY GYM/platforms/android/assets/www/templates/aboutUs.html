@@ -1,0 +1,35 @@
+﻿<ion-view hide-nav-bar="true" cache-view="false" class="greyBackgorund">
+    <ion-header-bar class="flxy-button">
+        <button ui-sref="about" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">{{aboutTitle}}</span>
+        </button>
+    </ion-header-bar>
+    <ion-content class="" style="margin-top:21px">
+        <div class="card" style="padding:38px" ng-if="aboutTitle == 'ABOUT US'">
+            FlxyGym is a registered trademark and product of Ms Fitness Innovative Solutions Pvt. Ltd. At flxygym we know that we're all busy, life is fluid and that 'Fitness needs to Fit'. We also believe that exercise needs to be a fun experience and the key to achieving that is variety. Routines are routine, they don't work. Variety works.
+            We offer people fitness freedom. With us, you're free to do the exercise you want, where you want and when you want. That means maximum variety and maximum value.
+        </div>
+
+        <div class="list card" ng-if="aboutTitle == 'SOCIAL CONNECT'">
+            <a style="background-color: #3b5998; color: white;" class="item item-icon-left" ng-click="social('https://www.facebook.com/Flxygym-527051367478963/')">
+                <i class="icon ion-social-facebook"></i>
+                Facebook
+            </a>
+            <a style="background-color:#0084B4;color:white" class="item item-icon-left" ng-click="social('https://twitter.com/FlxyGym')">
+                <i class="icon ion-social-twitter"></i>
+               Twintter
+            </a>
+            <a style="background-color:#e6b500;color:white" class="item item-icon-left" ng-click="social('https://www.facebook.com/Flxygym-527051367478963/')">
+                <i class="icon ion-social-instagram-outline"></i>
+                Instagram
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
+<style>
+    .socialFB{
+    background-color: red;
+    padding: 10px;
+    border-radius: 87px;
+    }
+</style>

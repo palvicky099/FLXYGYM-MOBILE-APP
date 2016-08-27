@@ -26,9 +26,9 @@
 }
 .logoHeaderImg{
   background:url('../img/logo.png');
-  height: 40px;
-  width: 40px;
-  background-size: cover;
+     height: 50px;
+    width: 50px;
+     background-size: cover;
 }
 .loginField{
   background-color: #e9e6e6 !important;
@@ -63,7 +63,7 @@
 }
 .sidemenuItem{
   color: #e31f08 !important ;
-  background-color: #f7f4f4 !important;
+  background-color: #c3c5b7 !important;
  /* background-color: red !important;*/
 }
 .headerStyle{
@@ -85,7 +85,7 @@
 }
 .menuProfileImage{
          height: 114px;
-    background-color: #444;
+    background-color: #c3c5b7;
     position: fixed;
     top: 62px;
     z-index: 1000;

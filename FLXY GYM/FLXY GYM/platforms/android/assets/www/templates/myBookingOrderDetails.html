@@ -1,0 +1,23 @@
+﻿<ion-view cache-view="false" hide-nav-bar="true">
+    <ion-header-bar class="flxy-button">
+        <button ui-sref="myOrder" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+            <span class="headerStyle">ORDER HISTORY</span>
+        </button>
+    </ion-header-bar>
+    <ion-content style="margin-top:21px" class="padding">
+        <div class="list card">
+            <a class="item item-thumbnail-left item-text-wrap">
+                <img src="{{bookingDetails.center_image}}">
+                <h2>{{bookingDetails.center_name}}</h2>
+                <p>Order Id :{{bookingDetails.order_id}}</p>
+                <p style="color:green">Your transaction is successful</p>
+                <h2 style="text-align:right; color:black; font-weight:700">{{bookingDetails.totalAmount}} Rs</h2>
+            </a>
+            <a class="item  item-text-wrap" ng-repeat="a in bookingDetails.bookings">
+                <h2>{{a.d_bookingDate}}</h2>
+                <p>{{a.d_shift}}</p>
+                <p style="text-align:right; color:green">{{a.d_price}} Rs</p>   
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

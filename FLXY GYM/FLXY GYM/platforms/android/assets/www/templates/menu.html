@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" style="background-color:#c3c5b7 !important">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
@@ -10,14 +10,14 @@
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
-  <ion-side-menu side="left">
-    <a menu-close class="item item-thumbnail-left border-none menuProfileImage itemHoverMenu" ui-sref="displayProfile">
+  <ion-side-menu side="left" style="background-color:#c3c5b7 !important">
+    <a menu-close class="item item-thumbnail-left border-none menuProfileImage itemHoverMenu" ui-sref="displayProfile" style="margin-top: 16px;">
       <img ng-src="{{dashList.image}}" style="border-radius: 16px;margin-top: 10px">
       <h2 style="color: white;margin-top: 25px">Welcome<br />{{dashList.name}}</h2>
     </a>
-    <ion-content style="background-color: #f7f4f4 !important;">
+    <ion-content style="background-color:#c3c5b7 !important">
     <div class="list border-none animated bounceInDown">
-  <a menu-close class="item item-icon-left sidemenuItem  border-none" ui-sref="app.dashboard" style="margin-top:140px">
+  <a menu-close class="item item-icon-left sidemenuItem  border-none" ui-sref="app.dashboard" style="margin-top:150px">
     <i class="icon ion-ios-home-outline"></i>
    Home
   </a>
@@ -53,6 +53,10 @@
     <i class="icon ion-share"></i>
   Feedback/Feature Request
   </a>
+        <a menu-close class="item item-text-wrap item-icon-left sidemenuItem border-none" ui-sref="about">
+            <i class="icon ion-ios-information-outline"></i>
+           About
+        </a>
   <a menu-close class="item item-icon-left sidemenuItem border-none" ng-click="logOut()">
     <i class="icon ion-log-out"></i>
   Logout
@@ -61,16 +65,24 @@
 <div style="height: 30px"></div>
     </ion-content>
   </ion-side-menu>
-<ion-header-bar class="flxy-button" style="height: 50px; position: fixed;top:0px">
+<ion-header-bar class="flxy-button heightDashMenuHeder" style="height: 50px; position: fixed;top:0px">
               <div class="logoHeaderImg"></div>
   <button ui-sref="app.dashboard" class="button  button-clear" style="color:white;">
             <span class="headerStyle">FLXY GYM</span>
+       <p style="font-size:13px;color: white;font-weight: 500;position: fixed;
+    top: 29px;
+    left: 40px;">WALK YOUR WAY TO FITNESS</p>
         </button>
-         <button class="button button-clear button-positive icon ion-navicon flxy-button" ng-click="toggleLeftSideMenu()"></button>
+         <button class="button button-clear button-positive icon ion-navicon flxy-button" ng-click="toggleLeftSideMenu()"  menu-toggle="left"></button>
     </ion-header-bar>
 </ion-side-menus>
 <style>
-  .itemHoverMenu:hover{
+  /*.itemHoverMenu:hover{
       background-color:#444;
+  }*/
+  .heightDashMenuHeder{
+      border-top: 18px solid #a51b10 !important;
+    border-top: 10px solid #7a5553b0 !important;
+    height: 86px !important;
   }
 </style>

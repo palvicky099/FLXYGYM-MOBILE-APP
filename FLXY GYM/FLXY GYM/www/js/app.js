@@ -21,9 +21,11 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
         $cordovaSQLite.execute(db,
             "CREATE TABLE IF NOT EXISTS gymCenter (id integer primary key,cat_id text, center_id text, " +
                                   " center_name text, center_imgpath text, price text, price_id text, address text , branch_addr text," +
-                                  " center_slot_data text, grade text, grade_id text, landmark text, latitude text, longitude text, " +
+                                  " grade text, grade_id text, landmark text, latitude text, longitude text, " +
                                   " margin text, s_id text, s_name text, seats_perday text, distance text, location text, loc_id text)");
-               });
+    });
+
+
     if (window.localStorage.getItem("isLogin") == "yes")
         {
         setTimeout(function () {
@@ -69,27 +71,43 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
         cache: false,
            templateUrl: "templates/register.html",
            controller: 'registerCtrl'
-
     })
        .state('myOrder', {
            url: "/myOrder",
            cache: false,
            templateUrl: "templates/myOrder.html",
            controller: 'myOrderCtrl'
-
        })
+    .state('myBookingOrderDetails', {
+        url: "/myBookingOrderDetails",
+        cache: false,
+        templateUrl: "templates/myBookingOrderDetails.html",
+        controller: 'myOrderCtrl'
+    })
+    
     .state('otp', {
         url: "/otp",
         cache: false,
            templateUrl: "templates/otp.html",
            controller: 'registerCtrl'
-     })
+    })
+         .state('about', {
+             url: "/about",
+             cache: false,
+             templateUrl: "templates/about.html",
+             controller: 'aboutCtrl'
+         })
+         .state('aboutUs', {
+             url: "/aboutUs",
+             cache: false,
+             templateUrl: "templates/aboutUs.html",
+             controller: 'aboutUsCtrl'
+         })
       .state('offers', {
           url: "/offers",
           cache: false,
           templateUrl: "templates/offers.html",
           controller: 'offersCtrl'
-
       })
        .state('feedback', {
            url: "/feedback",

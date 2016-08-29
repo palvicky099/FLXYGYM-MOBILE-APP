@@ -32,7 +32,7 @@ app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootS
         setTimeout(function () {
             $cordovaInAppBrowser.open('templates/payuBiz.html', '_blank', options)
            .then(function (event) {
-               $state.go('app.dashboard')
+               $state.go('myOrder')
            })
            .catch(function (event) {
            });

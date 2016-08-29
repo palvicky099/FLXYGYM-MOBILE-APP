@@ -46,4 +46,5 @@
   <plugin name="cordova-plugin-image-picker" version="1.1.1" src="https://github.com/wymsee/cordova-imagePicker.git" />
   <preference name="Fullscreen" value="True" />
   <plugin name="cordova-plugin-inappbrowser" version="1.2.1" />
+  <plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.4" src="https://github.com/katzer/cordova-plugin-local-notifications.git" />
 </widget>

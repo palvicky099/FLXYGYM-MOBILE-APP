@@ -4,7 +4,7 @@ app.controller('forgotPasswordCtrl', function ($scope, $ionicLoading, $state, $i
         {
             $ionicLoading.show({
                 noBackdrop: false,
-                template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
+                template: '<ion-spinner icon="lines"/>'
             });
             dataService.forgotPassword(mobile).then(function (result) {
                 $ionicLoading.hide();
@@ -79,7 +79,7 @@ app.controller('forgotPasswordCtrl', function ($scope, $ionicLoading, $state, $i
             } else {
                 $ionicLoading.show({
                     noBackdrop: false,
-                    template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
+                    template: '<ion-spinner icon="lines"/>'
                 });
                 var modelOTP = JSON.parse(window.localStorage.getItem("registerSuccess"));
                 var model = {

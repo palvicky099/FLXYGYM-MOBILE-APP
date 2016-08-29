@@ -6,7 +6,7 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
         $scope.dropDownClick = function (c) {
             $ionicLoading.show({
                 noBackdrop: false,
-                template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
+                template: '<ion-spinner icon="lines"/>'
             });
          //   $scope.listArray = [];
             if (c.loc_id == '0')
@@ -78,90 +78,109 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
 
 
   $scope.goDetail = function (l) {
-      dataService.getCenterDetails(l.center_id).then(function (result) {
-          console.log(result)
-          $ionicLoading.show({
-              noBackdrop: false,
-              template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: true,
-              duration: 3000,
-              maxWidth: 200,
-              showDelay: 0
+      if (navigator.connection.type == Connection.NONE) {
+          var alertPopup = $ionicPopup.alert({
+              title: ' No internet connection',
+              template: '<div style="text-align:center;">No internet connectivity detected. Please reconnect and try again.</div>'
           });
-          window.localStorage.setItem("GYMDetails", JSON.stringify(result.data.response));
-          window.localStorage.setItem("goDetailsFrom", "placenearby");
-          $state.go('detail');
-      }, function (err) {
-          $ionicLoading.show({
-              noBackdrop: false,
-              template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">No Details Available</p>',
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: true,
-              duration: 3000,
-              maxWidth: 200,
-              showDelay: 0
+          alertPopup.then(function (res) {
           });
-      });
-      window.localStorage.setItem("itemDetails", JSON.stringify(l));
-
+      }
+      else {
+          dataService.getCenterDetails(l.center_id).then(function (result) {
+              console.log(result)
+              $ionicLoading.show({
+                  noBackdrop: false,
+                  template: '<ion-spinner icon="lines"/>',
+                  content: 'Loading',
+                  animation: 'fade-in',
+                  showBackdrop: true,
+                  duration: 3000,
+                  maxWidth: 200,
+                  showDelay: 0
+              });
+              window.localStorage.setItem("GYMDetails", JSON.stringify(result.data.response));
+              window.localStorage.setItem("goDetailsFrom", "placenearby");
+              $state.go('detail');
+          }, function (err) {
+              $ionicLoading.show({
+                  noBackdrop: false,
+                  template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">No Details Available</p>',
+                  content: 'Loading',
+                  animation: 'fade-in',
+                  showBackdrop: true,
+                  duration: 3000,
+                  maxWidth: 200,
+                  showDelay: 0
+              });
+          });
+          window.localStorage.setItem("itemDetails", JSON.stringify(l));
+      }
   }
     })
     $scope.visible = {};
     $scope.reserve = function (l) {
-        var popup = $ionicPopup.show({
-            'templateUrl': 'selectBookingType.html',
-            'title': 'Select Plan',
-            'scope': $scope,
-            'buttons': [
-                        {
-                            'text': 'Cancel'
-                        },
-                        {
-                            'text': 'Save',
-                            'onTap': function (event) {
-                                return $scope.visible.status;
+        if (navigator.connection.type == Connection.NONE) {
+            var alertPopup = $ionicPopup.alert({
+                title: ' No internet connection',
+                template: '<div style="text-align:center;">No internet connectivity detected. Please reconnect and try again.</div>'
+            });
+            alertPopup.then(function (res) {
+            });
+        }
+        else {
+            var popup = $ionicPopup.show({
+                'templateUrl': 'selectBookingType.html',
+                'title': 'Select Plan',
+                'scope': $scope,
+                'buttons': [
+                            {
+                                'text': 'Cancel'
+                            },
+                            {
+                                'text': 'Save',
+                                'onTap': function (event) {
+                                    return $scope.visible.status;
+                                }
                             }
-                        }
-            ]
-        });
-        popup.then(function (result) {
-            loadymDetails(l.center_id)
-            if (result == "0") {
-               // $rootScope.plan = result;
-                window.localStorage.setItem("plan", result);
-                window.localStorage.setItem("bookType", "Daily Booking");
-                $state.go('bookDate');
-                window.localStorage.setItem("backFromBookDate", "placenearby");
-            }
-            if (result == "1") {
-              //  $rootScope.plan = result;
-                window.localStorage.setItem("plan", result);
-                window.localStorage.setItem("bookType", "Gym Booking");
-                $state.go('bookDate');
-                window.localStorage.setItem("backFromBookDate", "placenearby");
-            }
-            if (result == "2") {
-               // $rootScope.plan = result;
-                window.localStorage.setItem("plan", result);
-                window.localStorage.setItem("bookType", "Flxy Booking");
-                $state.go('bookDate');
-                window.localStorage.setItem("backFromBookDate", "placenearby");
-            }
-        });
+                ]
+            });
+            popup.then(function (result) {
+                loadymDetails(l.center_id)
+                if (result == "0") {
+                    // $rootScope.plan = result;
+                    window.localStorage.setItem("plan", result);
+                    window.localStorage.setItem("bookType", "Daily Booking");
+                    $state.go('bookDate');
+                    window.localStorage.setItem("backFromBookDate", "placenearby");
+                }
+                if (result == "1") {
+                    //  $rootScope.plan = result;
+                    window.localStorage.setItem("plan", result);
+                    window.localStorage.setItem("bookType", "Gym Booking");
+                    $state.go('bookDate');
+                    window.localStorage.setItem("backFromBookDate", "placenearby");
+                }
+                if (result == "2") {
+                    // $rootScope.plan = result;
+                    window.localStorage.setItem("plan", result);
+                    window.localStorage.setItem("bookType", "Flxy Booking");
+                    $state.go('bookDate');
+                    window.localStorage.setItem("backFromBookDate", "placenearby");
+                }
+            });
+        }
     }
-    $scope.goDetail = function (l) {
-        loadymDetails(l.center_id);
-        window.localStorage.setItem("itemDetails", JSON.stringify(l));
-        $state.go('detail')
-    }
+    //$scope.goDetail = function (l) {
+    //    loadymDetails(l.center_id);
+    //    window.localStorage.setItem("itemDetails", JSON.stringify(l));
+    //    $state.go('detail')
+    //}
     function loadymDetails(centerId) {
         dataService.getCenterDetails(centerId).then(function (result) {
             $ionicLoading.show({
                 noBackdrop: false,
-                template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
+                template: '<ion-spinner icon="lines"/>',
                 content: 'Loading',
                 animation: 'fade-in',
                 showBackdrop: true,

@@ -29,7 +29,7 @@ app.controller('registerCtrl', function ($scope, dataService, $ionicHistory, $st
             } else {
                 $ionicLoading.show({
                     noBackdrop: false,
-                    template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
+                    template: '<ion-spinner icon="lines"/>'
                 });
                 var model = {
                     "name":user.name,

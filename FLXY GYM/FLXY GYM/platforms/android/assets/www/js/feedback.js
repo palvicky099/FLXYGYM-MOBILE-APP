@@ -10,7 +10,7 @@
                 }
                 $ionicLoading.show({
                     noBackdrop: false,
-                    template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
+                    template: '<ion-spinner icon="lines"/>'
                 });
                 dataService.Feedback(feedModel).then(function (result) {
                     $ionicLoading.hide();

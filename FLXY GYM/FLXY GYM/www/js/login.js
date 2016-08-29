@@ -1,4 +1,4 @@
-app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, dataService, $ionicLoading, $state, $ionicPopup, $cordovaSQLite, $q, $rootScope) {
+app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, dataService, $ionicLoading, $state, $ionicPopup, $cordovaSQLite, $q, $rootScope, $cordovaLocalNotification) {
     backcallFactory.backcallfun();
     var isIPad = ionic.Platform.isIPad();
     if (isIPad) {
@@ -28,7 +28,7 @@ app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, da
     $scope.btnLogin = function (model) {
         $ionicLoading.show({
             noBackdrop: false,
-            template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
+            template: '<ion-spinner icon="lines"/>'
         });
         if (model == undefined) {
             $ionicLoading.show({
@@ -62,7 +62,7 @@ app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, da
             if (navigator.connection.type == Connection.NONE) {
                 var alertPopup = $ionicPopup.alert({
                     title: ' No internet connection',
-                    template: '<div style="text-align:center; font-size:22px">No internet connectivity detected. Please reconnect and try again.</div>'
+                    template: '<div style="text-align:center;">No internet connectivity detected. Please reconnect and try again.</div>'
                 });
                 alertPopup.then(function (res) {
                 });
@@ -156,11 +156,13 @@ app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, da
                                     $ionicLoading.hide();
                                     window.localStorage.setItem("isLogin", "yes");
                                     $state.go('app.dashboard');
-                            }
+                                    localNotification('FLXY GYM', 'Welcome to FLXY Gym');
+                                }
                             else {
                                 $ionicLoading.hide();
                                 window.localStorage.setItem("isLogin", "yes");
                                 $state.go('app.dashboard');
+                                localNotification('FLXY GYM','Welcome to FLXY Gym');
                             }
                         }, function (err) {
                         });
@@ -215,6 +217,16 @@ app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, da
             }
         });
     }
-
-    
+    function localNotification(a, b) {
+        $cordovaLocalNotification.schedule({
+            id: 1,
+            title: a,
+            text: b,
+            data: {
+                customProperty: 'custom value'
+            }
+        }).then(function (result) {
+            // ...
+        });
+    };
 })

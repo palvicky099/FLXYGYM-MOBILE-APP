@@ -1,5 +1,11 @@
 app.controller('eventsCtrl', function ($scope, $state, dataService, $ionicPlatform) {
     $scope.$on('$ionicView.enter', function () {
+        if (navigator.connection.type == Connection.NONE) {
+            $scope.noInternet = true;
+        }
+        else {
+            $scope.noInternet = false;
+        }
         $ionicPlatform.onHardwareBackButton(function () {
             $state.go('app.dashboard');
         });

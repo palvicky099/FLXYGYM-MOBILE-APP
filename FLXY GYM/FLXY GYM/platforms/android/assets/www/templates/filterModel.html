@@ -1,4 +1,4 @@
-<ion-modal-view  class="greyBackgorund">
+<ion-modal-view  class="greyBackgorunds">
     <ion-header-bar class="flxy-button">
         <h1 class="title white-font" style="color:white;">FILTER</h1>
         <div class="buttons ">
@@ -26,7 +26,7 @@
         <div class="list">
             <label class="item item-input item-select" style="color:red; border:1px solid red; background-color:transparent">
                 <div class="input-label" style="color:red;">
-                    Price Type
+                    Slot Type
                 </div>
                 <select style="color:red; background-color:transparent" name="mySelect" id="mySelect"
                         ng-options="slot.text for slot in statusDataSlot"
@@ -68,8 +68,8 @@
 
   <div style="height:100px"></div>
     </ion-content>
- <div class="tabs flxy-tabs animated zoomIn">
-  <a class="tab-item" style="font-weight: 900;" ng-click="filterAdvanced()">
+ <div class="tabs flxy-tabs animated zoomIn" style="background-color:#ddd">
+  <a class="tab-item" style="font-weight: 900;background-color:#ddd" ng-click="filterAdvanced()">
     FILTER
   </a>
 </div>

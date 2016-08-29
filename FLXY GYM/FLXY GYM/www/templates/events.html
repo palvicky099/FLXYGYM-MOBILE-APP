@@ -4,7 +4,12 @@
             <span class="headerStyle">EVENTS</span>
         </button>
     </ion-header-bar>
+    <div class="bar bar-subheader noInternetStyle" ng-show="noInternet">
+        <h2 class="title">No internet connection</h2>
+    </div>
     <ion-content class="" style="margin-top:21px">
+        <div style="height:20px" ng-show="noInternet"></div>
+
     <div class="list">
     <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in eventsData">
       <img src="{{l.image}}">

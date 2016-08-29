@@ -7,7 +7,7 @@
     <ion-content style="margin-top:21px">
     <div class="list">
   <div class="item item-image animated zoomIn">
-    <img  src="{{gymDetails[0].center_imgpath[0]}}" >
+    <img  src="{{detailItem.center_imgpath}}" >
   </div>
   <a class="item item-icon-right Paddingtop animated zoomIn item-text-wrap">
     <h2 style="color:red;">{{gymDetails[0].center_name}}</h2>
@@ -64,13 +64,13 @@
 <div style="height: 150px"></div>
     </ion-content>
     <div class="tabs flxy-tabs" style="border-color:#444444 !important">
-        <a class="tab-item" ng-click="call()">
+        <a class="tab-item" ng-click="call()" style="background-color:#ddd">
             <i class="icon ion-ios-telephone"></i>
         </a>
-        <a class="tab-item" ui-sref="gymGallary">
+        <a class="tab-item" ui-sref="gymGallary" style="background-color:#ddd">
             <i class="icon ion-images"></i>
         </a>
-        <a class="tab-item" ui-sref="distanceMap">
+        <a class="tab-item" ui-sref="distanceMap" style="background-color:#ddd">
             <i class="icon ion-ios-location"></i>
         </a>
         <a class="tab-item flxy-button" style="font-weight: 900; border:none;border-color:#444444 !important" ng-click="reserve()">

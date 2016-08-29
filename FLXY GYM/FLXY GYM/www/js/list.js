@@ -62,7 +62,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
     function loadGymCenter(d) {
         $ionicLoading.show({
             noBackdrop: false,
-            template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>'
+            template: '<ion-spinner icon="lines"/>'
         });
         // var listViewQuery = "select * from gymCenter where cat_id like '%" + $scope.item.cat_name + "%' and  center_id in (" + d + ")";
         var listViewQuery = d;
@@ -82,7 +82,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
                 $ionicLoading.hide();
                 var alertPopup = $ionicPopup.alert({
                     title: 'Alert',
-                    template: '<div style="text-align:center; font-size:22px">No gym center available.</div>'
+                    template: '<div style="text-align:center;">No gym center available.</div>'
                 });
                 alertPopup.then(function (res) {
                 });
@@ -391,7 +391,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
         $scope.selectMember.hide();
         $ionicLoading.show({
             noBackdrop: false,
-            template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
+            template: '<ion-spinner icon="lines"/>',
             content: 'Loading',
             animation: 'fade-in',
             showBackdrop: true,
@@ -479,7 +479,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
         dataService.getCenterDetails(centerId).then(function (result) {
             $ionicLoading.show({
                 noBackdrop: false,
-                template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Please Wait...</p>',
+                template: '<ion-spinner icon="lines"/>',
                 content: 'Loading',
                 animation: 'fade-in',
                 showBackdrop: true,

@@ -7,7 +7,7 @@ app.controller('dashboardCtrl', function($cordovaGeolocation, backcallFactory, $
             if (navigator.connection.type == Connection.NONE) {
                 var alertPopup = $ionicPopup.alert({
                     title: ' No internet connection',
-                    template: '<div style="text-align:center; font-size:22px">No internet connectivity detected. Please reconnect and try again.</div>'
+                    template: '<div style="text-align:center;">No internet connectivity detected. Please reconnect and try again.</div>'
                 });
                 alertPopup.then(function (res) {
                 });
@@ -49,7 +49,7 @@ app.controller('dashboardCtrl', function($cordovaGeolocation, backcallFactory, $
              console.log(result);
              $ionicLoading.show({
                  noBackdrop: false,
-                 template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Plase wait...</p>'
+                 template: '<ion-spinner icon="lines"/>'
              });
              console.log(result)
              $scope.gymCenterData = JSON.parse(JSON.stringify(result.data.response));
@@ -77,80 +77,7 @@ app.controller('dashboardCtrl', function($cordovaGeolocation, backcallFactory, $
  }
 
 
-//	$scope.dashList = [
-//	{
-//"cat_id":"1",
-//"cat_name":"CARDIO",
-//"image_path":"http://greatist.com/sites/default/files/styles/big_share/public/Tag_Cardio.png?itok=KuJ2JPk4",
-//	},
-//	{
-//"cat_id":"2",
-//"cat_name":"DANCE",
-//"image_path":"http://www.dancesofindia.co.in/images/Why-is-dance-better-than-traditional-workouts-Blogs-Way-of-Life-Studio-Mumbai.jpg",
-//	},
-//	{
-//"cat_id":"3",
-//"cat_name":"SPIN",
-//"image_path":"http://mycoachkat.com/wp-content/uploads/2016/04/CardioTextimg1.jpg",
-//	},
-//	{
-//"cat_id":"4",
-//"cat_name":"SWIM",
-//"image_path":"http://www.baronnews.com/wp-content/uploads/2012/04/swim.jpg",
-//	},
-//	{
-//"cat_id":"5",
-//"cat_name":"SPORTS",
-//"image_path":"http://health.uq.edu.au/filething/get-styled/study_area_hero_825x320/3683/Exercise-and-Sport-Sciences6.jpg?itok=5taM4M60",
-//	},
-//	{
-//"cat_id":"6",
-//"cat_name":"TONE",
-//"image_path":"http://hdwpro.com/wp-content/uploads/2016/02/Super-Sports-Wallpaper.jpg",
-//	},
-//	{
-//"cat_id":"7",
-//"cat_name":"YOGA",
-//"image_path":"http://i.dailymail.co.uk/i/pix/2014/12/22/2438B44700000578-2883729-Pot_yoga_-m-5_1419262687022.jpg",
-//	},
-//	{
-//"cat_id":"8",
-//"cat_name":"COMBAT",
-//"image_path":"http://www.courtlough.ie/wp-content/uploads/2013/03/IMG_4889.JPG",
-//	},
-//	{
-//"cat_id":"9",
-//"cat_name":"PILATES",
-//"image_path":"https://breckenhealth.com.au/files/2015/10/pilates_slide01.png",
-//	},
-//  {
-//"cat_id":"10",
-//"cat_name":"WEIGHT TRANING",
-//"image_path":" http://img.aws.livestrongcdn.com/ls-article-image-640/ds-photo/getty/article/199/251/181046007.jpg",
-//  },
-//  {
-//"cat_id":"11",
-//"cat_name":"BOXING",
-//"image_path":"http://www.bhmpics.com/thumbs/kick_boxing_training_bag_to_hit-t3.jpg",
-//  }
-// ,
-//  {
-//"cat_id":"12",
-//"cat_name":"CROSSFIT",
-//"image_path":"http://www.domyos.co.uk/sites/domyos/files/conseils-sculpt-exercice-challenge-cross-training-header.jpg",
-//  },
-//  {
-//"cat_id":"13",
-//"cat_name":"AROBICS",
-//"image_path":"http://cdn2.stylecraze.com/wp-content/uploads/2013/07/4312-best-aerobic-exercise-videos.jpg",
-//  }
-//  ,
-//  {
-//"cat_id":"14",
-//"cat_name":"ZUMBA",
-//"image_path":"http://wavesgym.com/wp-content/uploads/2015/01/Zumba-1.jpg",
-//  }
-//	];
+
  $scope.goList = function (l) {
      window.localStorage.setItem("ListItemData", JSON.stringify(l));
      $rootScope.HeaderName = l.cat_name;
@@ -189,7 +116,7 @@ function insertGymCenter() {
                 var latitude2 = lat;
                 var longitude2 = long;
                 var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(latitude1, longitude1), new google.maps.LatLng(latitude2, longitude2));
-                $cordovaSQLite.execute(db, gymCenterQuery, [arrayGymCenter.cat_id, arrayGymCenter.center_id, arrayGymCenter.center_name, 'http://csusap.csu.edu.au/~ckp407/images/img1.jpg', arrayGymCenter.price, arrayGymCenter.price_id, arrayGymCenter.branch_addr, arrayGymCenter.branch_addr, arrayGymCenter.grade, arrayGymCenter.grade_id, arrayGymCenter.landmark, arrayGymCenter.latitude, arrayGymCenter.longitude, arrayGymCenter.margin, arrayGymCenter.s_id, arrayGymCenter.s_name, arrayGymCenter.seats_perday, distance / 1000, arrayGymCenter.location, arrayGymCenter.loc_id]).then(function (res) {
+                $cordovaSQLite.execute(db, gymCenterQuery, [arrayGymCenter.cat_id, arrayGymCenter.center_id, arrayGymCenter.center_name, arrayGymCenter.center_imgpath, arrayGymCenter.price, arrayGymCenter.price_id, arrayGymCenter.branch_addr, arrayGymCenter.branch_addr, arrayGymCenter.grade, arrayGymCenter.grade_id, arrayGymCenter.landmark, arrayGymCenter.latitude, arrayGymCenter.longitude, arrayGymCenter.margin, arrayGymCenter.s_id, arrayGymCenter.s_name, arrayGymCenter.seats_perday, distance / 1000, arrayGymCenter.location, arrayGymCenter.loc_id]).then(function (res) {
                     if (i == $scope.gymCenterDatalength) {
                         resolve('Success');
                     }

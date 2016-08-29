@@ -1,4 +1,4 @@
-app.controller('profileCtrl', function ($scope, $ionicLoading, dataService,$ionicPlatform, $cordovaCamera,$jrCrop, $cordovaImagePicker, $http, $state, $ionicPopup) {
+app.controller('profileCtrl', function ($scope, $ionicLoading, dataService, $ionicPlatform, $cordovaCamera, $jrCrop, $cordovaImagePicker, $http, $state, $ionicPopup, $cordovaLocalNotification) {
     //$scope.$on('$ionicView.enter', function () {
         $scope.dashList = JSON.parse(window.localStorage.getItem("UserProfile"));
         $ionicPlatform.onHardwareBackButton(function () {
@@ -19,7 +19,7 @@ app.controller('profileCtrl', function ($scope, $ionicLoading, dataService,$ioni
                 var abc = dashList.image;
                 $ionicLoading.show({
                     noBackdrop: false,
-                    template: '<p class="item"><ion-spinner icon="lines"/></p><p class="item flxy-button">Plase wait...</p>'
+                    template: '<ion-spinner icon="lines"/>'
                 });
                 var modelProfile =
                     {
@@ -56,6 +56,16 @@ app.controller('profileCtrl', function ($scope, $ionicLoading, dataService,$ioni
                             duration: 3000,
                             maxWidth: 200,
                             showDelay: 0
+                        });
+                        $cordovaLocalNotification.schedule({
+                            id: 1,
+                            title: 'FLXY Gym',
+                            text: 'Profile updated successfully',
+                            data: {
+                                customProperty: 'custom value'
+                            }
+                        }).then(function (result) {
+                            // ...
                         });
                         window.localStorage.setItem("UserProfile", JSON.stringify(modelProfile));
                         $scope.dashList = modelProfile;

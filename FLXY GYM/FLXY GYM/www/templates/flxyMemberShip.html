@@ -5,18 +5,93 @@
         </button>
     </ion-header-bar>
     <ion-content style="margin-top:21px">
+        <div class="card">
+            <div class="item item-divider item-icon-right" style="padding: 20px;" ng-click="dailyCustom()">
+               Daily Membership
+                <i class="icon ion-ios-information-outline"></i>
+            </div>
+            <div class="item item-text-wrap" ng-hide="dcustom">
+                 "Pay as you Go" option.
 
-        <ion-list class="card">
+                Select from our curated list of hundreds of fitness studios, any workout any location
+
+                Select: Daily, weekly and special packages to all our gyms, pools, spas and studios. Maximum
+
+                flexibility, maximum choices
+
+                Sweat: Enjoy your activity and stay fit
+
+                Insert a location of your preference, select a fitness activity and pick a fitness center of your choice.
+                Reserve your slot timings, pay and just enjoy your workout. It's just so simple. No memberships required. 
+            </div>
+            <div class="tabs item greenTabs" >
+                <a class="tab-item" ui-sref="placenearby">
+                    Start booking
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider item-icon-right" style="padding: 20px;" ng-click="gymCustom()">
+                Gym Membership
+                <i class="icon ion-ios-information-outline"></i>
+            </div>
+            <div class="item item-text-wrap" ng-hide="gcustom">
+                Access to various fitness centers with attractive options for fixed memberships.
+
+                Best deals on Monthly, Quarterly, Half yearly & Annual fees options with any fitness center. Regular updates
+                on exclusive offers and events at your nearby fitness centres.
+
+                Attractive payment options and cash backs schemes on memberships.
+
+            </div>
+            <div class="tabs item greenTabs">
+                <a class="tab-item" ui-sref="placenearby">
+                    Start booking
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider item-icon-right" style="padding: 20px;" ng-click="flxyCustom()">
+                FLXY Membership
+                <i class="icon ion-ios-information-outline"></i>
+            </div>
+            <div class="item item-text-wrap" ng-hide="fcustom">
+                One Membership which will allow the users to enjoy multiple fitness activities with access to
+
+                different fitness centres at various locations. Pay one membership and access any activity at any
+
+                fitness centre at a location of your own choice. Enjoy the freedom and flexibility of paying monthly
+
+                to get a variety of fitness activities for all fitness levels. Take your fitness craze to another level with
+
+                this budget friendly membeships. Workout will never be boring with such a wide range of activities.
+
+                Witness your own transformation with a new tradition and revolution in the fitness industry
+            </div>
+            <div class="tabs item greenTabs" >
+                <a class="tab-item" ui-sref="placenearby">
+                    Start booking
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!--<ion-list class="card">
             <ion-item style="background-color: grey" class="animated zoomIn" back-img="{{l.image}}" ui-sref="placenearby" ng-repeat="l in memberShip" ng-style="{'height': '170px'}" ng-click="goList(l)">
                 <h2 class="textOnList" style="color:white;margin-left: 15px !important; text-align: center;margin-top:45px; font-size:29px !important;font-weight:600">{{l.name}}</h2>
-                <!--<p  style="color:#ddd; text-align: center;margin-left: 15px !important;margin-top:-5px !important;">23 Activitys Available</p>-->
             </ion-item>
-        </ion-list>
-     <!--<ion-list class="">
-        <ion-item style="background-color: {{l.bgColor}}" class="animated zoomIn card"  ng-repeat="l in memberShip" ng-style="{'height': '125px'}" ui-sref="placenearby" ng-click="goList(l)">
-           <h2 class="textOnList" style="color:black;margin-left: 15px !important; text-align: center;margin-top:38px; font-size:20px !important">{{l.categoryName}}</h2> 
-        </ion-item>
-    </ion-list>-->
+        </ion-list>-->
 <div style="height: 100px"></div>
     </ion-content>
 </ion-view>
+<style>
+    .greenTabs{
+    background-color: #33cd5f;
+    color: white;
+    }
+</style>

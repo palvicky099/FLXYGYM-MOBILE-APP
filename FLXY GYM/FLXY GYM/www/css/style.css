@@ -140,8 +140,10 @@ ul.rating li i {
     background-color: white;
 }
 .popup-buttons .button {
-    background-color: #d41b0d !important;
+       background-color: #d41b0d !important;
     color: white !important;
+    font-weight: 600;
+    font-size: 22px;
 }
 .popup-buttons .button.activated {
     background-color: #d41b0d !important;
@@ -171,4 +173,8 @@ ul.rating li i {
     border-top: 18px solid #a51b10 !important;
     border-top: 10px solid #7a5553b0 !important;
     height: 68px !important;
+}
+.noInternetStyle{
+        margin-top: 18px;
+    background-color: #ddd;
 }

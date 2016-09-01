@@ -11,7 +11,7 @@
         <div style="height:20px" ng-show="noInternet"></div>
 
     <div class="list">
-    <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in eventsData">
+    <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in eventsData" >
       <img src="{{l.image}}">
       <h2 style="color: red">{{l.event_name}}({{l.event_type}})</h2>
         <b>{{l.time}}</b>
@@ -19,8 +19,12 @@
        <p style="color:green">{{l.address}}</p>
     <span class="item-note">
       {{l.date}}
-    </span>
-    </a>
+    </span><br />
+            <div class="button button-outline button-balanced" style="float: right;"
+                  ng-click="addToCalender(l)">
+                Add to calender
+            </div>
+             </a>
 </div>
     </ion-content>
 </ion-view>

@@ -204,4 +204,26 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
         });
     }
 
+    $scope.errSrc = "http://www.businessislamica.com/xml/no_available_image.gif";
+
+
 })
+
+
+app.directive('errSrc', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                if (attrs.src != attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+
+            attrs.$observe('ngSrc', function (value) {
+                if (!value && attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+        }
+    }
+});

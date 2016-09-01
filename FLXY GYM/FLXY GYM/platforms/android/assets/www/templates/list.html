@@ -29,7 +29,7 @@
              </div>
             <a style="border:none" class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-click="goDetail(l)">
                 <!--<img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">-->
-                <img src="{{ l.center_imgpath }}">
+                <img src="{{ l.center_imgpath }}" err-src="{{errSrc}}">
 
                 <h2 style="font-weight: 600;">10am to 12pm</h2>
                 <h2>{{l.location}}</h2>

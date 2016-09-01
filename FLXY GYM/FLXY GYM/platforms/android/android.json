@@ -55,6 +55,10 @@
                         {
                             "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Calendar\"><param name=\"android-package\" value=\"nl.xservices.plugins.Calendar\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -129,6 +133,14 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_CALENDAR\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_CALENDAR\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -179,6 +191,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
         "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-calendar": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         }
     },
@@ -313,6 +328,17 @@
                 "cordova.plugins.notification.local.core",
                 "plugin.notification.local.core"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-calendar/www/Calendar.js",
+            "id": "cordova-plugin-calendar.Calendar",
+            "clobbers": [
+                "Calendar"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-calendar/test/tests.js",
+            "id": "cordova-plugin-calendar.tests"
         }
     ],
     "plugin_metadata": {
@@ -330,6 +356,7 @@
         "cordova-plugin-image-picker": "1.1.1",
         "cordova-plugin-inappbrowser": "1.2.1",
         "cordova-plugin-app-event": "1.2.0",
-        "de.appplant.cordova.plugin.local-notification": "0.8.4"
+        "de.appplant.cordova.plugin.local-notification": "0.8.4",
+        "cordova-plugin-calendar": "4.5.1"
     }
 }

@@ -79,6 +79,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
                     $ionicLoading.hide();
                 }, 2000)
             } else {
+                $scope.listArray = [];
                 $ionicLoading.hide();
                 var alertPopup = $ionicPopup.alert({
                     title: 'Alert',
@@ -717,7 +718,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
                    text: "High to low"
                }
     ];
-    $scope.selected = $scope.statusData[1];
+    $scope.selected = $scope.statusData[0];
     $scope.sortPrice = function (a) {
         if (a.id == '1') {
             window.localStorage.setItem("sortOrder", "ASC");
@@ -775,14 +776,34 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
         }
 
         if (slotType == 'All') {
-            var query = "select * from gymCenter where  (" + category + ")  and " + " (location in (" + location + ")) order by price " + sortOrder + " "
+            var query = "select * from gymCenter where  (" + category + ")  and " + " (location in (" + location + ")) ORDER BY CAST(price AS INTEGER) " + sortOrder + " "
         }
         else {
-            var query = "select * from gymCenter where" + " (" + category + ")  and " + " (location in (" + location + ")) and s_name = '" + slotType + "' order by price " + sortOrder + " "
+            var query = "select * from gymCenter where" + " (" + category + ")  and " + " (location in (" + location + ")) and s_name = '" + slotType + "' ORDER BY CAST(price AS INTEGER)  " + sortOrder + " "
         }
         loadGymCenter(query);
         $scope.selectMember.hide();
     }
+    $scope.errSrc = "http://www.businessislamica.com/xml/no_available_image.gif";
+
+
 })
 
 
+app.directive('errSrc', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                if (attrs.src != attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+
+            attrs.$observe('ngSrc', function (value) {
+                if (!value && attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+        }
+    }
+});

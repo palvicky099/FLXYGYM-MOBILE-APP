@@ -129,6 +129,17 @@ module.exports = [
             "cordova.plugins.notification.local.core",
             "plugin.notification.local.core"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-calendar/www/Calendar.js",
+        "id": "cordova-plugin-calendar.Calendar",
+        "clobbers": [
+            "Calendar"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-calendar/test/tests.js",
+        "id": "cordova-plugin-calendar.tests"
     }
 ];
 module.exports.metadata = 
@@ -148,7 +159,8 @@ module.exports.metadata =
     "cordova-plugin-image-picker": "1.1.1",
     "cordova-plugin-inappbrowser": "1.2.1",
     "cordova-plugin-app-event": "1.2.0",
-    "de.appplant.cordova.plugin.local-notification": "0.8.4"
+    "de.appplant.cordova.plugin.local-notification": "0.8.4",
+    "cordova-plugin-calendar": "4.5.1"
 };
 // BOTTOM OF METADATA
 });

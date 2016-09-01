@@ -1,6 +1,12 @@
 app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs, $state, dataService, $rootScope, $ionicPopup, $ionicPlatform) {
     //$scope.$on('$ionicView.enter', function () {
+    $scope.Categorys = JSON.parse(window.localStorage.getItem("Category"));
+    $scope.CategorysDetails = {
+        cat_name: $scope.Categorys,
+       // SelectedCategory: { cat_id: "0", cat_name: "All" }
 
+        SelectedCategory: { cat_id: $scope.Categorys[0].cat_id, cat_name: $scope.Categorys[0].cat_name }
+    };
     $scope.categoryPopup = function () {
         var popup = $ionicPopup.show({
             'templateUrl': 'categoryPopup.html',

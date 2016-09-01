@@ -91,7 +91,23 @@ app.controller('detailCtrl', function ($scope, $cordovaDialogs, $state, $ionicLo
                 console.log("Error:" + result);
             }
         }
-
+        $scope.errSrc = "https://www.oandbhotel.com/wp-content/themes/onb003/elements/ibe/img/no-room.jpg";
     })
 
+app.directive('errSrc', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                if (attrs.src != attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
 
+            attrs.$observe('ngSrc', function (value) {
+                if (!value && attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+        }
+    }
+});

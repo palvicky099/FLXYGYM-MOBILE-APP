@@ -91,7 +91,7 @@ function deleteGymCenter() {
         $cordovaSQLite.execute(db, delGymCenterQuery, []).then(function (res) {
             resolve('Success');
         }, function (err) {
-           
+            $ionicLoading.hide();
         });
     })
 }

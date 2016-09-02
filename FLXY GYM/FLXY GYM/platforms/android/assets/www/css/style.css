@@ -1,7 +1,9 @@
 /* Empty. Add your own CSS if you like */
 .flxy-button{
-    background-color: #d41b0d  !important ;
-    color:white !important;
+    /*background-color: #d41b0d  !important ;*/
+        background-color: #ddd  !important ;
+
+    color:#d41b0d !important;
 }
 .flxy-tabs {
       background-color: #fff !important;
@@ -62,12 +64,12 @@
     color: white !important;
 }
 .sidemenuItem{
-  color: #e31f08 !important ;
-  background-color: #c3c5b7 !important;
+     color: #dddddd !important;
+    background-color: #484545;
  /* background-color: red !important;*/
 }
 .headerStyle{
-  color:white; 
+  color:#d41b0d; 
   font-weight:600
 }
 .greyBackgorund{
@@ -85,7 +87,7 @@
 }
 .menuProfileImage{
          height: 114px;
-    background-color: #c3c5b7;
+    background-color: #484545;
     position: fixed;
     top: 62px;
     z-index: 1000;
@@ -170,8 +172,7 @@ ul.rating li i {
   border-radius: 300px;
 }
 .bar-header{
-    border-top: 18px solid #a51b10 !important;
-    border-top: 10px solid #7a5553b0 !important;
+    border-top: 18px solid #d41b0d !important;
     height: 68px !important;
 }
 .noInternetStyle{

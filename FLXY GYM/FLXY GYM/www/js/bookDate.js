@@ -7,6 +7,11 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
 
         SelectedCategory: { cat_id: $scope.Categorys[0].cat_id, cat_name: $scope.Categorys[0].cat_name }
     };
+
+    window.localStorage.setItem("selectedCategoryForBooking", JSON.stringify($scope.Categorys[0]));
+    $scope.changeCategoryClick = function (s) {
+        window.localStorage.setItem("selectedCategoryForBooking", JSON.stringify(s));
+    }
     $scope.categoryPopup = function () {
         var popup = $ionicPopup.show({
             'templateUrl': 'categoryPopup.html',

@@ -4,7 +4,7 @@ app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootS
     $scope.bookingId = generateUUID();
     $rootScope.checkout = {
         "key": "i6mTzrDF",
-        "hash": "111111111111111111111111111111111111111111",
+        "hash": "",
         "txnid": $scope.transactionId,
         "amount": window.localStorage.getItem("amount"),
         "firstname": $scope.dashList.name,
@@ -18,9 +18,57 @@ app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootS
         "udf2": $scope.bookingId,
         "udf3": window.localStorage.getItem("type"),
     }
-    var string = $rootScope.checkout.key + '|' + $rootScope.checkout.txnid + '|' + $rootScope.checkout.amount + '|' + $rootScope.checkout.productinfo + '|' + $rootScope.checkout.firstname + '|' + $rootScope.checkout.email + '|||||||||||' + '12345';
-    //  console.log(sha512(string));
-    //    $scope.encrypttext = $crypthmac.encrypt(string, "");
+    console.log($rootScope.checkout);
+    $scope.gymDetails = JSON.parse(window.localStorage.getItem("GYMDetails"));
+    $scope.userInfo = JSON.parse(window.localStorage.getItem("UserProfile"));
+    $scope.catgoryInfo = JSON.parse(window.localStorage.getItem("selectedCategoryForBooking"));
+
+    var nextDay = new Date();
+  
+    $scope.FromDate = nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 1)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2);
+    $scope.ToDate = nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 2)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2);
+    $scope.bookingDateGymFlxy = {
+        "fromDate":  $scope.FromDate,
+        "toDate": $scope.ToDate,
+        "type": window.localStorage.getItem("type"),
+        "price": window.localStorage.getItem("amount")
+    }
+
+    if (window.localStorage.getItem("bookType") == "Gym Booking")
+    {
+        $scope.postOrderData = {
+            "CenterId": $scope.gymDetails[0].center_id,
+            "CategoryName": $scope.catgoryInfo.cat_name,
+            "BookingType": window.localStorage.getItem("bookType"),
+            "BookingDate": JSON.stringify($scope.bookingDateGymFlxy),
+            "UserId": $scope.userInfo.user_id,
+            "Amont": window.localStorage.getItem("amount")
+           
+        }
+    }
+    if (window.localStorage.getItem("bookType") == "FLXY Booking") {
+        $scope.postOrderData = {
+            "CenterId": $scope.gymDetails[0].center_id,
+            "CategoryName": $scope.catgoryInfo.cat_name,
+            "BookingType": window.localStorage.getItem("bookType"),
+            "BookingDate": JSON.stringify($scope.bookingDateGymFlxy),
+            "UserId": $scope.userInfo.user_id,
+            "Amont": window.localStorage.getItem("amount")
+
+        }
+    }
+    if (window.localStorage.getItem("bookType") == "Daily Booking") {
+        $scope.postOrderData = {
+            "CenterId": $scope.gymDetails[0].center_id,
+            "CategoryName": $scope.catgoryInfo.cat_name,
+            "BookingType": window.localStorage.getItem("bookType"),
+            "BookingDate": window.localStorage.getItem("selectedDate"),
+            "UserId": $scope.userInfo.user_id,
+            "Amont": window.localStorage.getItem("amount")
+
+        }
+    }
+    console.log($scope.postOrderData);
    // console.log("HASH ----" + string);
     $scope.openBrowser = function () {
         $state.go('payuBiz');

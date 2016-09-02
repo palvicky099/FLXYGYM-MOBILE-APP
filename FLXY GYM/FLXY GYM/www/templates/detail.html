@@ -1,7 +1,7 @@
 <ion-view hide-nav-bar="true" class="greyBackgorund" cache-view="false">
     <ion-header-bar class="flxy-button">
-        <button ng-click="goBack()" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
-            <span class="headerStyle">Detail</span>
+        <button ng-click="goBack()" class="button  button-clear icon ion-ios-arrow-left" style="color:#d41b0d;">
+            <span class="headerStyle">Details</span>
         </button>
     </ion-header-bar>
     <ion-content style="margin-top:21px">
@@ -25,11 +25,11 @@
                 </span>
             </ion-item>
             <ion-item class="animated zoomIn" ng-if="flxyGymData.quaterly_price" ng-click="gymMemberShipClick(flxyGymData.quaterly_price)">
-                quaterly
+                Quaterly
                 <span class="item-note">{{flxyGymData.quaterly_price}}Rs</span>
             </ion-item>
             <ion-item class="animated zoomIn" ng-if="flxyGymData.halfyearly_price" ng-click="gymMemberShipClick(flxyGymData.halfyearly_price)">
-                Halfyearly
+                Half yearly
                 <span class="item-note">{{flxyGymData.halfyearly_price}}Rs</span>
             </ion-item>
 
@@ -73,7 +73,8 @@
         <a class="tab-item" ui-sref="distanceMap" style="background-color:#ddd">
             <i class="icon ion-ios-location"></i>
         </a>
-        <a class="tab-item flxy-button" style="font-weight: 900; border:none;border-color:#444444 !important" ng-click="reserve()">
+        <a class="tab-item flxy-button" style="font-weight: 900; border:none;border-color:#444444 !important; background-color: red !important;
+    color: white !important;" ng-click="reserve()">
             RESERVE
         </a>
     </div>

@@ -162,7 +162,7 @@ app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, da
                                 $ionicLoading.hide();
                                 window.localStorage.setItem("isLogin", "yes");
                                 $state.go('app.dashboard');
-                                localNotification('FLXY GYM','Welcome to FLXY Gym');
+                                localNotification('Welcome to FlxyGym', 'Now Enjoy Limitless Activities Any Time, Anywhere !!');
                             }
                         }, function (err) {
                         });

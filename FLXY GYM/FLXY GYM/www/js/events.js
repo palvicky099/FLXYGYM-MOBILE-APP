@@ -1,5 +1,12 @@
 app.controller('eventsCtrl', function ($scope, $state, dataService, $ionicPlatform, $cordovaCalendar, $ionicLoading, $cordovaLocalNotification) {
     $scope.$on('$ionicView.enter', function () {
+     
+
+
+
+
+
+
         if (navigator.connection.type == Connection.NONE) {
             $scope.noInternet = true;
         }

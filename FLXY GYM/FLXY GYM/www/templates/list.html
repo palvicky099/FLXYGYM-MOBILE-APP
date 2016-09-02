@@ -1,11 +1,11 @@
 <ion-view hide-nav-bar="true" class="greyBackgorund" cache-view="false">
     <ion-header-bar class="flxy-button">
-        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:white;">
+        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:#d41b0d;">
             <span class="headerStyle">{{categoryName}}</span>
         </button>
           <button class="button button-clear button-positive icon ion-funnel flxy-button" ng-click="showFilter()"></button>
     </ion-header-bar>
-     <div class="row animated bounceInDown" style="position:fixed; top:66px; z-index:1000; height: 75px; background-color: #333;">
+     <div class="row animated bounceInDown" style="position:fixed; top:66px; z-index:1000; height: 75px; background-color: #ddd;">
           <div class="col abc" ng-repeat="d in dateScope" ng-click="dateClick(d)"><h4 class="week">{{d | date:'dd' }}</h4><h5 class="week">{{d | date:'EEE' }}</h5></div>
       </div>
 

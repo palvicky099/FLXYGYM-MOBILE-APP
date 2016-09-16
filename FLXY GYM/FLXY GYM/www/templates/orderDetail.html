@@ -5,15 +5,17 @@
         </button>
     </ion-header-bar>
     <ion-content class="" style="margin-top:21px">
+            <a class="item item-thumbnail-left" >
+                <img src="{{gymDetails[0].center_imgpath[0]}}" err-src="{{errSrc}}">
+                <h2>{{gymDetails[0].center_name}}</h2>
+                <p>{{catgoryInfo.cat_name}}</p>
+                <h2>{{getTotal()}} Rs</h2>
+            </a>
         <a class="item  item-text-wrap" ng-repeat="d in dateDetails" ng-if="showDateTable">
             <h2>{{d.date  | date:'dd MMM yyyy'}}</h2>
             <p>{{d.Time}}</p>
             <p style="text-align:right; color:green">{{d.price}} Rs</p>
         </a>
-
-
-
-
 
         <table id="t01" ng-if="showDateTables">
             <tr>
@@ -42,7 +44,7 @@
         </ion-list>
 
 
-
+        <div style="height:100px"></div>
     </ion-content>
     <div class="tabs flxy-tabs" style="font-weight: 900;background-color:#ddd !important">
         <a class="tab-item" style="font-weight: 900;width:100%;overflow:visible !important;background-color:#ddd" ng-click="openBrowser()">

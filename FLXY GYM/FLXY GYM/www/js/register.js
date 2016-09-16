@@ -81,6 +81,8 @@ app.controller('registerCtrl', function ($scope, dataService, $ionicHistory, $st
                     if (result.data.message == "Success")
                     {
                         window.localStorage.setItem("LoginData", JSON.stringify(result.data));
+                        window.localStorage.setItem("UserProfile", JSON.stringify(result.data));
+                        window.localStorage.setItem("UserId", result.data.UserId);
                         LoadData();
                     }
                     else {
@@ -192,78 +194,32 @@ app.controller('registerCtrl', function ($scope, dataService, $ionicHistory, $st
 
     function insertGymCenter() {
         return $q(function (resolve, reject) {
-            var j = 100, k = 0, m = 0, interval = 100;
-            if (j > $scope.gymCenterDatalength) {
-                j = $scope.gymCenterDatalength;
-                interval = interval;
-            }
             if ($scope.gymCenterDatalength == 0) {
                 resolve('Success');
             }
             else {
-                while (j <= $scope.gymCenterDatalength) {
-                    //  var gymCenterQuery = "INSERT INTO gymCenter (cat_id, center_id, center_name, center_imgpath, price, price_id ," +
-                    //   " address , branch_addr, center_slot_data, grade, grade_id , landmark, latitude, longitude, margin, s_id , s_name, seats_perday) VALUES ";
-
-                    var gymCenterQuery = "INSERT INTO gymCenter (cat_id , center_id , " +
-                    " center_name , center_imgpath , price , price_id , address  , branch_addr ," +
-                    " center_slot_data , grade , grade_id , landmark , latitude , longitude , " +
-                    " margin , s_id , s_name , seats_perday, distance, location, loc_id) VALUES ";
-                    var gymCenterArgs = [];
-                    var gymCenterDatas = [];
-                    for (var i = k; i < j; i++) {
-                        var arrayGymCenter = $scope.gymCenterData[i];
-                        gymCenterArgs.push("(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                        gymCenterDatas.push(arrayGymCenter.cat_id);
-                        // gymCenterDatas.push("SPORTS");
-
-                        gymCenterDatas.push(arrayGymCenter.center_id);
-                        gymCenterDatas.push(arrayGymCenter.center_name);
-
-                        gymCenterDatas.push(arrayGymCenter.center_imgpath);
-                        //  gymCenterDatas.push("http://www.bodybuilding.com/images/2015/december2/how-to-deal-with-a-busy-gym-graphics-3.jpg");
-
-                        gymCenterDatas.push(arrayGymCenter.price);
-                        gymCenterDatas.push(arrayGymCenter.price_id);
-                        gymCenterDatas.push(arrayGymCenter.branch_addr);
-                        gymCenterDatas.push(arrayGymCenter.branch_addr);
-                        gymCenterDatas.push(arrayGymCenter.center_slot_data);
-                        gymCenterDatas.push(arrayGymCenter.grade);
-                        gymCenterDatas.push(arrayGymCenter.grade_id);
-                        gymCenterDatas.push(arrayGymCenter.landmark);
-                        gymCenterDatas.push(arrayGymCenter.latitude);
-                        gymCenterDatas.push(arrayGymCenter.longitude);
-                        gymCenterDatas.push(arrayGymCenter.margin);
-                        gymCenterDatas.push(arrayGymCenter.s_id);
-                        gymCenterDatas.push(arrayGymCenter.s_name);
-                        gymCenterDatas.push(arrayGymCenter.seats_perday);
-
-                        var lat = localStorage.getItem("lat");
-                        var long = localStorage.getItem("long");
-                        var latitude1 = arrayGymCenter.latitude;
-                        var longitude1 = arrayGymCenter.longitude;
-                        var latitude2 = lat;
-                        var longitude2 = long;
-                        var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(latitude1, longitude1), new google.maps.LatLng(latitude2, longitude2));
-                        gymCenterDatas.push(distance / 1000);
-                        gymCenterDatas.push(arrayGymCenter.location);
-                        gymCenterDatas.push(arrayGymCenter.loc_id);
-                    }
-                    gymCenterQuery += gymCenterArgs.join(", ");
-                    $cordovaSQLite.execute(db, gymCenterQuery, gymCenterDatas).then(function (res) {
+                var gymCenterQuery = "INSERT INTO gymCenter (cat_id , center_id , " +
+                " center_name , center_imgpath , price , price_id , address  , branch_addr ," +
+                "  grade , grade_id , landmark , latitude , longitude , " +
+                " margin , s_id , s_name , seats_perday, distance, location, loc_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                var gymCenterArgs = [];
+                var gymCenterDatas = [];
+                for (var i = 0; i < $scope.gymCenterDatalength; i++) {
+                    var arrayGymCenter = $scope.gymCenterData[i];
+                    var lat = localStorage.getItem("lat");
+                    var long = localStorage.getItem("long");
+                    var latitude1 = arrayGymCenter.latitude;
+                    var longitude1 = arrayGymCenter.longitude;
+                    var latitude2 = lat;
+                    var longitude2 = long;
+                    var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(latitude1, longitude1), new google.maps.LatLng(latitude2, longitude2));
+                    $cordovaSQLite.execute(db, gymCenterQuery, [arrayGymCenter.cat_id, arrayGymCenter.center_id, arrayGymCenter.center_name, arrayGymCenter.center_imgpath, arrayGymCenter.price, arrayGymCenter.price_id, arrayGymCenter.branch_addr, arrayGymCenter.branch_addr, arrayGymCenter.grade, arrayGymCenter.grade_id, arrayGymCenter.landmark, arrayGymCenter.latitude, arrayGymCenter.longitude, arrayGymCenter.margin, arrayGymCenter.s_id, arrayGymCenter.s_name, arrayGymCenter.seats_perday, distance / 1000, arrayGymCenter.location, arrayGymCenter.loc_id]).then(function (res) {
+                        if (i == $scope.gymCenterDatalength) {
+                            $ionicLoading.hide();
+                            resolve('Success');
+                        }
                     }, function (err) {
-
                     });
-                    k = j;
-                    j = j + interval;
-                    if (m == 1) {
-                        resolve('Success');
-                        break;
-                    }
-                    if ($scope.gymCenterDatalength < j) {
-                        j = $scope.gymCenterDatalength;
-                        m = 1;
-                    }
                 }
             }
         });

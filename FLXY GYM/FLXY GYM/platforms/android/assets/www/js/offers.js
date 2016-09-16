@@ -1,4 +1,4 @@
-app.controller('offersCtrl', function ($scope, $state, dataService, $ionicPlatform) {
+app.controller('offersCtrl', function ($scope, $state, dataService, $ionicPlatform, $rootScope) {
     $scope.$on('$ionicView.enter', function () {
         if (navigator.connection.type == Connection.NONE) {
             $scope.noInternet = true;
@@ -15,9 +15,11 @@ app.controller('offersCtrl', function ($scope, $state, dataService, $ionicPlatfo
 	        console.log(res)
 	    }
 	})
-    $scope.goDetail=function(l){
+	$scope.goDetail = function (l) {
+	    $rootScope.detailsItems = l;
+	    $rootScope.detailsItems.center_imgpath = "";
         window.localStorage.setItem("itemDetails", JSON.stringify(l));
-        window.localStorage.setItem("backFromBookDate", "offers");
+        window.localStorage.setItem("goDetailsFrom", "offers");
         $state.go('detail');
     }
 })

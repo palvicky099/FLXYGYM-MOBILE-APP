@@ -11,4 +11,6 @@ app.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $ionicSideMen
      window.localStorage.removeItem("isLogin");
      $state.go('login')
  }
+ $scope.errSrc = "https://proseawards.com/wp-content/uploads/2015/08/no-profile-pic.png";
 })
+

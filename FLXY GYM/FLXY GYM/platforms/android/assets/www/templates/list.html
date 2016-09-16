@@ -24,8 +24,8 @@
     </a>
 </div>-->
         <div class="card"  ng-repeat="l in listArray">
-            <div class="item item-divider" style="background-color: white !important;">
-                <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
+            <div class="item item-divider" style="background-color: white !important;border:none">
+                <h2 style="color: #d41b0d;  white-space: nowrap;font-weight:600">{{l.center_name}}</h2>
              </div>
             <a style="border:none" class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-click="goDetail(l)">
                 <!--<img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">-->
@@ -40,10 +40,10 @@
                 </span>
             </a>
             <div class="tabs item">
-                <a class="tab-item" ng-click="reserve(l)">
+                <a class="tab-item" style="color: #d41b0d;" ng-click="reserve(l)">
                     RESERVE
                 </a>
-                <a class="tab-item" ng-click="goDetail(l)">
+                <a class="tab-item"  style="color: green;" ng-click="goDetail(l)">
                     DETAILS
                 </a>
             </div>

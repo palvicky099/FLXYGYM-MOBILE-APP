@@ -47,6 +47,7 @@ app.controller('profileCtrl', function ($scope, $ionicLoading, dataService, $ion
                     var abc = JSON.parse(JSON.stringify(res.data));
                     console.log(abc)
                     if (abc.message = "User Information are Updated Succesfully") {
+                      //  window.localStorage.setItem("UserProfile", JSON.stringify(res.data));
                         $ionicLoading.show({
                             noBackdrop: false,
                             template: abc.massage,
@@ -186,5 +187,6 @@ app.controller('profileCtrl', function ($scope, $ionicLoading, dataService, $ion
             };
             img.src = url;
         };
+        $scope.errSrc = "https://proseawards.com/wp-content/uploads/2015/08/no-profile-pic.png";
     })
 

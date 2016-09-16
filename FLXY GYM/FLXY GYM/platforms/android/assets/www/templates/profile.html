@@ -11,7 +11,7 @@
             </div>
         </div>-->
         <div class="item item-image" style="background-color:#010001;">
-            <img class="bgProfile  card"  ng-src="{{dashList.image}}">
+            <img class="bgProfile  card"  ng-src="{{dashList.image}}" err-src="{{errSrc}}" style="border-radius: 16px;margin-top: 10px">
         </div>
         <!--{{dashList.image}}-->
         <div class="list">
@@ -30,11 +30,11 @@
 		  </label>
 		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
 		    <span class="input-label " >Email address</span>
-		     <input type="text"  placeholder="Email address" class="registerField" ng-model="dashList.email">
+		     <input type="text"  placeholder="Email address" class="registerField" ng-model="dashList.email" readonly>
 		  </label> 
 		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
 		      <span class="input-label " >Mobile number </span>
-		     <input type="text"  placeholder="Mobile number" class="registerField" ng-model="dashList.mobile">
+		     <input type="text"  placeholder="Mobile number" class="registerField" ng-model="dashList.mobile" readonly>
 		  </label>
 		  <label class="item item-input item-floating-label" style="border: none;width: 95%;">
 		    <span class="input-label " >Address</span>

@@ -1,4 +1,4 @@
-app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootScope, $state) {
+app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootScope, $state, $http, $ionicLoading) {
     $scope.dashList = JSON.parse(window.localStorage.getItem("UserProfile"));
     $scope.transactionId = generateUUID();
     $scope.bookingId = generateUUID();
@@ -18,74 +18,96 @@ app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootS
         "udf2": $scope.bookingId,
         "udf3": window.localStorage.getItem("type"),
     }
-    console.log($rootScope.checkout);
+ 
+  
     $scope.gymDetails = JSON.parse(window.localStorage.getItem("GYMDetails"));
     $scope.userInfo = JSON.parse(window.localStorage.getItem("UserProfile"));
     $scope.catgoryInfo = JSON.parse(window.localStorage.getItem("selectedCategoryForBooking"));
-
-    var nextDay = new Date();
-  
-    $scope.FromDate = nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 1)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2);
-    $scope.ToDate = nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 2)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2);
-    $scope.bookingDateGymFlxy = {
-        "fromDate":  $scope.FromDate,
-        "toDate": $scope.ToDate,
-        "type": window.localStorage.getItem("type"),
-        "price": window.localStorage.getItem("amount")
-    }
-
-    if (window.localStorage.getItem("bookType") == "Gym Booking")
-    {
-        $scope.postOrderData = {
-            "CenterId": $scope.gymDetails[0].center_id,
-            "CategoryName": $scope.catgoryInfo.cat_name,
-            "BookingType": window.localStorage.getItem("bookType"),
-            "BookingDate": JSON.stringify($scope.bookingDateGymFlxy),
-            "UserId": $scope.userInfo.user_id,
-            "Amont": window.localStorage.getItem("amount")
-           
-        }
-    }
-    if (window.localStorage.getItem("bookType") == "FLXY Booking") {
-        $scope.postOrderData = {
-            "CenterId": $scope.gymDetails[0].center_id,
-            "CategoryName": $scope.catgoryInfo.cat_name,
-            "BookingType": window.localStorage.getItem("bookType"),
-            "BookingDate": JSON.stringify($scope.bookingDateGymFlxy),
-            "UserId": $scope.userInfo.user_id,
-            "Amont": window.localStorage.getItem("amount")
-
-        }
-    }
-    if (window.localStorage.getItem("bookType") == "Daily Booking") {
-        $scope.postOrderData = {
-            "CenterId": $scope.gymDetails[0].center_id,
-            "CategoryName": $scope.catgoryInfo.cat_name,
-            "BookingType": window.localStorage.getItem("bookType"),
-            "BookingDate": window.localStorage.getItem("selectedDate"),
-            "UserId": $scope.userInfo.user_id,
-            "Amont": window.localStorage.getItem("amount")
-
-        }
-    }
-    console.log($scope.postOrderData);
-   // console.log("HASH ----" + string);
     $scope.openBrowser = function () {
-        $state.go('payuBiz');
-        var options = {
-            location: 'yes',
-            clearcache: 'yes',
-            toolbar: 'no'
-        };
-        setTimeout(function () {
-            $cordovaInAppBrowser.open('templates/payuBiz.html', '_blank', options)
-           .then(function (event) {
-               $state.go('myOrder')
-           })
-           .catch(function (event) {
-           });
-        }, 1000)
+        var nextDay = new Date();
+        $scope.FromDate = nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 1)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2);
+        $scope.ToDate = nextDay.getFullYear() + '-' + ('0' + (nextDay.getMonth() + 2)).slice(-2) + '-' + ('0' + nextDay.getDate()).slice(-2);
+        $scope.bookingDateGymFlxy = {
+            "fromDate": $scope.FromDate,
+            "toDate": $scope.ToDate,
+            "type": window.localStorage.getItem("type"),
+            "price": window.localStorage.getItem("amount")
+        }
+        if (window.localStorage.getItem("bookType") == "Gym Booking") {
+            $scope.postOrderData = {
+                "CenterId": $scope.gymDetails[0].center_id,
+                "CategoryName": $scope.catgoryInfo.cat_name,
+                "BookingType": window.localStorage.getItem("bookType"),
+                "BookingDate": JSON.stringify($scope.bookingDateGymFlxy),
+                "UserId": window.localStorage.getItem("UserId"),
+                "Amount": window.localStorage.getItem("amount")
+            }
+        }
+        if (window.localStorage.getItem("bookType") == "FLXY Booking") {
+            $scope.postOrderData = {
+                "CenterId": $scope.gymDetails[0].center_id,
+                "CategoryName": $scope.catgoryInfo.cat_name,
+                "BookingType": window.localStorage.getItem("bookType"),
+                "BookingDate": JSON.stringify($scope.bookingDateGymFlxy),
+                "UserId": window.localStorage.getItem("UserId"),
+                "Amount": window.localStorage.getItem("amount")
+
+            }
+        }
+        if (window.localStorage.getItem("bookType") == "Daily Booking") {
+            $scope.postOrderData = {
+                "CenterId": $scope.gymDetails[0].center_id,
+                "CategoryName": $scope.catgoryInfo.cat_name,
+                "BookingType": window.localStorage.getItem("bookType"),
+                "BookingDate": window.localStorage.getItem("selectedDate"),
+                "UserId": window.localStorage.getItem("UserId"),
+                "Amount": window.localStorage.getItem("amount")
+            }
+        }
+        $ionicLoading.show({
+            noBackdrop: false,
+            template: '<ion-spinner icon="lines"/>'
+        });
+        var req = {
+            method: 'POST',
+            url: 'http://flxygym.com/home/api/get_order.php',
+            data: $scope.postOrderData
+        }
+        $http(req).then(function (res) {
+            if (res.data.message == "success") {
+                $ionicLoading.hide();
+                var paymentUrl = "http://flxygym.com/home/api/payment.php?transactionid=" + res.data.transaction_id;
+                var options = {
+                    location: 'yes',
+                    clearcache: 'yes',
+                    toolbar: 'no'
+                };
+                setTimeout(function () {
+                    $cordovaInAppBrowser.open(paymentUrl, '_blank', options)
+                   .then(function (event) {
+                       $state.go('myOrder')
+                   })
+                   .catch(function (event) {
+                   });
+                }, 3000)
+            }
+            else {
+                $ionicLoading.hide();
+                $ionicLoading.show({
+                    noBackdrop: false,
+                    template: res.data.message,
+                    content: 'Loading',
+                    animation: 'fade-in',
+                    showBackdrop: true,
+                    duration: 3000,
+                    maxWidth: 200,
+                    showDelay: 0
+                });
+            }
+        });
     }
+
+
     $rootScope.$on('$cordovaInAppBrowser:loadstart', function (e, event) {
         if(event.url =="http://flxygym.com/response.php")
         {
@@ -105,7 +127,7 @@ app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootS
         $state.go('app.dashboard');
     });
     //document.getElementById('amount').value = 200;
-    $("#amount").val(200);
+  //  $("#amount").val(200);
 
 
     $scope.testmethod = function () {
@@ -135,22 +157,6 @@ app.controller('orderDetailCtrl', function ($scope, $cordovaInAppBrowser, $rootS
 
 
     $scope.dateDetails = JSON.parse(window.localStorage.getItem("selectedDate"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Global InAppBrowser reference
 var iabRef = null;
@@ -231,4 +237,30 @@ $scope.getTotal = function () {
     window.localStorage.setItem("amount", total);
     return total;
 }
+$scope.errSrc = "http://www.businessislamica.com/xml/no_available_image.gif";
+
+
 })
+
+
+app.directive('errSrc', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                if (attrs.src != attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+
+            attrs.$observe('ngSrc', function (value) {
+                if (!value && attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+        }
+    }
+});
+
+
+
+

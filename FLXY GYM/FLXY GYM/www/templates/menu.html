@@ -10,13 +10,13 @@
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
-  <ion-side-menu side="left" style=" color: #333131 !important;
-    background-color: #333131;">
+  <ion-side-menu side="left" style="color: #484545 !important;
+    background-color: #484545;">
     <a menu-close class="item item-thumbnail-left border-none menuProfileImage itemHoverMenu" ui-sref="displayProfile" style="margin-top: 16px;">
-      <img ng-src="{{dashList.image}}" style="border-radius: 16px;margin-top: 10px">
+      <img ng-src="{{dashList.image}}"  err-src="{{errSrc}}" style="border-radius: 16px;margin-top: 10px">
       <h2 style="color: white;margin-top: 25px;font-weight: 700;">Welcome<br />{{dashList.name}}</h2>
     </a>
-    <ion-content style="background-color:#333131 !important">
+    <ion-content style="background-color:#484545 !important">
     <div class="list border-none animated bounceInDown">
   <a menu-close class="item item-icon-left sidemenuItem  border-none" ui-sref="app.dashboard" style="margin-top:150px">
     <i class="icon ion-ios-home-outline"></i>
@@ -84,5 +84,8 @@
   .heightDashMenuHeder{
     border-top: 18px solid #d41b0d !important;
     height: 86px !important;
+  }
+  .sidemenuItem:hover{
+      background-color:black;
   }
 </style>

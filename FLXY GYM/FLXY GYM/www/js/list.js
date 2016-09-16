@@ -27,8 +27,6 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
     }
     //---------- date click End---------
 
-
-
     function loadFunction(d) {
         var model = {
             "cat_id": $scope.item.cat_id,
@@ -377,6 +375,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
     $scope.rating.max = 5;
     $scope.goDetail = function (l) {
         loadymDetails(l.center_id);
+        $rootScope.detailsItems = l;
         window.localStorage.setItem("itemDetails", JSON.stringify(l));
         $state.go('detail')
     }
@@ -488,6 +487,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
                 maxWidth: 200,
                 showDelay: 0
             });
+            $rootScope.gymDetail = result.data.response;
             window.localStorage.setItem("GYMDetails", JSON.stringify(result.data.response));
             window.localStorage.setItem("goDetailsFrom", "list");
         }, function (err) {
@@ -521,37 +521,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
         }
     })
 
-    //$scope.locationData = [
-    //{
-    //    "id": "1",
-    //    "name": "Kandivali"
-    //}
-    //,
-    //{
-    //    "id": "2",
-    //    "name": "Malad"
-    //}
-    //, {
-    //    "id": "3",
-    //    "name": "Jogeshwari"
-    //},
-    // {
-    //     "id": "4",
-    //     "name": "Andheri West"
-    // },
-    // {
-    //     "id": "5",
-    //     "name": "Andheri East"
-    // },
-    // {
-    //     "id": "6",
-    //     "name": "Dahisar"
-    // },
-    // {
-    //     "id": "7",
-    //     "name": "Kurla"
-    // }
-    //]
+    
     $scope.locationArray = [];
     $scope.callme = function (item, a) {
         var listToDelete = [item.id];

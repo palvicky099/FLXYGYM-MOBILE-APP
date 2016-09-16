@@ -74,6 +74,7 @@ app.controller('loginCtrl', function ($scope, backcallFactory, $ionicHistory, da
                     if (data.data.message == "Success") {
                         window.localStorage.setItem("UserProfile", JSON.stringify(data.data));
                         window.localStorage.setItem("LoginData", JSON.stringify(data.data));
+                        window.localStorage.setItem("UserId", data.data.UserId);
                         LoadData();
                     }
                     else {

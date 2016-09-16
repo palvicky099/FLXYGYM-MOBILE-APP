@@ -12,27 +12,27 @@ app.controller('bookDateCtrl', function ($scope, $ionicLoading, $cordovaDialogs,
     $scope.changeCategoryClick = function (s) {
         window.localStorage.setItem("selectedCategoryForBooking", JSON.stringify(s));
     }
-    $scope.categoryPopup = function () {
-        var popup = $ionicPopup.show({
-            'templateUrl': 'categoryPopup.html',
-            'title': 'Select Category',
-            'scope': $scope,
-            'buttons': [
-                        {
-                            'text': 'Cancel'
-                        },
-                        {
-                            'text': 'Save',
-                            'onTap': function (event) {
-                                return $scope.categoryArray;
-                            }
-                        }
-            ]
-        });
-        popup.then(function (result) {
+    //$scope.categoryPopup = function () {
+    //    var popup = $ionicPopup.show({
+    //        'templateUrl': 'categoryPopup.html',
+    //        'title': 'Select Category',
+    //        'scope': $scope,
+    //        'buttons': [
+    //                    {
+    //                        'text': 'Cancel'
+    //                    },
+    //                    {
+    //                        'text': 'Save',
+    //                        'onTap': function (event) {
+    //                            return $scope.categoryArray;
+    //                        }
+    //                    }
+    //        ]
+    //    });
+    //    popup.then(function (result) {
           
-        });
-    }
+    //    });
+    //}
 
     $ionicPlatform.onHardwareBackButton(function () {
         $state.go(window.localStorage.getItem("backFromBookDate"));

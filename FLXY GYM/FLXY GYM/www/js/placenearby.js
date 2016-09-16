@@ -99,6 +99,7 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
                   maxWidth: 200,
                   showDelay: 0
               });
+              $rootScope.detailsItems = l;
               window.localStorage.setItem("GYMDetails", JSON.stringify(result.data.response));
               window.localStorage.setItem("goDetailsFrom", "placenearby");
               $state.go('detail');

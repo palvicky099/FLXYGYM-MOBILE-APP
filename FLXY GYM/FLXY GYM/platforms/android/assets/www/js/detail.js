@@ -5,11 +5,11 @@ app.controller('detailCtrl', function ($scope, $cordovaDialogs, $state, $ionicLo
         $ionicPlatform.onHardwareBackButton(function () {
             $state.go(window.localStorage.getItem("goDetailsFrom"));
         });
-
-
         $scope.bannerUrl = '../img/logo.png'
-        $scope.detailItem = JSON.parse(window.localStorage.getItem("itemDetails"));
-        $scope.gymDetails = JSON.parse(window.localStorage.getItem("GYMDetails"));
+        $scope.detailItem = $rootScope.detailsItems;
+    //$scope.gymDetails = JSON.parse(window.localStorage.getItem("GYMDetails"));
+        $scope.gymDetails = $rootScope.gymDetail;
+
         $scope.visible = {};
         dataService.gym_membership($scope.detailItem.center_id).then(function (res) {
             if (res.data.message == "success") {
@@ -27,7 +27,6 @@ app.controller('detailCtrl', function ($scope, $cordovaDialogs, $state, $ionicLo
                 $scope.gymFacilites = [];
             }
         })
-
         var msg = "This will do a booking for" + " " + $scope.detailItem.center_name + " " + "and center will contact you soon. Please go to My Booking to track the status";
         $scope.reserve = function () {
             var popup = $ionicPopup.show({
@@ -66,11 +65,7 @@ app.controller('detailCtrl', function ($scope, $cordovaDialogs, $state, $ionicLo
                     $state.go('bookDate');
                 }
             });
-            //$state.go('bookDate');
         }
-        ////var string = $scope.gymDetails[0].time;
-        ////$scope.timeSlotarray = string.split(',')
-        ////console.log($scope.timeSlotarray);
         $scope.rating = {};
         $scope.rating.rate = 3.5;
         $scope.rating.max = 5;

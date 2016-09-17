@@ -69,5 +69,8 @@ angular.module('starter.services', [])
      factory.get_location = function (model) {
          return $http.get(url + 'get_location.php');
      };
+     factory.myOrderDetails = function (model) {
+         return $http.post(url + 'my_order.php', model);
+     };
     return factory;
 });

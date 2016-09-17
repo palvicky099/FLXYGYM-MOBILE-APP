@@ -206,6 +206,40 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            templateUrl: "templates/newPassword.html",
            controller: 'forgotPasswordCtrl'
        })
+
+    .state('tab', {
+        url: "/tab",
+        abstract: true,
+        templateUrl: "templates/tab.html"
+    })
+    .state('tab.dailyOrder', {
+        url: '/dailyOrder',
+        views: {
+            'dailyOrder': {
+                templateUrl: 'templates/dailyOrder.html',
+                controller: 'myOrderCtrl'
+            }
+        }
+    })
+ .state('tab.flxyOrder', {
+     url: '/flxyOrder',
+     views: {
+         'flxyOrder': {
+             templateUrl: 'templates/flxyOrder.html',
+             controller: 'myOrderCtrl'
+         }
+     }
+ })
+  .state('tab.gymOrder', {
+      url: '/gymOrder',
+      views: {
+          'gymOrder': {
+              templateUrl: 'templates/gymOrder.html',
+              controller: 'myOrderCtrl'
+          }
+      }
+  })
+
     ;
 
   if (window.localStorage.getItem("isLogin") == "yes")

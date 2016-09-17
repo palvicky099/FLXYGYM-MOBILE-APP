@@ -49,4 +49,5 @@
   <plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.4" src="https://github.com/katzer/cordova-plugin-local-notifications.git" />
   <plugin name="cordova-plugin-app-event" version="1.2.0" />
   <plugin name="cordova-plugin-calendar" version="4.5.1" src="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git" />
+  <preference name="AndroidLaunchMode" value="singleTop" />
 </widget>

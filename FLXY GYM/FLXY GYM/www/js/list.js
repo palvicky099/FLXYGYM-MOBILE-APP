@@ -444,7 +444,7 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
                             'text': 'Cancel'
                         },
                         {
-                            'text': 'Save',
+                            'text': 'Proceed',
                             'onTap': function (event) {
                                 return $scope.visible.status;
                             }

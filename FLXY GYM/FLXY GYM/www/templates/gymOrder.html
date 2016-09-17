@@ -1,0 +1,20 @@
+﻿<ion-view cache-view="false" hide-nav-bar="true">
+    <ion-header-bar class="flxy-button">
+        <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:#d41b0d;">
+            <span class="headerStyle"> BOOKING HISTORY</span>
+        </button>
+    </ion-header-bar>
+    <ion-content style="margin-top:21px">
+        <div class="card" ng-repeat="b in gymBookings">
+            <a class="item item-thumbnail-left item-text-wrap">
+                <img src="{{b.image}}" err-src="{{errSrc}}">
+                <p>Order Id :{{b.order_id}}</p>
+                <h2>{{b.center_name}}</h2>
+                <p>From: 17 March 2016 </p>
+                <p>To: 17 March 2016 </p>
+                <p style="color:green">Your transaction is successful</p>
+                <h2 style="text-align:right; color:black; font-weight:700">{{b.totalAmount}} Rs</h2>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

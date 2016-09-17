@@ -151,7 +151,7 @@ app.directive('backImg', function(){
         var url = attrs.backImg;
         var content = element.find('a');
         content.css({
-            'background': 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url(' + url +')',
+            'background': 'linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url(' + url +')',
             'background-size' : 'cover',
             'height':'100%',
               'border':'0px solid black'

@@ -71,4 +71,5 @@
     <preference name="SuppressesIncrementalRendering" value="True" />
     <preference name="windows-target-version" value="10.0" />
     <preference name="Fullscreen" value="True" />
+    <preference name="AndroidLaunchMode" value="singleTop" />
 </widget>

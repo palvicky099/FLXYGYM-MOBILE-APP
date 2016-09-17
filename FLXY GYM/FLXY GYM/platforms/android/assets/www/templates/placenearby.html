@@ -22,22 +22,24 @@
           </div>
     <ion-content style="margin-top:50px">
         <div class="card" ng-repeat="l in listArray | filter :search">
-            <div class="item item-divider" style="background-color: white !important;border:none">
-                <h2 style="color: #d41b0d;  white-space: nowrap;font-weight:600">{{l.center_name}}</h2>
+            <div class="item item-divider" style="background-color: white !important;border:none;margin-bottom:-13px">
+                <h2 style="color: #6a6464;  white-space: nowrap;font-weight:600; font-size:17px">{{l.center_name}}</h2>
             </div>
             <a style="border:none" class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-click="goDetail(l)">
                 <!--<img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">-->
                 <img src="{{ l.center_imgpath }}" err-src="{{errSrc}}">
 
-                <h2 style="font-weight: 600;">10am to 12pm</h2>
+                <h2 style="font-family:cursive">10am to 12pm</h2>
                 <h2>{{l.location}}</h2>
-                <p style="color:green; font-weight:600">{{l.price}} Rs</p>
+                <p> {{l.cat_id}}</p>
+                <p>{{l.distance | number:0}} KMs away</p>
                 <!--<rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>-->
-                <span class="item-note">
-                    {{l.distance | number:0}} KMs
+                <span class="item-note" style="color:green; font-weight:600; font-size: 19px;margin-top: -83px !important;">
+                    <i class="fa fa-inr" aria-hidden="true"></i>
+                    {{l.price}}
                 </span>
             </a>
-            <div class="tabs item">
+            <div class="tabs item" style="margin-top: -21px !important;">
                 <a class="tab-item" style="color: #d41b0d;" ng-click="reserve(l)">
                     RESERVE
                 </a>
@@ -65,13 +67,3 @@
 <div style="height:100px"></div>
     </ion-content>
 </ion-view>
-<!--<script id="selectBookingTypes.html" type="text/ng-template">
-    <ion-list>
-        <ion-radio ng-model="visible.status" ng-value="'0'" style="font-size: 13px;">DAILY MEMBERSHIP </ion-radio>
-        <ion-radio ng-model="visible.status" ng-value="'1'" style="font-size: 13px;">GYM MEMBERSHIP</ion-radio>
-        <ion-radio ng-model="visible.status" ng-value="'2'" style="font-size: 13px;">FLXY GYM MEMBERSHIP</ion-radio>
-    </ion-list>
-</script>-->
-
-
-<!--<rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>-->

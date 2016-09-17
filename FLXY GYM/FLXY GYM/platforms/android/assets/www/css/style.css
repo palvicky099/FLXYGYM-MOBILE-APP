@@ -179,3 +179,19 @@ ul.rating li i {
         margin-top: 18px;
     background-color: #ddd;
 }
+.tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
+    border-color: #d41b0d !important;
+     background-color: #dddddd !important;
+    color: #d41b0d !important;
+        font-size: 19px;
+        font-weight:700;
+}
+.tabs-striped .tabs {
+    background-color: #dddddd !important;
+            font-size: 17px;
+
+}
+.tabs-striped .tab-item {
+            font-size: 17px !important;
+
+}

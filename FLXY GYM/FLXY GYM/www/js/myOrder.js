@@ -1,4 +1,4 @@
-﻿app.controller('myOrderCtrl', function ($scope, $state, dataService, $rootScope) {
+﻿app.controller('myOrderCtrl', function ($scope, $state, dataService, $rootScope, $ionicLoading) {
     $scope.$on('$ionicView.enter', function () {
         //$scope.bookings =
         //    [
@@ -42,20 +42,34 @@
         //        ]
         //    },
         //    ]
+        loading();
         $scope.goBookingDetails = function (b) {
             $rootScope.bookingDetails = b;
             console.log($rootScope.bookingDetails);
             $state.go('myBookingOrderDetails');
         }
-
+        function loading() {
+            $ionicLoading.show({
+                noBackdrop: false,
+                template: '<ion-spinner icon="lines"/>',
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                duration: 3000,
+                maxWidth: 200,
+                showDelay: 0
+            });
+        }
         //daily my order
         var dailyModel = {
-            "User_Id": "19",
+            "User_Id": window.localStorage.getItem('UserId'),
             "Booking_Type": "Daily Booking"
         }
         dataService.myOrderDetails(dailyModel).then(function (data) {
+            $ionicLoading.hide();
             $scope.bookings = data.data.response;
         }, function (err) {
+            $ionicLoading.hide();
         })
         //gym my order
         var gymModel = {
@@ -63,9 +77,10 @@
             "Booking_Type": "Gym Booking"
         }
         dataService.myOrderDetails(gymModel).then(function (data) {
-            console.log(data);
+            $ionicLoading.hide();
             $scope.gymBookings = data.data.response;
         }, function (err) {
+            $ionicLoading.hide();
         })
 
         //FLXY my order
@@ -74,9 +89,10 @@
             "Booking_Type": "FLXY Booking"
         }
         dataService.myOrderDetails(flxyModel).then(function (data) {
-            console.log(data);
+            $ionicLoading.hide();
             $scope.flxyBookings = data.data.response;
         }, function (err) {
+            $ionicLoading.hide();
         })
     })
     $scope.errSrc = "http://www.businessislamica.com/xml/no_available_image.gif";

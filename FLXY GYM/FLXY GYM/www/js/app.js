@@ -32,7 +32,7 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
             if (navigator.connection.type == Connection.NONE) {
             }
             else {
-             $rootScope.categoryLoad();
+             //$rootScope.categoryLoad();
             }
         }, 2000)
         }
@@ -116,6 +116,13 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            controller: 'feedbackCtrl'
 
        })
+      .state('addMoney', {
+          url: "/addMoney",
+          cache: false,
+          templateUrl: "templates/addMoney.html",
+          controller: 'addMoneyCtrl'
+
+      })
        .state('events', {
            url: "/events",
            cache: false,

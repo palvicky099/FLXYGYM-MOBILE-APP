@@ -72,5 +72,11 @@ angular.module('starter.services', [])
      factory.myOrderDetails = function (model) {
          return $http.post(url + 'my_order.php', model);
      };
+     factory.get_wallet = function (model) {
+         return $http.post(url + 'get_wallet.php', model);
+     };
+     factory.checkUserTakenMemberShip = function (model) {
+         return $http.post(url + 'check_flxy_membership.php', model);
+     };
     return factory;
 });

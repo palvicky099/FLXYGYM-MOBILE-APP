@@ -9,7 +9,7 @@
             <input type="text" placeholder="Search" ng-model="search">
         </div>
     </div>
-    <div class="list card list-inset Paddingtop animated zoomIn" style="position:fixed;bottom:-10px; z-index:1000; width:104%;left:-10px">
+    <!--<div class="list card list-inset Paddingtop animated zoomIn" style="position:fixed;bottom:-10px; z-index:1000; width:104%;left:-10px">
               <label class="item item-input item-select flxy-tabs" style="background-color:#ddd !important; border-top:1px solid #a51b10">
                   <span class="input-label flxy-tabs" style="background-color:#ddd !important">
                  Select Location               
@@ -19,7 +19,18 @@
                           ng-options="option.location for option in locationDetails.location track by option.loc_id"
                           ng-model="locationDetails.SelectedLocation" style="background-color:#d41b0d !important; color:white !important"></select>
               </label>
-          </div>
+          </div>-->
+    <div class="list card list-inset Paddingtop animated zoomIn" style="position:fixed;bottom:-5px; z-index:1000; width:104%;left:-10px">
+        <label class="item item-input item-select flxy-tabs" style="background-color:#ddd !important;border:none">
+            <span class="input-label flxy-tabs" style="background-color:#ddd !important;    font-size: 17px;
+    font-weight: 600;">
+                Category
+            </span>
+            <select style="background-color:rgb(212, 27, 13) !important;color:white;font-size: 17px;font-weight: 600;" class="item-text-wrap" name="mySelect" id="mySelect"ng-change="dropDownClick(CategorysDetails.SelectedCategory)"
+                    ng-options="option.cat_name for option in CategorysDetails.cat_name track by option.cat_id"
+                    ng-model="CategorysDetails.SelectedCategory"></select>
+           </label>
+    </div>
     <ion-content style="margin-top:50px">
         <div class="card" ng-repeat="l in listArray | filter :search">
             <div class="item item-divider" style="background-color: white !important;border:none;margin-bottom:-13px">

@@ -78,5 +78,12 @@ angular.module('starter.services', [])
      factory.checkUserTakenMemberShip = function (model) {
          return $http.post(url + 'check_flxy_membership.php', model);
      };
+     factory.booking_flxy_membership = function (model) {
+         return $http.post(url + 'booking_flxy_membership.php', model);
+     };
+
+     factory.wallet_payment = function (model) {
+         return $http.post(url + 'wallet_payment.php', model);
+     }; 
     return factory;
 });

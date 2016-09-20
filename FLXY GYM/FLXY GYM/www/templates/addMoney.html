@@ -7,11 +7,11 @@
     <ion-content style="margin-top:22px">
         <div class="list">
             <div class="item item-divider" style="padding: 13px;">
-Your Balance &nbsp;<i class="fa fa-inr" aria-hidden="true"></i> 120 
-        </div>
+               Your Balance &nbsp;<i class="fa fa-inr" aria-hidden="true"></i> {{dashList[0].wallet}} 
+           </div>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Enter Amount &nbsp;<i class="fa fa-inr" aria-hidden="true"></i></span>
-                <input type="number" placeholder="Amount" ng-model="amount">
+                <input type="number" placeholder="Amount" ng-model="amount" readonly>
             </label>
             <div class="row">
                 <div class="col"><button class="button" ng-click="selectAdd(99)">+<i class="fa fa-inr" aria-hidden="true"></i>99</button></div>

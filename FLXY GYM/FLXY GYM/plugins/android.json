@@ -7,13 +7,28 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-compat": {
+        "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-calendar": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
         "cordova-plugin-network-information": {
@@ -28,33 +43,21 @@
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         },
         "mx.ferreyra.callnumber": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
-        },
-        "cordova-plugin-image-picker": {
-            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
-        },
-        "de.appplant.cordova.plugin.local-notification": {
-            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
-        },
-        "cordova-plugin-calendar": {
-            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
+        },
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.ionicframework.ionicsidemenu"
         }
     }

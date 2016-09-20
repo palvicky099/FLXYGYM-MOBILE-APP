@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget id="com.ionicframework.ionicsidemenu" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>FLXY GYM</name>
-  <description>FLXY GYM</description>
+  <description>FLXY GYMC:\Users\VICKY\Documents\GitHub\FLXYGYM-MOBILE-APP\FLXY GYM\FLXY GYM\config.xml</description>
   <author email="you@example.com" href="http://example.com.com/">Vicky Pal</author>
   <content src="index.html" />
   <access origin="*" />
@@ -50,4 +50,5 @@
   <plugin name="cordova-plugin-app-event" version="1.2.0" />
   <plugin name="cordova-plugin-calendar" version="4.5.1" src="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git" />
   <preference name="AndroidLaunchMode" value="singleTop" />
+  <plugin name="cordova-plugin-actionsheet" version="2.3.1" src="https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git" />
 </widget>

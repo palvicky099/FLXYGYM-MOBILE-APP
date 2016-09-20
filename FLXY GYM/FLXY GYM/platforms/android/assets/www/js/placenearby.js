@@ -8,18 +8,19 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
                 noBackdrop: false,
                 template: '<ion-spinner icon="lines"/>'
             });
+            window.localStorage.setItem("categoryOrder", c.cat_name);
          //   $scope.listArray = [];
-            if (c.loc_id == '0')
+            if (c.cat_id == '0')
             {
                 var queryS = "select * from gymCenter";
             }
             else {
-                var queryS = "select * from gymCenter where loc_id = '" + c.loc_id + "'";
-            }
+                var queryS = "select * from gymCenter where cat_id like '%" + c.cat_name + "%'";
+                }
             loadGymCenter(queryS);
         }
       $scope.options = ['Load', 'Sync', 'Settings'];
-      loadGymCenter("select * from gymCenter");
+      loadGymCenter("select * from gymCenter where cat_id like '%Weight Traning%'");
   function loadGymCenter(query) {
       var listViewQuery = query;
       $cordovaSQLite.execute(db, listViewQuery, []).then(function (result) {
@@ -34,11 +35,9 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
               setTimeout(function () {
                   $ionicLoading.hide();
               }, 2000);
-             
           } else {
-              setTimeout(function () {
                   $ionicLoading.hide();
-              }, 2000);
+                  $scope.listArray = [];
               var alertPopup = $ionicPopup.alert({
                   title: 'Alert',
                   template: '<div style="text-align:center; font-size:22px">No gym center available.</div>'
@@ -50,6 +49,21 @@ app.controller('placenearbyCtrl', function ($scope, $state, $ionicPopup, $cordov
       });
   }
 
+        //-------------------- category---------------------------
+  $scope.Categorys = JSON.parse(window.localStorage.getItem("Category"));
+  window.localStorage.setItem("categoryOrder", $scope.Categorys[0].cat_name);
+  $scope.CategorysDetails = {
+      cat_name: $scope.Categorys,
+      // SelectedCategory: { cat_id: "0", cat_name: "All" }
+
+      SelectedCategory: { cat_id: $scope.Categorys[0].cat_id, cat_name: $scope.Categorys[0].cat_name }
+
+  };
+
+  window.localStorage.setItem("selectedCategoryForBooking", JSON.stringify($scope.Categorys[0]));
+  //$scope.changeCategoryClick = function (s) {
+  //    window.localStorage.setItem("selectedCategoryForBooking", JSON.stringify(s));
+  //}
   var placeDropDownQuery = "select distinct loc_id, location from gymCenter";
   $cordovaSQLite.execute(db, placeDropDownQuery, []).then(function (result) {
       if (result.rows.length > 0) {

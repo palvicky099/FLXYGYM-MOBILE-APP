@@ -8,13 +8,16 @@
             <a class="item item-thumbnail-left" >
                 <img src="{{gymDetails[0].center_imgpath[0]}}" err-src="{{errSrc}}">
                 <h2>{{gymDetails[0].center_name}}</h2>
-                <p>{{catgoryInfo.cat_name}}</p>
-                <h2>{{getTotal()}} Rs</h2>
+                <p>{{cName}}</p>
+                <h2 ng-if="bookTypetoshowPrice == 'Daily Booking'"><i class="fa fa-inr" aria-hidden="true"></i> {{getTotal()}}</h2>
+                <h2 ng-if="bookTypetoshowPrice != 'Daily Booking'"><i class="fa fa-inr" aria-hidden="true"></i>{{totAmount}}</h2>
             </a>
         <a class="item  item-text-wrap" ng-repeat="d in dateDetails" ng-if="showDateTable">
             <h2>{{d.date  | date:'dd MMM yyyy'}}</h2>
             <p>{{d.Time}}</p>
-            <p style="text-align:right; color:green">{{d.price}} Rs</p>
+            <p style="text-align:right; color:green" ng-if="bookTypetoshowPrice == 'Daily Booking'"><i class="fa fa-inr" aria-hidden="true"></i>{{d.price}} </p>
+            <p style="text-align:right; color:green" ng-if="bookTypetoshowPrice != 'Daily Booking'"><i class="fa fa-inr" aria-hidden="true"></i>{{totAmount}} </p>
+
         </a>
 
         <table id="t01" ng-if="showDateTables">
@@ -26,12 +29,12 @@
             <tr ng-repeat="d in dateDetails">
                 <td>{{d.date  | date:'dd MMM yyyy'}}</td>
                 <td>{{d.Time}}</td>
-                <td> {{d.price}} Rs</td>
+                <td><i class="fa fa-inr" aria-hidden="true"></i> {{d.price}}</td>
             </tr>
             <tr>
                 <td><b>Total</b></td>
                 <td></td>
-                <td><b>{{ getTotal() }} Rs</b></td>
+                <td><b><i class="fa fa-inr" aria-hidden="true"></i>{{ getTotal() }}</b></td>
             </tr>
         </table>
         <ion-list ng-if="showMemberShip">
@@ -39,7 +42,7 @@
                 <i class="icon ion-star"></i>
                 <h2>{{type}}</h2>
                 <h2>{{period}}</h2>
-                <h2>{{totalMembershipPrice}}</h2>
+                <h2><i class="fa fa-inr" aria-hidden="true"></i>{{totalMembershipPrice}}</h2>
             </ion-item>
         </ion-list>
 
@@ -47,9 +50,13 @@
         <div style="height:100px"></div>
     </ion-content>
     <div class="tabs flxy-tabs" style="font-weight: 900;background-color:#ddd !important">
-        <a class="tab-item" style="font-weight: 900;width:100%;overflow:visible !important;background-color:#ddd" ng-click="openBrowser()">
-            Pay {{getTotal()}} Rs
+        <a class="tab-item" style="font-weight: 900;width:100%;overflow:visible !important;background-color:#ddd" ng-click="openBrowser()" ng-if="bookTypetoshowPrice == 'Daily Booking'">
+            Pay &nbsp;<i class="fa fa-inr" aria-hidden="true"></i>{{getTotal()}}
         </a>
+        <a class="tab-item" style="font-weight: 900;width:100%;overflow:visible !important;background-color:#ddd" ng-click="openBrowser()" ng-if="bookTypetoshowPrice != 'Daily Booking'">
+            Pay&nbsp; <i class="fa fa-inr" aria-hidden="true"></i>{{totAmount}}
+        </a>
+
     </div>
 </ion-view>
 <style>

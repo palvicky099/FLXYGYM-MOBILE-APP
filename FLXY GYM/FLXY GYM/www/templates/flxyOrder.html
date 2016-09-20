@@ -10,8 +10,9 @@
                 <img src="{{b.center_image}}" err-src="{{errSrc}}">
                 <h2>{{b.center_name}}</h2>
                 <p>Order Id :{{b.order_id}}</p>
-                <p style="color:green">Your transaction is successful</p>
-                <h2 style="text-align:right; color:black; font-weight:700">{{b.totalAmount}} Rs</h2>
+                <p style="color:green" ng-if="b.result == 'success'">Your transaction is successful</p>
+                <p style="color:red" ng-if="b.result == 'failure'">Your transaction is failed</p>
+                                <h2 style="text-align:right; color:black; font-weight:700">{{b.totalAmount}} Rs</h2>
             </a>
         </div>
     </ion-content>

@@ -10,10 +10,12 @@
                 <img src="{{b.image}}" err-src="{{errSrc}}">
                 <p>Order Id :{{b.order_id}}</p>
                 <h2>{{b.center_name}}</h2>
-                <p>From: 17 March 2016 </p>
-                <p>To: 17 March 2016 </p>
-                <p style="color:green">Your transaction is successful</p>
-                <h2 style="text-align:right; color:black; font-weight:700">{{b.totalAmount}} Rs</h2>
+                <p>Category:&nbsp; {{b.category}} </p>
+                <p>From:&nbsp; {{b.fromdate}} </p>
+                <p>To:  &nbsp; {{b.todate}} </p>
+                <p style="color:green" ng-if="b.result == 'success'">Your transaction is successful</p>
+                <p style="color:red" ng-if="b.result == 'failure'">Your transaction is failed</p>
+                <h2 style="text-align:right; color:black; font-weight:700"><i class="fa fa-inr" aria-hidden="true"></i>{{b.price}}</h2>
             </a>
         </div>
     </ion-content>

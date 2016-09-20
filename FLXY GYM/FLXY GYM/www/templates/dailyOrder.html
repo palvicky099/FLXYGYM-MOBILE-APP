@@ -8,13 +8,13 @@
         <div class="list" ng-repeat="b in bookings" ng-click="goBookingDetails(b)">
             <a class="item item-thumbnail-left item-text-wrap" style="margin-bottom: -22px;">
                 <img src="{{b.image}}" err-src="{{errSrc}}">
+                <h2>Order Id :{{b.order_id}}</h2>
                 <h2>{{b.center_name}}</h2>
-                <p>Order Id :{{b.order_id}}</p>
+                <p>{{b.category}}</p>
                 <p>Booking Date :{{b.booking_date | date:'dd-MMM-yyyy HH:mm'}}</p>
-
                 <p style="color:green" ng-if="b.result == 'success'">Your transaction is successful</p>
                 <p style="color:red" ng-if="b.result == 'failure'">Your transaction is failed</p>
-                <h2 style="text-align:right; color:black; font-weight:700">{{b.price}} Rs</h2>
+                <h2 style="text-align:right; color:black; font-weight:700"><i class="fa fa-inr" aria-hidden="true"></i>{{b.total}}</h2>
             </a>
         </div>
     </ion-content>

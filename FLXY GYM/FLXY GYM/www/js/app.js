@@ -16,13 +16,18 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
             StatusBar.styleDefault();
         }
         db = window.openDatabase("FLXY.db", "1.0", "FLXYGYM", 500000);
-       // db = $cordovaSQLite.openDB('WD.db');
+       //db = $cordovaSQLite.openDB('WD.db');
         //--------------GYM center table------------------
         $cordovaSQLite.execute(db,
             "CREATE TABLE IF NOT EXISTS gymCenter (id integer primary key,cat_id text, center_id text, " +
                                   " center_name text, center_imgpath text, price text, price_id text, address text , branch_addr text," +
                                   " grade text, grade_id text, landmark text, latitude text, longitude text, " +
                                   " margin text, s_id text, s_name text, seats_perday text, distance text, location text, loc_id text)");
+
+        //------------------Date booking history Details----------
+        $cordovaSQLite.execute(db,
+           "CREATE TABLE IF NOT EXISTS dateOrderDetails (id integer primary key,booking_date text, category text, center_id text, center_name text, date text, image text, order_id text, price text, result text, time text, transaction_id text)");
+
     });
 
 
@@ -32,7 +37,7 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
             if (navigator.connection.type == Connection.NONE) {
             }
             else {
-             //$rootScope.categoryLoad();
+             $rootScope.categoryLoad();
             }
         }, 2000)
         }
@@ -78,12 +83,6 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            templateUrl: "templates/myOrder.html",
            controller: 'myOrderCtrl'
        })
-    .state('myBookingOrderDetails', {
-        url: "/myBookingOrderDetails",
-        cache: false,
-        templateUrl: "templates/myBookingOrderDetails.html",
-        controller: 'myOrderCtrl'
-    })
     
     .state('otp', {
         url: "/otp",
@@ -213,7 +212,13 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
            templateUrl: "templates/newPassword.html",
            controller: 'forgotPasswordCtrl'
        })
-
+    .state('myBookingOrderDetails', {
+        url: "/myBookingOrderDetails",
+        cache: false,
+        templateUrl: "templates/myBookingOrderDetails.html",
+        controller: 'myBookingOrderDetailsCtrl'
+    })
+    
     .state('tab', {
         url: "/tab",
         abstract: true,

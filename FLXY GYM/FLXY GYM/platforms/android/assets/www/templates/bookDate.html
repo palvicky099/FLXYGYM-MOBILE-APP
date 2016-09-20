@@ -17,7 +17,7 @@
                     ng-model="CategorysDetails.SelectedCategory"></select>
            </label>
     </div>-->
-    <ion-content style="margin-top:25px">
+    <ion-content style="margin-top:23px">
             <ion-list>
                 <ion-checkbox ng-if="showMemberShip == '0'" class="checkbox-royal" ng-repeat="d in dateScope | orderBy : 'date'" ng-disabled="d.remaining_seat <= 0" ng-model="itemChecked" ng-click="callMe(d, itemChecked )">
                     {{d.date | date:'dd MMM yyyy'}}

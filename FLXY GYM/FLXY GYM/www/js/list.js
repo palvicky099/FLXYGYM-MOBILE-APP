@@ -4,6 +4,22 @@ app.controller('listCtrl', function ($scope, $ionicPlatform, $state, $ionicModal
     $ionicPlatform.onHardwareBackButton(function () {
         $state.go('app.dashboard');
     });
+    $scope.defaultHeader = true;
+
+    $scope.searchClick = function () {
+        $scope.defaultHeader = false;
+        setTimeout(function () {
+            $scope.defaultHeader = false;
+        },500)
+    }
+    $scope.searchBackClick = function () {
+        $scope.defaultHeader = true;
+        setTimeout(function () {
+            $scope.defaultHeader = true;
+            loadFunction($scope.dateScope[0]);
+        }, 500)
+
+    }
     $scope.locatiosArray = [];
     var DataArray = [];
     var myDate = new Date();

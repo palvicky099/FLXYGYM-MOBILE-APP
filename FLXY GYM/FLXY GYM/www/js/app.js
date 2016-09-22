@@ -37,7 +37,7 @@ var app = angular.module('app', ['ionic', 'starter.controllers', 'ngCordova', 'i
             if (navigator.connection.type == Connection.NONE) {
             }
             else {
-             $rootScope.categoryLoad();
+             //$rootScope.categoryLoad();
             }
         }, 2000)
         }

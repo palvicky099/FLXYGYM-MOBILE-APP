@@ -1,51 +1,35 @@
 <ion-view hide-nav-bar="true" class="greyBackgorund" cache-view="false">
-    <ion-header-bar class="flxy-button">
+    <ion-header-bar class="flxy-button" ng-show="defaultHeader">
         <button ui-sref="app.dashboard" class="button  button-clear icon ion-ios-arrow-left" style="color:#d41b0d;">
             <span class="headerStyle">{{categoryName}}</span>
         </button>
-        <!--<input class="title" type="text" placeholder="Search" style="background: transparent;
-    color: red;
-    font-size:14px;
-    width: 60%;
-    border-bottom: 2px solid red;
-    text-align: center;
-    left: 85px;
-    right: 53px;">-->
+          <button class="button searchIcon button-clear button-positive ion-search flxy-button" ng-click="searchClick()"></button>
           <button class="button button-clear button-positive icon ion-funnel flxy-button" ng-click="showFilter()"></button>
     </ion-header-bar>
-     <div class="row animated bounceInDown" style="position:fixed; top:60px; z-index:1000; height: 73px; background-color: #ddd;">
+     <div ng-show="defaultHeader" class="row animated bounceInDown" style="position:fixed; top:60px; z-index:1000; height: 73px; background-color: #ddd;">
           <div class="col abc" ng-repeat="d in dateScope" ng-click="dateClick(d)"><h4 class="week">{{d | date:'dd' }}</h4><h5 class="week">{{d | date:'EEE' }}</h5></div>
       </div>
-
-    <ion-content class="" style="margin-top:83px">
-    <!--<div class="list">
-    <a class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn" ng-repeat="l in listArray" ng-click="goDetail(l)">
-      <img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200"  id="listImg">
-      <h2 style="color: red;  white-space: nowrap;">{{l.center_name}}</h2>
-      <p>10am to 12pm</p>
-       <p>{{l.location}}</p>
-<p style="color:green">{{l.price}} Rs</p>
-    <span class="item-note">
-  {{l.distance}} KMs
-    </span>
-        <span class="reserveBtn" ng-click="reserveClick()">Reserve</span>
-    </a>
-</div>-->
-        <div class="card"  ng-repeat="l in listArray">
+    <div class="bar bar-header item-input-inset item item-icon-left" ng-hide="defaultHeader">
+        <i class="icon ion-chevron-left" style="color: #d41b0d !important; margin-left: -10px !important;" ng-click="searchBackClick()"></i>
+        <label class="item-input-wrapper" style="margin-left:25px">
+            <input type="search" placeholder="Search" ng-model="search">
+        </label>
+    </div>
+    <ion-content  style="margin-top:80px">
+        <div style="height:36px !important" ng-hide="defaultHeader"></div>
+        <div class="card"  ng-repeat="l in listArray | filter :search" style="box-shadow:none !important;">
             <div class="item item-divider" style="background-color: white !important;border:none;margin-bottom:-13px">
                 <h2 style="color: #6a6464;  white-space: nowrap;font-weight:600; font-size:17px">{{l.center_name}}</h2>
              </div>
             <a style="border:none;" class="item item-thumbnail-left item-text-wrap Paddingtop animated zoomIn " ng-click="goDetail(l)">
-                <!--<img image-lazy-src="{{ l.center_imgpath }}" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="-200" id="listImg">-->
                 <img src="{{ l.center_imgpath }}" err-src="{{errSrc}}" class="itemCSS">
-
                 <h2 style="font-family:cursive">10am to 12pm</h2>
                 <h2>{{l.location}}</h2>
                 <p> {{l.cat_id}}</p>
                 <p>{{l.distance | number:0}} KMs away</p>
                 <!--<rating ng-model="l.gymRating" max="5" readonly="readOnly" style="position:fixed;left:10px; color:#e6b500"></rating>-->
                 <span class="item-note" style="color:green; font-size: 19px;margin-top: -83px;"><i class="fa fa-inr" aria-hidden="true"></i>
- {{l.price}}</span>
+                {{l.price}}</span>
             </a>
             <div class="tabs item" style="margin-top: -21px !important;">
                 <a class="tab-item" style="color: #d41b0d;" ng-click="reserve(l)">
@@ -83,6 +67,11 @@
       top: 7px !important;
     left: 3px !important;
     max-width: 95px !important;
+  }
+  .searchIcon{
+      Position: fixed;
+    right: 60px;
+    font-size: 36px !important;
   }
 </style>     
 <script id="selectBookingType.html" type="text/ng-template">
